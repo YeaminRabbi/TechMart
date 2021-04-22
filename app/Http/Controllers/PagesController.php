@@ -87,7 +87,7 @@ class PagesController extends Controller
             $blogs = Blog::find($id);
            
             $relatedposts= Blog::where('category',"=", $category)->take(3)->get(); 
-            return view('pages.post',compact('blogs','relatedposts'));
+            return view('pages.blog_category_pages.post',compact('blogs','relatedposts'));
             
         }
 
@@ -95,87 +95,81 @@ class PagesController extends Controller
         // Here we show politics 
      public function politics(){
         $blogs_politics = Blog::where('category','politics')->get();
-        return view('pages.politics',compact('blogs_politics'));
+        return view('pages.blog_category_pages.politics',compact('blogs_politics'));
     }
 
-    // Here we show politics 
+    // Here we show travel 
     public function travel(){
         
         $blogs_travel = Blog::where('category','travel')->get();
-        return view('pages.travel',compact('blogs_travel'));
+        return view('pages.blog_category_pages.travel',compact('blogs_travel'));
     }
 
-    // Here we show politics 
+    // Here we show international news 
     public function internationalnews(){
         $blogs_international = Blog::where('category','internationalnews')->get();
-        return view('pages.international',compact('blogs_international'));
+        return view('pages.blog_category_pages.international',compact('blogs_international'));
     }
 
-    // Here we show politics 
+    // Here we show job 
     public function job(){
         $blogs_job = Blog::where('category','job')->get();
-        return view('pages.job',compact('blogs_job'));
+        return view('pages.blog_category_pages.job',compact('blogs_job'));
     }
 
-    // Here we show politics 
+    // Here we show health 
     public function health(){
         $blogs_health = Blog::where('category','health')->get();
-        return view('pages.health',compact('blogs_health'));
+        return view('pages.blog_category_pages.health',compact('blogs_health'));
     }
 
-    // Here we show politics 
+    // Here we show coronavirus 
     public function coronavirus(){
         $blogs_coronavirus = Blog::where('category','coronavirus')->get();
-        return view('pages.coronavirus',compact('blogs_coronavirus'));
+        return view('pages.blog_category_pages.coronavirus',compact('blogs_coronavirus'));
     }
     
-    // Here we show politics 
+    // Here we show Bangladesh 
     public function Bangladesh(){
         $blogs_bangladesh = Blog::where('category','Bangladesh')->get();
-        return view('pages.Bangladesh',compact('blogs_bangladesh'));
+        return view('pages.blog_category_pages.Bangladesh',compact('blogs_bangladesh'));
     }
 
-    // Here we show politics 
-    public function education(){
-        $blogs_education = Blog::where('category','education')->get();
-        return view('pages.education',compact('blogs_education'));
-    }
-
-    // Here we show politics 
+    // Here we show religion 
     public function religion(){
         $blogs_religion = Blog::where('category','religion')->get();
-        return view('pages.religion',compact('blogs_religion'));
+        return view('pages.blog_category_pages.religion',compact('blogs_religion'));
     }
 
-    // Here we show politics 
+    // Here we show gadget 
     public function gadget(){
         $blogs_gadget = Blog::where('category','gadget')->get();
-        return view('pages.gadget',compact('blogs_gadget'));
+        return view('pages.blog_category_pages.gadget',compact('blogs_gadget'));
     }
 
 
-    // Here we show politics 
+    // Here we show lifestyle 
     public function lifestyle(){
         $blogs_lifestyle = Blog::where('category','lifestyle')->get();
-        return view('pages.lifestyle',compact('blogs_lifestyle'));
+        return view('pages.blog_category_pages.lifestyle',compact('blogs_lifestyle'));
     }
     
-    // Here we show politics 
+    // Here we show fashion 
     public function fashion(){
         $blogs_fashion = Blog::where('category','fashion')->get();
-        return view('pages.fashion',compact('blogs_fashion'));
+        return view('pages.blog_category_pages.fashion',compact('blogs_fashion'));
     }
     
-    // Here we show politics 
+    // Here we show sports 
     public function sports(){
         $blogs_sports = Blog::where('category','sports')->get();
-        return view('pages.sports',compact('blogs_sports'));
+        return view('pages.blog_category_pages.sports',compact('blogs_sports'));
     }
 
-    // Here we show politics 
+    // Here we show business 
     public function business(){
         $blogs_business = Blog::where('category','business')->get();
-        return view('pages.business',compact('blogs_business'));
+        return view('pages.blog_category_pages.business',compact('blogs_business'));
     }
 
 

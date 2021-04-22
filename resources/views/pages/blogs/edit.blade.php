@@ -56,6 +56,23 @@
                                                             <select class="form-control selectpicker" name="category" data-style="btn-primary"  >
                                                                
                                                                 <option value="{{$blogs->category}}" {{$blogs->id == $blogs->category ? 'selected' : ''}} >{{$blogs->category}}</option>
+                                                                <option style="display: none;">Select a category</option>
+                                                                <option value="politics">Politics</option>
+                                                                <option value="fashion">Fashion</option>
+                                                                <option value="travel">Travel</option>
+                                                                <option value="gadget">Gadget</option>
+                                                                <option value="business">Business</option>
+                                                                <option value="sports">Sports</option>
+                                                                <option value="lifestyle">Lifestyle</option>
+                                                                <option value="internaional">International News</option>
+                                                                <option value="gadget">Gadget</option>
+                                                                <option value="specialnews">Special News</option>
+                                                                <option value="coronavirus">Corona Virus</option>
+                                                                <option value="bangladesh">Bangladesh</option>
+                                                                <option value="world">World</option>
+                                                                <option value="health">Health</option>
+                                                                <option value="job">Job</option>
+                                                                <option value="religion">Religion</option>
 
                                                             </select>                                                          
                                                         </div>
@@ -111,7 +128,7 @@
                                                     </div>
 
 
-                                                    <button type="submit" name="submit" class="btn btn-primary">Sign in</button>
+                                                    <button type="submit" name="submit" class="btn btn-primary">Save changes</button>
                                                 </form>
                                             </div>
                                         </div>

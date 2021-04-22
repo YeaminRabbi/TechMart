@@ -618,22 +618,22 @@
 
 
                             
-                            @forelse($blogs_coronavirus as $blog)
+                            @forelse($blogs_job as $blog)
                             <article class="post format-standard hentry">
 
-                                <div class="media-attachment"><a href="blog-single.html">
+                                <div class="media-attachment"><a href="{{route('allpost' , [$blog->id,$blog->category])}}">
                                     <img  src="{{url($blog->image)}}"  class="img-fluid width-100 mb-15" style="height: 500px; width:auto;" alt="8"/></a></div>
                                 <div class="content-body">
                                     <header class="entry-header">
                                         <h1 class="entry-title" itemprop="name headline"><a href="{{route('allpost' , [$blog->id,$blog->category])}}" rel="bookmark"> &#8211; {{$blog->title}}</a></h1>
                                         <div class="entry-meta">
                                             <span class="cat-links">{{$blog->category}}</span>
-                                            <span class="posted-on"><time class="entry-date published" datetime="2016-03-01T07:40:25+00:00">{{$blog->created_at}}</time> <time class="updated" datetime="2016-03-04T18:46:11+00:00" itemprop="datePublished">March 4, 2016</time></span>
+                                            <span class="posted-on"><time class="entry-date published" >{{$blog->created_at->format('d M, Y | h:ia')}}</time></span>
                                         </div>
                                     </header><!-- .entry-header -->
 
                                     <div class="entry-content" itemprop="articleBody">
-                                        <p>{{$blog->highlightedText}}</p> 
+                                        <p>{{$blog->highlightedText}}</p>
                                     </div><!-- .post-excerpt -->
 
                                     <div class="post-readmore"><a href="{{route('allpost' , [$blog->id,$blog->category])}}" class="btn btn-primary">Read More</a></div>
@@ -644,7 +644,7 @@
                            @empty
                               <p class="text-center">
                                   no Results Found for query <strong>{{request()->query('query')}}</strong></p> 
-                                  <div class="media-attachment"><a href="blog-single.html"><img width="870" height="460" src="{{asset('../assets/img/1920X422/nothingfound.png')}}" alt="8"/></a></div>
+                                  <div class="media-attachment"><a href=""><img width="870" height="460" src="{{asset('../assets/img/1920X422/nothingfound.png')}}" alt="8"/></a></div>
                             @endforelse
                             
                           
@@ -693,10 +693,6 @@
                                 <li class="cat-item"><a href="{{route('religion')}}" >Religion</a></li>
                                 <li class="cat-item"><a href="{{route('sports')}}" >Sports</a></li>
                                 <li class="cat-item"><a href="{{route('travel')}}" >Travel</a></li>
-                               
-                                
-                                {{-- @endforeach
-                                @endif --}}
                             </ul>
                         </aside>
                         

@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
     
-<!-- Mirrored from transvelo.github.io/electro-html/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Mar 2021 18:31:20 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Electro &#8211; Electronics Ecommerce Theme</title>
-       
-        <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/bootstrap.min.css')}}" media="all" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/font-awesome.min.css')}}" media="all" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/animate.min.css')}}" media="all" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/font-electro.css')}}" media="all" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/owl-carousel.css')}}" media="all" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/style.css')}}" media="all" />
-        <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/colors/yellow.css')}}" media="all" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.min.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/animate.min.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/font-electro.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/owl-carousel.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/style.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="../assets/css/colors/yellow.css" media="all" />
 
         <!-- Demo Purpose Only. Should be removed in production -->
-        <link rel="stylesheet" href="{{asset('assetAnother/assets/css/config.css')}}">
+        <link rel="stylesheet" href="assets/css/config.css">
 
+        <link href="../assets/css/colors/green.css" rel="alternate stylesheet" title="Green color">
+        <link href="../assets/css/colors/pink.css" rel="alternate stylesheet" title="Pink color">
+        <link href="../assets/css/colors/blue.css" rel="alternate stylesheet" title="Blue color">
+        <link href="../assets/css/colors/red.css" rel="alternate stylesheet" title="Red color">
+        <link href="../assets/css/colors/orange.css" rel="alternate stylesheet" title="Orange color">
+        <link href="../assets/css/colors/black.css" rel="alternate stylesheet" title="Black color">
+        <link href="../assets/css/colors/gold.css" rel="alternate stylesheet" title="Gold color">
+        <link href="../assets/css/colors/yellow.css" rel="alternate stylesheet" title="Yellow color">
+        <link href="../assets/css/colors/flat-blue.css" rel="alternate stylesheet" title="Flat Blue color">
+        <!-- Demo Purpose Only. Should be removed in production : END -->
 
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,700italic,800,800italic,600italic,400italic,300italic' rel='stylesheet' type='text/css'>
 
-        <link rel="shortcut icon" href="assets/images/fav-icon.png">
+        <link rel="shortcut icon" href="../assets/images/fav-icon.png">
     </head>
 
-    <body class="single-post right-sidebar">
+    <body class="right-sidebar blog-grid">
         <div id="page" class="hfeed site">
             <a class="skip-link screen-reader-text" href="#site-navigation">Skip to navigation</a>
             <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
@@ -52,7 +61,7 @@
             </div><!-- /.top-bar -->
 
             <header id="masthead" class="site-header header-v2">
-                <div class="container hidden-md-down"">
+                <div class="container hidden-md-down">
                     <div class="row">
 
                         <!-- ============================================================= Header Logo ============================================================= -->
@@ -113,9 +122,9 @@
                                     <ul id="menu-main-menu" class="nav nav-inline yamm">
                                         <li class="menu-item menu-item-has-children animate-dropdown dropdown"><a title="Home" href="shop.html" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Home</a>
                                             <ul role="menu" class=" dropdown-menu">
-                                                <li class="menu-item animate-dropdown  "><a title="Home v1" href="home.html">Blog</a></li>
-                                                <li class="menu-item current-menu-item current_page_item animate-dropdown active"><a title="Home v2" href="home-v2.html">{{$blogs->category}}</a></li>
-                                                
+                                                <li class="menu-item animate-dropdown  "><a title="Home v1" href="home.html">Home v1</a></li>
+                                                <li class="menu-item current-menu-item current_page_item animate-dropdown active"><a title="Home v2" href="home-v2.html">Home v2</a></li>
+                                                <li class="menu-item animate-dropdown  "><a title="Home v3" href="home-v3.html">Home v3</a></li>
                                             </ul>
                                         </li>
                                         <li class="menu-item animate-dropdown"><a title="About Us" href="about.html">About Us</a></li>
@@ -127,104 +136,7 @@
                                                 <li class="menu-item animate-dropdown"><a title="Blog v3" href="blog-v3.html">Blog v3</a></li>
                                             </ul>
                                         </li>
-                                        <li class="yamm-fw menu-item menu-item-has-children animate-dropdown dropdown">
-                                            <a title="Pages" href="#" data-toggle="dropdown" class="dropdown-toggle" aria-haspopup="true">Pages</a>
-                                            <ul role="menu" class=" dropdown-menu">
-                                                <li class="menu-item animate-dropdown">
-                                                    <div class="yamm-content" style="display:inline-block; width: 100%;">
-                                                        <div class="row">
-                                                            <div class="wpb_column vc_column_container col-sm-4">
-                                                                <div class="vc_column-inner ">
-                                                                    <div class="wpb_wrapper">
-                                                                        <div class="vc_wp_custommenu wpb_content_element">
-                                                                            <div class="widget widget_nav_menu">
-                                                                                <div class="menu-pages-menu-1-container">
-                                                                                    <ul id="menu-pages-menu-1" class="menu">
-                                                                                        <li class="nav-title menu-item"><a href="#">Home &#038; Static Pages</a></li>
-                                                                                        <li class="menu-item"><a href="home.html">Home v1</a></li>
-                                                                                        <li class="menu-item current-menu-item current_page_item"><a href="home-v2.html">Home v2</a></li>
-                                                                                        <li class="menu-item"><a href="home-v3.html">Home v3</a></li>
-                                                                                        <li class="menu-item"><a href="about.html">About</a></li>
-                                                                                        <li class="menu-item"><a href="contact-v2.html">Contact v2</a></li>
-                                                                                        <li class="menu-item"><a href="contact-v1.html">Contact v1</a></li>
-                                                                                        <li class="menu-item"><a href="faq.html">FAQ</a></li>
-                                                                                        <li class="menu-item"><a href="store-directory.html">Store Directory</a></li>
-                                                                                        <li class="menu-item"><a href="terms-and-conditions.html">Terms and Conditions</a></li>
-                                                                                        <li class="menu-item"><a href="404.html">404</a></li>
-                                                                                        <li class="nav-title menu-item"><a href="#">Product Categories</a></li>
-                                                                                        <li class="menu-item"><a href="cat-3-col.html">3 Column Sidebar</a></li>
-                                                                                        <li class="menu-item"><a href="cat-4-col.html">4 Column Sidebar</a></li>
-                                                                                        <li class="menu-item"><a href="cat-4-fw.html">4 Column Full width</a></li>
-                                                                                        <li class="menu-item"><a href="product-category-6-column.html">6 Columns Full width</a></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="wpb_column vc_column_container col-sm-4">
-                                                                <div class="vc_column-inner ">
-                                                                    <div class="wpb_wrapper">
-                                                                        <div class="vc_wp_custommenu wpb_content_element">
-                                                                            <div class="widget widget_nav_menu">
-                                                                                <div class="menu-pages-menu-2-container">
-                                                                                    <ul id="menu-pages-menu-2" class="menu">
-                                                                                        <li class="nav-title menu-item"><a href="#">Shop Pages</a></li>
-                                                                                        <li class="menu-item"><a href="shop.html#grid">Shop Grid</a></li>
-                                                                                        <li class="menu-item"><a href="shop.html#grid-extended">Shop Grid Extended</a></li>
-                                                                                        <li class="menu-item"><a href="shop.html#list-view">Shop List View</a></li>
-                                                                                        <li class="menu-item"><a href="shop.html#list-view-small">Shop List View Small</a></li>
-                                                                                        <li class="menu-item"><a href="shop.html">Shop Left Sidebar</a></li>
-                                                                                        <li class="menu-item"><a href="shop-fw.html">Shop Full width</a></li>
-                                                                                        <li class="menu-item"><a href="shop-right-side-bar.html">Shop Right Sidebar</a></li>
-                                                                                        <li class="nav-title menu-item"><a href="#">Blog Pages</a></li>
-                                                                                        <li class="menu-item"><a href="blog-v1.html">Blog v1</a></li>
-                                                                                        <li class="menu-item"><a href="blog-v3.html">Blog v3</a></li>
-                                                                                        <li class="menu-item"><a href="blog-v2.html">Blog v2</a></li>
-                                                                                        <li class="menu-item"><a href="blog-fw.html">Blog Full Width</a></li>
-                                                                                        <li class="menu-item"><a href="blog-single.html">Single Blog Post</a></li>
-
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="wpb_column vc_column_container col-sm-4">
-                                                                <div class="vc_column-inner ">
-                                                                    <div class="wpb_wrapper">
-                                                                        <div class="vc_wp_custommenu wpb_content_element">
-                                                                            <div class="widget widget_nav_menu">
-                                                                                <div class="menu-pages-menu-3-container">
-                                                                                    <ul id="menu-pages-menu-3" class="menu">
-                                                                                        <li class="nav-title menu-item"><a href="single-product.html">Single Product Pages</a></li>
-                                                                                        <li class="menu-item"><a href="single-product-extended.html">Single Product Extended</a></li>
-                                                                                        <li class="menu-item"><a href="single-product.html">Single Product Fullwidth</a></li>
-                                                                                        <li class="menu-item"><a href="single-product-sidebar.html">Single Product Sidebar</a></li>
-                                                                                        <li class="menu-item"><a href="single-product-sidebar-accessories.html">Single Product Sidebar Accessories </a></li>
-                                                                                        <li class="menu-item"><a href="single-product-sidebar-specification.html">Single Product Sidebar Specification </a></li>
-                                                                                        <li class="menu-item"><a href="single-product-sidebar-reviews.html">Single Product Sidebar Reviews </a></li>
-                                                                                        <li class="nav-title menu-item"><a href="#">Ecommerce Pages</a></li>
-                                                                                        <li class="menu-item"><a href="shop.html">Shop</a></li>
-                                                                                        <li class="menu-item"><a href="cart.html">Cart</a></li>
-                                                                                        <li class="menu-item"><a href="checkout.html">Checkout</a></li>
-                                                                                        <li class="menu-item"><a href="my-account.html">My Account</a></li>
-                                                                                        <li class="menu-item"><a href="compare.html">Compare</a></li>
-                                                                                        <li class="menu-item"><a href="wishlist.html">Wishlist</a></li>
-                                                                                    </ul>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        
                                         <li class="menu-item"><a title="Blog" href="{{route('blog')}}">All Blogs</a></li>
                                         <li class="menu-item"><a title="Contact Us" href="#">Contact Us</a></li>
                                     </ul>
@@ -597,58 +509,71 @@
 
             </header><!-- #masthead -->
 
-        
-
+          
             <div id="content" class="site-content" tabindex="-1">
                 <div class="container">
 
-                    <nav itemprop="breadcrumb" class="woocommerce-breadcrumb"><a href="home.html">Blog</a><span class="delimiter"><i class="fa fa-angle-right"></i></span><a href="#">{{$blogs->category}}</a><span class="delimiter"><i class="fa fa-angle-right"></i></span></nav>
+                    <nav class="woocommerce-breadcrumb"><a href="home.html">Home</a><span class="delimiter"><i class="fa fa-angle-right"></i></span>Blog</nav>
 
                     <div id="primary" class="content-area">
                         <main id="main" class="site-main">
-                            <article class="post type-post status-publish format-gallery has-post-thumbnail hentry" >
-                                <div class="media-attachment">
-                                    <div class="media-attachment-gallery">
-                                        <div class=" ">
-                                            <div class="item">
-                                                <figure>
-                                                    <img width="1144" height="600" src="{{url($blogs->image)}}" class="attachment-post-thumbnail size-post-thumbnail" alt="1" />
-                                                </figure>
-                                            </div><!-- /.item -->
+
+
+
+                            
+                            @forelse($blogs_travel as $blog)
+                            <article class="post format-standard hentry">
+
+                                <div class="media-attachment"><a href="{{route('allpost' , [$blog->id,$blog->category])}}">
+                                    <img  src="{{url($blog->image)}}"  class="img-fluid width-100 mb-15" style="height: 500px; width:auto;" alt="8"/></a></div>
+                                <div class="content-body">
+                                    <header class="entry-header">
+                                        <h1 class="entry-title" itemprop="name headline"><a href="{{route('allpost' , [$blog->id,$blog->category])}}" rel="bookmark"> &#8211; {{$blog->title}}</a></h1>
+                                        <div class="entry-meta">
+                                            <span class="cat-links">{{$blog->category}}</span>
+                                            <span class="posted-on"><time class="entry-date published" >{{$blog->created_at->format('d M, Y | h:ia')}}</time></span>
                                         </div>
-                                    </div><!-- /.media-attachment-gallery -->
+                                    </header><!-- .entry-header -->
+
+                                    <div class="entry-content" itemprop="articleBody">
+                                        <p>{{$blog->highlightedText}}</p>
+                                    </div><!-- .post-excerpt -->
+
+                                    <div class="post-readmore"><a href="{{route('allpost' , [$blog->id,$blog->category])}}" class="btn btn-primary">Read More</a></div>
+                                   
                                 </div>
 
-                                <header class="entry-header">
-                                    <h1 class="entry-title" itemprop="name headline">&#8211; {{$blogs->title}}<span class="comments-link"><a href="#comments">Leave a comment</a></span></h1>
-
-                                    <div class="entry-meta">
-                                        <span class="cat-links"><a href="#" rel="category tag">{{$blogs->category}}</a></span>
-                                        <span class="posted-on"><a href="#" rel="bookmark"><time class="entry-date published" datetime="2016-03-04T07:34:20+00:00">March 4, 2016</time> <time class="updated" datetime="2016-03-04T18:46:11+00:00" itemprop="datePublished">March 4, 2016</time></a></span>
-                                    </div>
-                                </header><!-- .entry-header -->
-
-                                <div class="entry-content" itemprop="articleBody">
-                                    <p class="highlight">{{$blogs->highlightedText}}.</p>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <p class="highlight-light">{!! $blogs->description !!}</p>
-                                        </div>
-                                        
-                                    </div>
-                                </div><!-- .entry-content -->
-                            </article>
-                          
+                            </article><!-- #post-## -->
+                           @empty
+                              <p class="text-center">
+                                  no Results Found for query <strong>{{request()->query('query')}}</strong></p> 
                          
+                            @endforelse
+                            
+                          
+                            
+                            {{-- {{$blogs->links()}}  --}}
+                            {{-- <nav class="navigation pagination">
+                                <h2 class="screen-reader-text">Posts navigation</h2>
+                                <div class="nav-links">
+                                    <ul class='page-numbers'>
+                                        <li><span class='page-numbers current'>1</span></li>
+                                        <li><a class='page-numbers' href='#'>2</a></li>
+                                        <li><a class="next page-numbers" href="#">Next&nbsp;<span class="meta-nav">&rarr;</span></a></li>
+                                    </ul>
+                                </div>
+                            </nav> --}}
+                            
                         </main><!-- #main -->
                     </div><!-- #primary -->
 
                     <div id="sidebar" class="sidebar-blog" role="complementary">
-                       
+                      
                        
                         <aside class="widget widget_categories">
                             <h3 class="widget-title">Categories</h3>
                             <ul>
+                              
                                 <li class="cat-item"><a href="{{route('Bangladesh')}}" >Bangladesh</a></li>
                                 <li class="cat-item"><a href="{{route('business')}}" >Business</a></li>
                                 <li class="cat-item"><a href="{{route('coronavirus')}}" >Coronavirus</a></li>
@@ -662,357 +587,19 @@
                                 <li class="cat-item"><a href="{{route('religion')}}" >Religion</a></li>
                                 <li class="cat-item"><a href="{{route('sports')}}" >Sports</a></li>
                                 <li class="cat-item"><a href="{{route('travel')}}" >Travel</a></li>
-                            </ul>
-                        </aside>
-                        <aside class="widget electro_recent_posts_widget"><h3 class="widget-title">Recent Posts</h3>
-                            <ul>
-                                @if (count($relatedposts)>0)
-                                @foreach($relatedposts as $recentpost)
-                                <li>
-                                    <a class="post-thumbnail" href="blog-single.html"><img width="150" height="150" src="{{url($recentpost->image)}}" class="wp-post-image" alt="1"/></a>
-                                    <div class="post-content">
-                                        <a class ="post-name" href="blog-single.html">{{$recentpost->title}}</a>
-                                        <span class="post-date">{{$recentpost->created_at}}</span>
-                                    </div>
-                                </li>
-                                @endforeach
-                            @endif
+                                
                                 
                             </ul>
                         </aside>
-                        
+                    
+                      
                     </div>
                 </div><!-- .container -->
             </div><!-- #content -->
 
-            <section class="brands-carousel">
-                <h2 class="sr-only">Brands Carousel</h2>
-                <div class="container">
-                    <div id="owl-brands" class="owl-brands owl-carousel unicase-owl-carousel owl-outer-nav">
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Acer</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                     <img src="assets/images/blank.gif" data-echo="assets/images/brands/1.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Apple</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                     <img src="assets/images/blank.gif" data-echo="assets/images/brands/2.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Asus</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                     <img src="assets/images/blank.gif" data-echo="assets/images/brands/3.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Dell</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/4.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Gionee</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/5.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>HP</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/6.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>HTC</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/3.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>IBM</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/5.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Lenova</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/2.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>LG</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/1.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Micromax</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/6.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Microsoft</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/4.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                    </div><!-- /.owl-carousel -->
-
-                </div>
-            </section>
+          
 
             <footer id="colophon" class="site-footer">
-                <div class="footer-widgets">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                <aside class="widget clearfix">
-                                    <div class="body">
-                                        <h4 class="widget-title">Featured Products</h4>
-                                        <ul class="product_list_widget">
-                                            <li>
-                                                <a href="single-product.html" title="Tablet Thin EliteBook  Revolve 810 G6">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/1.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Tablet Thin EliteBook  Revolve 810 G6</span>
-                                                </a>
-                                                <span class="electro-price"><span class="amount">&#36;1,300.00</span></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Smartphone 6S 128GB LTE">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/2.jpg" src="assets/images/blank.gif" alt=""><span class="product-title">Smartphone 6S 128GB LTE</span>
-                                                </a>
-                                                <span class="electro-price"><span class="amount">&#36;780.00</span></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Smartphone 6S 64GB LTE">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/3.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Smartphone 6S 64GB LTE</span>
-                                                </a>
-                                                <span class="electro-price"><span class="amount">&#36;1,215.00</span></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                <aside class="widget clearfix">
-                                    <div class="body"><h4 class="widget-title">Onsale Products</h4>
-                                        <ul class="product_list_widget">
-                                            <li>
-                                                <a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/3.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>
-                                                </a>
-                                                <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span class="amount">&#36;2,299.00</span></del></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Tablet Red EliteBook  Revolve 810 G2">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/4.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Tablet Red EliteBook  Revolve 810 G2</span>
-                                                </a>
-                                                <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span class="amount">&#36;2,299.00</span></del></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Widescreen 4K SUHD TV">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/5.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Widescreen 4K SUHD TV</span>
-                                                </a>
-                                                <span class="electro-price"><ins><span class="amount">&#36;2,999.00</span></ins> <del><span class="amount">&#36;3,299.00</span></del></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                <aside class="widget clearfix">
-                                    <div class="body">
-                                        <h4 class="widget-title">Top Rated Products</h4>
-                                        <ul class="product_list_widget">
-                                            <li>
-                                                <a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/6.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>
-                                                </a>
-                                                <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong class="rating">5</strong> out of 5</span></div>      <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span class="amount">&#36;2,299.00</span></del></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Apple MacBook Pro MF841HN/A 13-inch Laptop">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/7.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Apple MacBook Pro MF841HN/A 13-inch Laptop</span>
-                                                </a>
-                                                <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong class="rating">5</strong> out of 5</span></div>      <span class="electro-price"><span class="amount">&#36;1,800.00</span></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Tablet White EliteBook Revolve  810 G2">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/2.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Tablet White EliteBook Revolve  810 G2</span>
-                                                </a>
-                                                <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong class="rating">5</strong> out of 5</span></div>      <span class="electro-price"><span class="amount">&#36;1,999.00</span></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="footer-newsletter">
                     <div class="container">
                         <div class="row">
@@ -1192,17 +779,7 @@
 
         </div><!-- #page -->
 
-        <!-- For demo purposes – can be removed on production -->
-        <div id="config" class="config">
-            <div id="config_wrapper">
 
-
-
-            </div>
-
-           
-        </div>
-        <!-- For demo purposes – can be removed on production : End -->
 
         <script type="text/javascript" src="assets/js/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/tether.min.js"></script>
@@ -1292,5 +869,5 @@
 
     </body>
 
-<!-- Mirrored from transvelo.github.io/electro-html/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Mar 2021 18:31:20 GMT -->
+<!-- Mirrored from transvelo.github.io/electro-html/blog-v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Mar 2021 18:31:15 GMT -->
 </html>
