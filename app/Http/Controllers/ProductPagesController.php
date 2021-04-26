@@ -96,6 +96,8 @@ class ProductPagesController extends Controller
             $prod->summary = $req->summary;
             $prod->description = $req->description;
             $prod->specification = $req->specification;
+            $prod->onsale_product = 0;
+            $prod->featured_product = 0;
 
            
             $prod->save();

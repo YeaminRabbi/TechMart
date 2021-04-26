@@ -18,9 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('product_title');
             $table->string('slug');
             $table->string('unit_price');
-            $table->string('description');
-            $table->string('specification');
-            $table->string('summary');
+            $table->text('description');
+            $table->text('specification');
+            $table->text('summary');
             $table->foreignid('category_id');
             $table->string('image');
             $table->foreignid('brand_id');

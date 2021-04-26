@@ -215,20 +215,6 @@
                             </li>
 
 
-                            <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-layout"></i>
-                                    <span style="font-size: 20px;"> Attributes </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    
-                                   
-                                    <li><a href="{{route('admin.attributes.create')}}">Create</a></li>
-                                    <li><a href="{{route('admin.attributes.list')}}">List</a></li>
-                                </ul>
-                            </li>
-
 
                             <li>
                                 <a href="javascript: void(0);">
@@ -265,7 +251,7 @@
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-layout"></i>
-                                    <span style="font-size: 20px;"> Onsale  </span>
+                                    <span style="font-size: 20px;">Onsale</span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">

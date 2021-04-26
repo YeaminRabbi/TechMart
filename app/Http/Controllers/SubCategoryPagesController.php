@@ -44,9 +44,7 @@ class SubCategoryPagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-
-        
+                
         $this->validate($request,[
             'subcategoryname' => 'required|string',
             'slug' => 'required|string',
@@ -55,26 +53,13 @@ class SubCategoryPagesController extends Controller
 
         ]);
 
+        $subcategories = new SubCategory;
 
-
-        $subcategories = SubCategory::firstOrCreate(
-            ['subcategoryname' =>  request('subcategoryname')],
-            ['slug'            =>  request('slug')],
-            ['category_id'     =>  request('category_id')]
-
-            
-        );
-
-
-
-        // $subcategories = new SubCategory;
-
-        // $subcategories->subcategoryname = $request->subcategoryname;
-        // $subcategories->slug= $request->slug;
-        // $subcategories->category_id = $request->category_id;
+        $subcategories->subcategoryname = $request->subcategoryname;
+        $subcategories->slug= $request->slug;
+        $subcategories->category_id = $request->category_id;
         
-        // $subcategories->save();
-        
+        $subcategories->save();
         
         return redirect()->route('admin.subcategories.create')->with('success','New Sub Category & details created Successfully');
     }

@@ -62,9 +62,9 @@ Route::prefix('admin')->group(function(){
 
 
 
-    Route::get('/attributes/create', 'App\Http\Controllers\AttributePagesController@create')->name('admin.attributes.create');
-    Route::put('/attributes/create', 'App\Http\Controllers\AttributePagesController@store')->name('admin.attributes.store');
-    Route::get('/attributes/list', 'App\Http\Controllers\AttributePagesController@list')->name('admin.attributes.list');
+    // Route::get('/attributes/create', 'App\Http\Controllers\AttributePagesController@create')->name('admin.attributes.create');
+    // Route::put('/attributes/create', 'App\Http\Controllers\AttributePagesController@store')->name('admin.attributes.store');
+    // Route::get('/attributes/list', 'App\Http\Controllers\AttributePagesController@list')->name('admin.attributes.list');
     Route::get('/attributes/edit/{id}', 'App\Http\Controllers\AttributePagesController@edit')->name('admin.attributes.edit');
     Route::post('/attributes/update/{id}', 'App\Http\Controllers\AttributePagesController@update')->name('admin.attributes.update');
     Route::delete('/attributes/destroy/{id}', 'App\Http\Controllers\AttributePagesController@destroy')->name('admin.attributes.destroy');

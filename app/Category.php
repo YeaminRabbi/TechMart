@@ -17,11 +17,6 @@ class Category extends Model{
      function product(){
            return $this->hasMany(Product::class, 'category_id');
      }
-  
-    //  function blog(){
-    //     return $this->hasMany(Blog::class, 'category_id');
-  
-    //  }
 
 }
 

@@ -149,11 +149,11 @@
                                                             <div class="col-sm-1 mg-t-10 mg-sm-t-0">
                                                                 <select name="ram[]" id="ram" class="form-control selectpicker">
                                                                     <option value="4GB">4GB</option>
+                                                                    <option value="6GB">6GB</option>    
                                                                     <option value="8GB">8GB</option>
                                                                     <option value="16GB">16GB</option>
                                                                     <option value="64GB">64GB</option>
                                                                     <option value="2GB">2GB</option>
-
                                                                     <option value="NULL">NULL</option>
                                                                 </select>
                                                             </div>
@@ -197,14 +197,14 @@
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-2 col-form-label" for="simpleinput">Enter your Product image</label>
+                                                        <label class="col-md-2 col-form-label" for="simpleinput">Single Product image</label>
                                                         <div class="col-md-10">
                                                             <input type="file" name="image" id="simpleinput" class="form-control" placeholder="Write a Sub Category name which you want to add in your store" autocomplete="off">
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group row">
-                                                        <label class="col-md-2 col-form-label" for="simpleinput">Enter your Product image</label>
+                                                        <label class="col-md-2 col-form-label" for="simpleinput">Multiple Product image(s)</label>
                                                         <div class="col-md-10">
                                                             <input type="file" multiple class="form-control @error('images') is-invalid @enderror" name="images[]" id="images">
 

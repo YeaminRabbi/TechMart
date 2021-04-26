@@ -41,5 +41,8 @@ class Product extends Model{
     //      return $this->hasMany(Cart::class, 'product_id');
     //   }
     
+
+
+    
 }
 
