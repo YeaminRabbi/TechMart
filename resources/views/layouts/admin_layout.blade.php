@@ -203,7 +203,7 @@
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-layout"></i>
-                                    <span style="font-size: 20px;"> Sub Category </span>
+                                    <span style="font-size: 20px;"> Models </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">

@@ -27,8 +27,9 @@ class FeaturePagesController extends Controller
     public function list()
     {
         //
-        $features = Feature::all();
-        return view ('pages.features.list',compact('features'));
+        $products=Product::where('featured_product',1)->get();
+        return view('pages.features.list',['products'=>$products]);
+ 
     }
 
     /**
@@ -40,15 +41,8 @@ class FeaturePagesController extends Controller
     {
         //
 
-        $sizes = Size::all();
-        $colors = Color::all();
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
-        $brands       = Brand::all();
-       
-        return view('pages.features.create',['sizes'=>$sizes,'colors'=>$colors,
-     
-        'categories'=>$categories,'subCategories'=>$subCategories,'brands'=>$brands]);
+       $products=Product::where('featured_product',0)->get();
+       return view('pages.features.create',['products'=>$products]);
 
 
     }
@@ -63,82 +57,7 @@ class FeaturePagesController extends Controller
     {
         //
 
-        $this->validate($req,[
-            'product_title' => 'required|string',
-            'slug' => 'required|string',
-            'unit_price'=>'required|string',
-            'description'=>'required|string',
-            'specification'=>'required|string',
-            'summary'=>'required|string',
-            'category_id'=>'required|string',
-            
-            'subcategory_id'=>'required|string',
-           
-
-        ]);
-
         
-
-        if($req->hasFile('image'))
-        {
-            $prod = new Feature;
-            $image= $req->file('image');
-            
-            Storage::putFile('public/img/',$image);
-            $prod->image ="storage/img/".$image->hashName();
-
-           
-            $prod->product_title = $req->product_title;
-            $prod->slug = $req->slug;
-            $prod->category_id = $req->category_id;
-            $prod->subcategory_id = $req->subcategory_id;
-            $prod->brand_id = $req->brand_id;
-            $prod->unit_price = $req->unit_price;
-            $prod->summary = $req->summary;
-            $prod->description = $req->description;
-            $prod->specification = $req->specification;
-
-           
-            $prod->save();
-
-            foreach ($req->color_id as $key => $value) {
-                $attribute = new Attribute;
-                $attribute->product_id = $prod->id;
-                $attribute->size_id = $req->size_id[$key];
-                $attribute->color_id = $value;
-
-                if(!empty($req->quantity[$key])){
-                    $attribute->quantity = $req->quantity[$key];
-                }
-                else
-                {
-                    $attribute->quantity =0;
-                }
-                $attribute->save();
-            }  
-        }
-
-        if($req->hasFile('images')){
-
-            $images = $req->file('images');
-
-         
-           
-            foreach ($images as $key => $img) {
-                $gallery = new Gallary;
-                Storage::putFile('public/gallery/',$img);
-                $gallery->product_id = $prod->id;
-                $gallery->images ="storage/gallery/".$img->hashName();
-                $gallery->save();
-            }
-            
-        }
-        
-        return redirect()->route('admin.features.create')->with('success','New Feature Product Created Successfully');
-
-
-
-       
     }
 
     /**
@@ -160,82 +79,13 @@ class FeaturePagesController extends Controller
      */
     public function edit($id)
     {
-        //
-        $products = Feature::find($id);
         
-        $sizes = Size::all();
-        $colors = Color::all();
-        $categories = Category::all();
-        $subCategories = SubCategory::all();
-        $brands       = Brand::all();
-        $gallary= Gallary::all();
-        
-        return view('pages.features.edit',[
-            'products'=>$products,
-            'sizes'=>$sizes,
-            'colors'=>$colors,     
-            'categories'=>$categories,
-            'subCategories'=>$subCategories,
-            'brands'=>$brands,
-            'gallary'=>$gallary,
-
-            ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $req)
     {
         
 
-    
-        $product = Feature::findOrFail($req->product_id);
-        $product->product_title = $req->product_title;
-        $product->slug = $req->slug;
-        $product->category_id = $req->category_id;
-        $product->subcategory_id = $req->subcategory_id;
-        $product->brand_id = $req->brand_id;
-        $product->unit_price = $req->unit_price;
-        $product->summary = $req->summary;
-        $product->description = $req->description;
-        $product->specification = $req->specification;
-        $product->save();
-
-
-        if($req->file('image')){
-            $image  = $req->file('image');
-            Storage::putFile('public/img/',$image);
-            $product->image ="storage/img/".$image->hashName();
-            $product->save();
-
-        }
-
-
-        if($req->hasFile('images')){
-
-            Gallary::where('product_id', '=' ,$product->id )->delete();
-
-            $images = $req->file('images');
-
-         
-           
-            foreach ($images as $key => $img) {
-                $gallery = new Gallary;
-                Storage::putFile('public/gallery/',$img);
-                $gallery->product_id = $product->id;
-                $gallery->images ="storage/gallery/".$img->hashName();
-                $gallery->save();
-            }
-            
-        }
-        
-        return redirect()->route('admin.features.list')->with('success','Feature products details updated Successfully');
-        
     }
 
     /**
@@ -246,7 +96,6 @@ class FeaturePagesController extends Controller
      */
     public function destroy($id)
     {
-        //
 
         $products = Feature::find($id);
         $products->delete();
@@ -254,67 +103,24 @@ class FeaturePagesController extends Controller
     }
 
 
-    public function attributeedit_features($id)
+    public function addfeatured($id)
     {
-        $products_attribute = Attribute::where('product_id',$id)->get();
-        $sizes = Size::all();
-        $colors = Color::all();
-        $product=Feature::find($id);
+        $product=Product::find($id);
+        $product->featured_product = 1;
+        $product->save();
+        return redirect()->route('admin.features.create')->with('success',"Added to Feature Product Successfully");
 
-        return view('pages.features.attribute_edit',[
-            'products_attribute'=>$products_attribute,
-            'sizes'=>$sizes,
-            'colors'=>$colors,
-            'product'=>$product
-            ]);
+    }
 
+    public function removefeatured($id)
+    {
+        $product=Product::find($id);
+        $product->featured_product = 0;
+        $product->save();
+        return redirect()->route('admin.features.list')->with('success',"Removed Feature Product Successfully");
 
     }
 
 
-    function attributeupdate_features(Request $req)
-    {
-        $attribute = Attribute::find($req->attribute_id);
-
-        $attribute->size_id = $req->size_id;
-        $attribute->color_id = $req->color_id;
-        $attribute->quantity = $req->quantity;
-        $attribute->save();
-
-        return back();
-    }
-
-    function attribute_add_features(Request $req)
-    {
-
-        foreach ($req->color_id as $key => $value) {
-            $attribute = new Attribute;
-            $attribute->product_id = $req->product_id;
-            $attribute->size_id = $req->size_id[$key];
-            $attribute->color_id = $value;
-            $attribute->ram = $req->ram[$key];
-            if(!empty($req->quantity[$key])){
-                $attribute->quantity = $req->quantity[$key];
-            }
-            else
-            {
-                $attribute->quantity =0;
-            }
-            $attribute->save();
-        }  
-
-        return back();
-    }
-
-
-
-    function attributedelete_features($id)
-    {
-       
-
-        $attribute_to_delete = Attribute::find($id);
-        $attribute_to_delete->delete();
-
-        return back();
-    }
+    
 }

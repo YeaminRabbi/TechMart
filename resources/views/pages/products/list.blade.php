@@ -38,7 +38,7 @@
                     <th style="text-align: center;">Attrbutes</th>
                     <th style="text-align: center;">Category</th>
                     <th style="text-align: center;">Brand</th>
-                    <th style="text-align: center;">Sub Category</th>
+                    <th style="text-align: center;">Model</th>
                     
 
                  

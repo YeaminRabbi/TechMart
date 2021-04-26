@@ -39,13 +39,13 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <div>
-                                                <form action="{{route('admin.sizes.update',$sizes->id)}}" enctype="multipart/form-data" method="POST">
+                                                <form action="{{route('admin.subcategories.update',$subcategories->id)}}" enctype="multipart/form-data" method="POST">
                                                     @csrf
                                                    
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label" for="simpleinput">Enter your Size Name</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" name="sizename" value="{{$sizes->sizename}}" id="simpleinput" class="form-control" placeholder="Edit your Brand Name">
+                                                            <input type="text" name="subcategoryname" value="{{$subcategories->subcategoryname}}" id="simpleinput" class="form-control" placeholder="Edit your Brand Name">
                                                         </div>
                                                     </div>
 
@@ -53,7 +53,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label" for="simpleinput">Enter your Size Slug</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" name="slug" value="{{$sizes->slug}}" id="simpleinput" class="form-control" placeholder="Edit your Brand Slug">
+                                                            <input type="text" name="slug" value="{{$subcategories->slug}}" id="simpleinput" class="form-control" placeholder="Edit your Brand Slug">
                                                         </div>
                                                     </div>
                                                   

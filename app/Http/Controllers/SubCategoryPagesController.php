@@ -105,10 +105,9 @@ class SubCategoryPagesController extends Controller
         $subcategories = SubCategory::find($id);
         $subcategories->subcategoryname = $request->subcategoryname;
         $subcategories->slug= $request->slug;
-        $subcategories->category_id= $request->category_id;
         $subcategories->save();
         
-        return redirect()->route('admin.subcategories.create')->with('success','Sub Category details updated Successfully');
+        return redirect()->route('admin.subcategories.list')->with('success','Sub Category details updated Successfully');
     }
 
     /**

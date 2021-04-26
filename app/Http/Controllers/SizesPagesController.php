@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Size;
+use DB;
+use Auth;
 class SizesPagesController extends Controller
 {
     /**
@@ -48,8 +50,6 @@ class SizesPagesController extends Controller
            
 
         ]);
-
-
 
         $sizes = Size::firstOrCreate(
             ['sizename' =>  request('sizename')],
@@ -100,7 +100,7 @@ class SizesPagesController extends Controller
         $sizes->slug= $request->slug;
         $sizes->save();
         
-        return redirect()->route('admin.sizes.create')->with('success','Sizes details updated Successfully');
+        return redirect()->route('admin.sizes.list')->with('success','Sizes details updated Successfully');
     }
 
     /**

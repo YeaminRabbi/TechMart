@@ -34,18 +34,10 @@
                     <th style="text-align: center;">Serial Number</th>
                     <th style="text-align: center;">Product Name</th>
                     <th style="text-align: center;">Image</th>
-                    {{-- <th style="text-align: center;">Images</th> --}}
-                    <th style="text-align: center;">Attrbutes</th>
                     <th style="text-align: center;">Category</th>
                     <th style="text-align: center;">Brand</th>
-                    <th style="text-align: center;">Sub Category</th>
-                    
-
-                 
-                   
-
-
-                   
+                    <th style="text-align: center;">Model</th>
+                                      
                     <th style="text-align: center;">Action</th>
                     
                 </tr>
@@ -53,35 +45,19 @@
 
 
                 <tbody>
-            @if (count($features)>0)
-            @foreach ($features as $key => $feature)
+           
+            @foreach ($products as $key => $data)
                 <tr>
                     <td>{{$key+1}}</td>
-                    <td>{{$feature->product_title}}</td>
+                    <td>{{$data->product_title}}</td>
                     <td>
-                        <img style="height: 70px; width:auto;" src="{{url($feature->image)}}" alt="Product Image">
+                        <img style="height: 70px; width:auto;" src="{{url($data->image)}}" alt="Product Image">
                           
                     </td>
 
-                    {{-- <td>
-                        @foreach (App\Gallary::where('product_id', $product->id)->get() as $test)
-                        <img style="height: 70px; width:auto;" src="{{url($test->images)}}" alt="Product Multiple Images">
-
-                        @endforeach
-                    </td> --}}
-
-
-                    <td>
-                        @foreach (App\Attribute::where('product_id', $feature->id)->get() as $test)
-                            <span class="btn btn-pink btn-rounded width-md waves-effect waves-pink" style="margin: 5px;" >Color: {{ $test->color->colorname }}</span> |
-                            <span class="btn btn-warning btn-rounded width-md waves-effect waves-warning" style="margin: 5px;" >Size: {{ $test->size->sizename }}</span> | 
-                            <span class="btn btn-success btn-rounded width-md waves-effect waves-success"style="margin: 5px;" >Quantity: {{ $test->quantity }}</span>
-                            <br>
-                        @endforeach
-                    </td>
-                    <td>{{ $feature->Category->categoryname }}</td>
-                    <td>{{ $feature->brand->brandname }}</td>
-                    <td>{{ $feature->subcategory->subcategoryname }}</td>
+                    <td>{{ $data->Category->categoryname }}</td>
+                    <td>{{ $data->brand->brandname }}</td>
+                    <td>{{ $data->subcategory->subcategoryname }}</td>
                    
 
                    
@@ -89,23 +65,16 @@
                     <td>
                         <div class="row">
                           <div>
-                            <a  href="{{route('admin.features.edit' , $feature->id)}}" style="color: white;" class="btn btn-primary m-2"> Edit </a>
+                            <a  href="{{route('admin.features.removefeatured' , $data->id)}}" style="color: white;" class="btn btn-danger m-2">Remove from Featured</a>
                           </div>
-                          <div >
-                           
-                            <form action="{{route('admin.features.destroy', $feature->id)}}" method="POST">
-                                @csrf
-                                @method('Delete')
-                                <input type="submit" name="submit" value="Delete" class="btn btn-danger m-2">
-                              </form>
-                          </div>
+                          
                         </div>
                       </td>
                   
                 </tr>
 
             @endforeach                    
-            @endif
+      
                
                 </tbody>
             </table>

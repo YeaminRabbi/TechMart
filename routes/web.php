@@ -61,10 +61,6 @@ Route::prefix('admin')->group(function(){
     Route::delete('/subcategories/destroy/{id}', 'App\Http\Controllers\SubCategoryPagesController@destroy')->name('admin.subcategories.destroy');
 
 
-
-    // Route::get('/attributes/create', 'App\Http\Controllers\AttributePagesController@create')->name('admin.attributes.create');
-    // Route::put('/attributes/create', 'App\Http\Controllers\AttributePagesController@store')->name('admin.attributes.store');
-    // Route::get('/attributes/list', 'App\Http\Controllers\AttributePagesController@list')->name('admin.attributes.list');
     Route::get('/attributes/edit/{id}', 'App\Http\Controllers\AttributePagesController@edit')->name('admin.attributes.edit');
     Route::post('/attributes/update/{id}', 'App\Http\Controllers\AttributePagesController@update')->name('admin.attributes.update');
     Route::delete('/attributes/destroy/{id}', 'App\Http\Controllers\AttributePagesController@destroy')->name('admin.attributes.destroy');
@@ -83,17 +79,10 @@ Route::prefix('admin')->group(function(){
 
 
     Route::get('/features/create', 'App\Http\Controllers\FeaturePagesController@create')->name('admin.features.create');
-    Route::put('/features/create', 'App\Http\Controllers\FeaturePagesController@store')->name('admin.features.store');
+    Route::get('/features/addfeatured/{id}', 'App\Http\Controllers\FeaturePagesController@addfeatured')->name('admin.features.addfeatured');
     Route::get('/features/list', 'App\Http\Controllers\FeaturePagesController@list')->name('admin.features.list');
-    Route::get('/features/edit/{id}', 'App\Http\Controllers\FeaturePagesController@edit')->name('admin.features.edit');
-    Route::post('/features/update', 'App\Http\Controllers\FeaturePagesController@update')->name('admin.features.update');
-    Route::delete('/features/destroy/{id}', 'App\Http\Controllers\FeaturePagesController@destroy')->name('admin.features.destroy');
-    Route::get('/features/attribute/edit/{id}', 'App\Http\Controllers\FeaturePagesController@attributeedit_features')->name('admin.features.attribute.edit');
-    Route::post('attribute_update_features', 'App\Http\Controllers\FeaturePagesController@attributeupdate_features')->name('attribute_update_features');
-    Route::post('attribute_add_features', 'App\Http\Controllers\FeaturePagesController@attribute_add_features')->name('attribute_add_features');
-    Route::get('/attribute_delete_features/{id}', 'App\Http\Controllers\FeaturePagesController@attributedelete_features')->name('attribute_delete');
-
-
+    Route::get('/features/removefeatured/{id}', 'App\Http\Controllers\FeaturePagesController@removefeatured')->name('admin.features.removefeatured');
+    
 
     Route::get('/onsales/create', 'App\Http\Controllers\OnsalePagesController@create')->name('admin.onsales.create');
     Route::put('/onsales/create', 'App\Http\Controllers\OnsalePagesController@store')->name('admin.onsales.store');
