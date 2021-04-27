@@ -9,6 +9,12 @@ class Blog extends Model{
     protected $fillable = [
         'category','title','description','image','highlightedText'
     ];
+    
+    public function comments()
+    {
+        return $this->hasMany(Comment::class,'post_id');
+    }
+
 
     // public function tags()
     // {

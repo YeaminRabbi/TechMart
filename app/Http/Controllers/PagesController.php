@@ -9,6 +9,8 @@ use App\Onsale;
 use App\Specialoffer;
 use App\Slider;
 use App\Blog;
+use DB;
+use App\User;
 class PagesController extends Controller
 {
     //
@@ -85,9 +87,12 @@ class PagesController extends Controller
         public function allpost($id, $category){
             // SinglePost
             $blogs = Blog::find($id);
-           
+
+            $user_detail= DB::table('users')->join('comments','users.id','comments.user_id')->get(); 
+            $comments = DB::table('comments')->where('post_id', $id)->get(); 
+
             $relatedposts= Blog::where('category',"=", $category)->take(3)->get(); 
-            return view('pages.blog_category_pages.post',compact('blogs','relatedposts'));
+            return view('pages.blog_category_pages.post',compact('blogs','relatedposts','user_detail','comments'));
             
         }
 

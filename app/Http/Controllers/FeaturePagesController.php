@@ -94,13 +94,7 @@ class FeaturePagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-
-        $products = Feature::find($id);
-        $products->delete();
-        return redirect()->route('admin.features.list')->with('success',"Feature Product Informations Deleted Successfully");
-    }
+  
 
 
     public function addfeatured($id)
@@ -119,8 +113,5 @@ class FeaturePagesController extends Controller
         $product->save();
         return redirect()->route('admin.features.list')->with('success',"Removed Feature Product Successfully");
 
-    }
-
-
-    
+    }   
 }

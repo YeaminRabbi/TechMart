@@ -19,6 +19,7 @@ Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', 'App\Http\Controllers\HomeController@dashboard')->name('admin.dashboard');
 
+    // These are brands routes
     Route::get('/brands/create', 'App\Http\Controllers\BrandsPagesController@create')->name('admin.brands.create');
     Route::put('/brands/create', 'App\Http\Controllers\BrandsPagesController@store')->name('admin.brands.store');
     Route::get('/brands/list', 'App\Http\Controllers\BrandsPagesController@list')->name('admin.brands.list');
@@ -28,7 +29,7 @@ Route::prefix('admin')->group(function(){
 
 
 
-    
+    // These are category routes
     Route::get('/categories/create', 'App\Http\Controllers\CategoriesPagesController@create')->name('admin.categories.create');
     Route::put('/categories/create', 'App\Http\Controllers\CategoriesPagesController@store')->name('admin.categories.store');
     Route::get('/categories/list', 'App\Http\Controllers\CategoriesPagesController@list')->name('admin.categories.list');
@@ -36,7 +37,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/categories/update/{id}', 'App\Http\Controllers\CategoriesPagesController@update')->name('admin.categories.update');
     Route::delete('/categories/destroy/{id}', 'App\Http\Controllers\CategoriesPagesController@destroy')->name('admin.categories.destroy');
 
-
+    // These are color routes
     Route::get('/colors/create', 'App\Http\Controllers\ColorsPagesController@create')->name('admin.colors.create');
     Route::put('/colors/create', 'App\Http\Controllers\ColorsPagesController@store')->name('admin.colors.store');
     Route::get('/colors/list', 'App\Http\Controllers\ColorsPagesController@list')->name('admin.colors.list');
@@ -44,7 +45,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/colors/update/{id}', 'App\Http\Controllers\ColorsPagesController@update')->name('admin.colors.update');
     Route::delete('/colors/destroy/{id}', 'App\Http\Controllers\ColorsPagesController@destroy')->name('admin.colors.destroy');
 
-
+    // These are size routes
     Route::get('/sizes/create', 'App\Http\Controllers\SizesPagesController@create')->name('admin.sizes.create');
     Route::put('/sizes/create', 'App\Http\Controllers\SizesPagesController@store')->name('admin.sizes.store');
     Route::get('/sizes/list', 'App\Http\Controllers\SizesPagesController@list')->name('admin.sizes.list');
@@ -52,7 +53,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/sizes/update/{id}', 'App\Http\Controllers\SizesPagesController@update')->name('admin.sizes.update');
     Route::delete('/sizes/destroy/{id}', 'App\Http\Controllers\SizesPagesController@destroy')->name('admin.sizes.destroy');
 
-
+    // These are Model or Subcategory routes
     Route::get('/subcategories/create', 'App\Http\Controllers\SubCategoryPagesController@create')->name('admin.subcategories.create');
     Route::put('/subcategories/create', 'App\Http\Controllers\SubCategoryPagesController@store')->name('admin.subcategories.store');
     Route::get('/subcategories/list', 'App\Http\Controllers\SubCategoryPagesController@list')->name('admin.subcategories.list');
@@ -60,12 +61,12 @@ Route::prefix('admin')->group(function(){
     Route::post('/subcategories/update/{id}', 'App\Http\Controllers\SubCategoryPagesController@update')->name('admin.subcategories.update');
     Route::delete('/subcategories/destroy/{id}', 'App\Http\Controllers\SubCategoryPagesController@destroy')->name('admin.subcategories.destroy');
 
-
+    // These are product Attributes routes
     Route::get('/attributes/edit/{id}', 'App\Http\Controllers\AttributePagesController@edit')->name('admin.attributes.edit');
     Route::post('/attributes/update/{id}', 'App\Http\Controllers\AttributePagesController@update')->name('admin.attributes.update');
     Route::delete('/attributes/destroy/{id}', 'App\Http\Controllers\AttributePagesController@destroy')->name('admin.attributes.destroy');
 
-
+    // These are product routes
     Route::get('/products/create', 'App\Http\Controllers\ProductPagesController@create')->name('admin.products.create');
     Route::put('/products/create', 'App\Http\Controllers\ProductPagesController@store')->name('admin.products.store');
     Route::get('/products/list', 'App\Http\Controllers\ProductPagesController@list')->name('admin.products.list');
@@ -77,13 +78,14 @@ Route::prefix('admin')->group(function(){
     Route::post('attribute_add', 'App\Http\Controllers\ProductPagesController@attribute_add')->name('attribute_add');
     Route::get('/attribute_delete/{id}', 'App\Http\Controllers\ProductPagesController@attributedelete')->name('attribute_delete');
 
-
+    // These are feature routes
     Route::get('/features/create', 'App\Http\Controllers\FeaturePagesController@create')->name('admin.features.create');
     Route::get('/features/addfeatured/{id}', 'App\Http\Controllers\FeaturePagesController@addfeatured')->name('admin.features.addfeatured');
     Route::get('/features/list', 'App\Http\Controllers\FeaturePagesController@list')->name('admin.features.list');
     Route::get('/features/removefeatured/{id}', 'App\Http\Controllers\FeaturePagesController@removefeatured')->name('admin.features.removefeatured');
     
-
+    
+    // These are onslae routes
     Route::get('/onsales/create', 'App\Http\Controllers\OnsalePagesController@create')->name('admin.onsales.create');
     Route::put('/onsales/create', 'App\Http\Controllers\OnsalePagesController@store')->name('admin.onsales.store');
     Route::get('/onsales/list', 'App\Http\Controllers\OnsalePagesController@list')->name('admin.onsales.list');
@@ -96,7 +98,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/attribute_delete_onlsale/{id}', 'App\Http\Controllers\OnsalePagesController@attributedelete_onlsale')->name('attribute_delete');
 
 
-
+    // These are blog routes
     Route::get('/blogs/create', 'App\Http\Controllers\BlogPagesController@create')->name('admin.blogs.create');
     Route::put('/blogs/create', 'App\Http\Controllers\BlogPagesController@store')->name('admin.blogs.store');
     Route::get('/blogs/list', 'App\Http\Controllers\BlogPagesController@list')->name('admin.blogs.list');
@@ -104,7 +106,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/blogs/update/{id}', 'App\Http\Controllers\BlogPagesController@update')->name('admin.blogs.update');
     Route::delete('/blogs/destroy/{id}', 'App\Http\Controllers\BlogPagesController@destroy')->name('admin.blogs.destroy');
 
-
+    // Future working routes and functions
     Route::get('/blogtags/create', 'App\Http\Controllers\BlogTagPagesController@create')->name('admin.blogtags.create');
     Route::put('/blogtags/create', 'App\Http\Controllers\BlogTagPagesController@store')->name('admin.blogtags.store');
     Route::get('/blogtags/list', 'App\Http\Controllers\BlogTagPagesController@list')->name('admin.blogtags.list');
@@ -112,8 +114,11 @@ Route::prefix('admin')->group(function(){
     Route::post('/blogtags/update/{id}', 'App\Http\Controllers\BlogTagPagesController@update')->name('admin.blogtags.update');
     Route::delete('/blogtags/destroy/{id}', 'App\Http\Controllers\BlogTagPagesController@destroy')->name('admin.blogtags.destroy');
 
+    // Blog Comment Part 
+    Route::get('/comments/list', 'App\Http\Controllers\CommentDeletePagesController@list')->name('admin.comment.list');
+    Route::delete('/comments/destroy/{id}', 'App\Http\Controllers\CommentDeletePagesController@destroy')->name('admin.comment.destroy');
 
-
+    // These are slider routes
     Route::get('/sliders/create', 'App\Http\Controllers\SliderPagesController@create')->name('admin.sliders.create');
     Route::put('/sliders/create', 'App\Http\Controllers\SliderPagesController@store')->name('admin.sliders.store');
     Route::get('/sliders/list', 'App\Http\Controllers\SliderPagesController@list')->name('admin.sliders.list');
@@ -139,7 +144,7 @@ Route::prefix('admin')->group(function(){
 
 
 
-
+Route::post('/comment/{blogs}','App\Http\Controllers\CommentController@store')->name('comment.store');
 
 
 

@@ -176,6 +176,7 @@
                                     <i class="fe-disc"></i>
                                     
                                     <span style="font-size: 20px;"> Color </span>
+                                    <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     
@@ -325,6 +326,21 @@
                                     <li><a href="{{route('admin.specialOffers.list')}}">List</a></li>
                                 </ul>
                             </li>
+
+                            <li>
+                                <a href="javascript: void(0);">
+                                    <i class="fe-layout"></i>
+                                    <span style="font-size: 20px;"> Comments </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    
+                                   
+                                  
+                                    <li><a href="{{route('admin.comment.list')}}">List</a></li>
+                                </ul>
+                            </li>
+                            
 
 
 

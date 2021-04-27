@@ -638,6 +638,94 @@
                                     </div>
                                 </div><!-- .entry-content -->
                             </article>
+
+
+
+                            <div class="comments-area" id="comments">
+
+                                <h2 class="comments-title">Comments Count</h2>
+
+                                <ol class="comment-list">
+                                   @foreach($comments as $data)
+                                    <li id="comment-397" class="comment odd alt thread-odd thread-alt depth-1">
+                                        <div class="media">          
+                                            <div class="gravatar-wrapper media-left">
+                                                <img class="avatar avatar-100 photo" src="{{asset('assetAnother/assets/images/blog/avatar.jpg')}}" alt="">
+                                            </div>
+
+                                            <div class="comment-body media-body">
+
+                                                <div class="comment-content" id="div-comment-397">
+                                                    <p>{{$data->comment}}.</p>
+                                                </div>
+
+                                                <div class="comment-meta" id="div-comment-meta-397">
+                                                    <div class="author vcard">
+                                                        <cite class="fn media-heading">{{$data->username}}</cite>
+                                                    </div>
+
+                                                    <div class="author vcard">
+                                                        <cite class="fn media-heading"></cite>
+                                                    </div>
+
+                                                    <div class="date">
+                                                        <a class="comment-date" href="#">
+                                                            {{$data->created_at}}</a>
+                                                    </div>
+
+                                                    <div class="reply">
+                                                        <a aria-label="Reply to Anna Kowalsky"  href="#" class="comment-reply-link" rel="nofollow">Reply</a>
+                                                    </div>
+                                                </div>                                              
+                                            </div>
+
+                                          <!-- /.media -->
+                                        </div>
+                                        
+                                    </li><!-- #comment-## -->
+                                        @endforeach
+
+                                    
+                                </ol><!-- .comment-list -->
+                                <h3 class="comment-reply-title" id="reply-title">Social this post in social media <small></small></h3>
+                                <div class="footer-social-icons">
+                                    <style>
+                                        .footer-social-icons .social-icons a {
+                                          font-size: 2.571em;
+                                        }
+}
+                                    </style>
+                                    <ul class="social-icons list-unstyled">
+                                        
+                                        <li><a class="fa fa-facebook" style="color:#3b5998 " id="facebook-btn"  href="#"></a></li>
+                                        <li><a class="fa fa-twitter" style="color: #1da1f2" id="twitter-btn" href="#"></a></li>
+                                       
+                                        <li><a class="fa fa-linkedin" style="color: #0077b5" id="linkedin-btn" href="#"></a></li>
+                                        <li><a class="fa fa-google-plus" style="color: #dd4b39;" id="googlePlus-btn" href="#"></a></li>
+                                        <li><a class="fa fa-envelope-o" style="color: #dd4b39;" id="gmailBtn" href="#"></a></li>
+                                        {{-- <li><a class="fa fa-instagram" style="color: #c13584" id="instagram-btn" href="#"></a></li>
+                                        <li><a class="fa fa-youtube" style="color: #ff0000" id="youtube-btn" href="#"></a></li> --}}
+                                       
+                                        </ul>
+                                </div>
+
+
+                                @guest
+                                    <a href="{{route('login')}}" class="button">login to comment</a>
+                                    @else
+                                    <div class="comment-respond" id="respond">
+                                        <h3 class="comment-reply-title" id="reply-title">Leave a Reply <small><a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a></small></h3>
+                                        <form method="POST" action="{{route('comment.store',$blogs->id)}}">
+                                            @csrf
+                                            <p class="comment-notes"><span id="email-notes">Any offenseive comments will be deleted.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea required="required" maxlength="65525" rows="8" cols="45" name="comment" id="comment"></textarea></p>
+                                           
+                                                <button type="submit" value="Post Comment" class="submit">Comment</button>
+                                        </form>
+                                    </div><!-- #respond -->
+
+                                @endguest
+
+
                           
                          
                         </main><!-- #main -->
@@ -912,107 +1000,6 @@
             </section>
 
             <footer id="colophon" class="site-footer">
-                <div class="footer-widgets">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                <aside class="widget clearfix">
-                                    <div class="body">
-                                        <h4 class="widget-title">Featured Products</h4>
-                                        <ul class="product_list_widget">
-                                            <li>
-                                                <a href="single-product.html" title="Tablet Thin EliteBook  Revolve 810 G6">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/1.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Tablet Thin EliteBook  Revolve 810 G6</span>
-                                                </a>
-                                                <span class="electro-price"><span class="amount">&#36;1,300.00</span></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Smartphone 6S 128GB LTE">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/2.jpg" src="assets/images/blank.gif" alt=""><span class="product-title">Smartphone 6S 128GB LTE</span>
-                                                </a>
-                                                <span class="electro-price"><span class="amount">&#36;780.00</span></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Smartphone 6S 64GB LTE">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/3.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Smartphone 6S 64GB LTE</span>
-                                                </a>
-                                                <span class="electro-price"><span class="amount">&#36;1,215.00</span></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                <aside class="widget clearfix">
-                                    <div class="body"><h4 class="widget-title">Onsale Products</h4>
-                                        <ul class="product_list_widget">
-                                            <li>
-                                                <a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/3.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>
-                                                </a>
-                                                <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span class="amount">&#36;2,299.00</span></del></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Tablet Red EliteBook  Revolve 810 G2">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/4.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Tablet Red EliteBook  Revolve 810 G2</span>
-                                                </a>
-                                                <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span class="amount">&#36;2,299.00</span></del></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Widescreen 4K SUHD TV">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/5.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Widescreen 4K SUHD TV</span>
-                                                </a>
-                                                <span class="electro-price"><ins><span class="amount">&#36;2,999.00</span></ins> <del><span class="amount">&#36;3,299.00</span></del></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-xs-12">
-                                <aside class="widget clearfix">
-                                    <div class="body">
-                                        <h4 class="widget-title">Top Rated Products</h4>
-                                        <ul class="product_list_widget">
-                                            <li>
-                                                <a href="single-product.html" title="Notebook Black Spire V Nitro  VN7-591G">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/6.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Notebook Black Spire V Nitro  VN7-591G</span>
-                                                </a>
-                                                <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong class="rating">5</strong> out of 5</span></div>      <span class="electro-price"><ins><span class="amount">&#36;1,999.00</span></ins> <del><span class="amount">&#36;2,299.00</span></del></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Apple MacBook Pro MF841HN/A 13-inch Laptop">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/7.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Apple MacBook Pro MF841HN/A 13-inch Laptop</span>
-                                                </a>
-                                                <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong class="rating">5</strong> out of 5</span></div>      <span class="electro-price"><span class="amount">&#36;1,800.00</span></span>
-                                            </li>
-
-                                            <li>
-                                                <a href="single-product.html" title="Tablet White EliteBook Revolve  810 G2">
-                                                    <img class="wp-post-image" data-echo="assets/images/footer/2.jpg" src="assets/images/blank.gif" alt="">
-                                                    <span class="product-title">Tablet White EliteBook Revolve  810 G2</span>
-                                                </a>
-                                                <div class="star-rating" title="Rated 5 out of 5"><span style="width:100%"><strong class="rating">5</strong> out of 5</span></div>      <span class="electro-price"><span class="amount">&#36;1,999.00</span></span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </aside>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="footer-newsletter">
                     <div class="container">
                         <div class="row">
@@ -1288,7 +1275,40 @@
                });
         })(jQuery);
         </script>
-        <!-- For demo purposes – can be removed on production : End -->
+        <script>
+            var options = {
+                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+            };
+        
+            CKEDITOR.replace('my-editor', options);
+            CKEDITOR.replace('my-editor2', options);
+            CKEDITOR.replace('my-editor3', options);
+        </script>
+        
+        <script>
+        const facebookBtn = document.getElementById('facebook-btn');
+        const twitterBtn  = document.getElementById('twitter-btn');
+        
+        const linkedinBtn = document.getElementById('linkedin-btn');
+        const googlePlusBtn = document.getElementById('googlePlus-btn');
+        const gmailBtn = document.getElementById('gmail-btn');
+        
+        
+        let postUrl = encodeURI(document.location.href);
+        let postTitle = encodeURI('{{$blogs->title}}');
+        
+        facebookBtn.setAttribute("href",`https://www.facebook.com/sharer.php?u=${postUrl}&title=${postTitle}]`);
+        twitterBtn.setAttribute("href",`https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
+        linkedinBtn.setAttribute("href",`https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`);
+        googlePlusBtn.setAttribute("href",`https://plus.google.com/share?url=${postUrl}`);
+        gmailBtn.setAttribute("href",`https://mail.google.com/mail/?view=cm&su=${postTitle}&body=${postUrl}`);
+        
+        </script>
+
+
 
     </body>
 
