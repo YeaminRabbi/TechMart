@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en-US" itemscope="itemscope" itemtype="http://schema.org/WebPage">
     
-<!-- Mirrored from transvelo.github.io/electro-html/blog-single.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 11 Mar 2021 18:31:20 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Electro &#8211; Electronics Ecommerce Theme</title>
+        <title>Single Blog Page</title>
        
         <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/bootstrap.min.css')}}" media="all" />
         <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/font-awesome.min.css')}}" media="all" />
@@ -18,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/style.css')}}" media="all" />
         <link rel="stylesheet" type="text/css" href="{{asset('assetAnother/assets/css/colors/yellow.css')}}" media="all" />
 
-        <!-- Demo Purpose Only. Should be removed in production -->
+     
         <link rel="stylesheet" href="{{asset('assetAnother/assets/css/config.css')}}">
 
 
