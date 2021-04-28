@@ -10,6 +10,7 @@ use App\Specialoffer;
 use App\Slider;
 use App\Blog;
 use DB;
+use App\CommentReply;
 use App\User;
 class PagesController extends Controller
 {

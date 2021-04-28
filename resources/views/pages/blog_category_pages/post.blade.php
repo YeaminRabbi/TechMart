@@ -620,11 +620,11 @@
                                 </div>
 
                                 <header class="entry-header">
-                                    <h1 class="entry-title" itemprop="name headline">&#8211; {{$blogs->title}}</h1>
+                                    <h1 class="entry-title" itemprop="name headline">&#8211; {{$blogs->title}}<span class="comments-link"><a href="#comments">Leave a comment</a></span></h1>
 
                                     <div class="entry-meta">
-                                        <span class="cat-links">{{$blogs->category}}</span>
-                                        <span class="posted-on"><time class="entry-date published" datetime="2016-03-04T07:34:20+00:00">{{ $blogs->created_at->format('d M, Y | h:ia') }}</time> </span>
+                                        <span class="cat-links"><a href="#" rel="category tag">{{$blogs->category}}</a></span>
+                                        <span class="posted-on"><a href="#" rel="bookmark"><time class="entry-date published" datetime="2016-03-04T07:34:20+00:00">March 4, 2016</time> <time class="updated" datetime="2016-03-04T18:46:11+00:00" itemprop="datePublished">March 4, 2016</time></a></span>
                                     </div>
                                 </header><!-- .entry-header -->
 
@@ -632,21 +632,17 @@
                                     <p class="highlight">{{$blogs->highlightedText}}.</p>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <p class="highlight-light">{!! $blogs->description !!}</p>
+                                            <p class="highlight-light">{!!$blogs->description!!}</p>
                                         </div>
                                         
                                     </div>
                                 </div><!-- .entry-content -->
                             </article>
-
-
-
+                            
                             <div class="comments-area" id="comments">
-
-                                <h2 class="comments-title">Comments Count</h2>
-
-                                <ol class="comment-list">
-                                   @foreach($comments as $data)
+                               <h2 class="comments-title">Total Comments</h2>
+                                <ol class="comment-list"><!-- Single Comment -->
+                                  @foreach($comments as $data)
                                     <li id="comment-397" class="comment odd alt thread-odd thread-alt depth-1">
                                         <div class="media">          
                                             <div class="gravatar-wrapper media-left">
@@ -670,23 +666,89 @@
 
                                                     <div class="date">
                                                         <a class="comment-date" href="#">
-                                                            {{$data->created_at}}</a>
+                                                            {{$data->updated_at}}</a>
                                                     </div>
 
                                                     <div class="reply">
-                                                        <a aria-label="Reply to Anna Kowalsky"  href="#" class="comment-reply-link" rel="nofollow">Reply</a>
+                                                        <button class="btn-reply text-uppercase" id="reply-btn" onclick="showReplyForm('{{$data->id}}','{{$data->username}}')">Reply</button>
                                                     </div>
-                                                </div>                                              
+
+                                                </div>   
+                                                
+                                               
+                                                @foreach (App\CommentReply::where('comment_id', $data->id)->get() as $reply)
+                                                <div class="media comment_reply" style="padding-top:2.5rem;">
+                                                    <div class="gravatar-wrapper media-left">
+                                                        <img class="avatar avatar-100 photo" src="{{asset('assetAnother/assets/images/blog/avatar.jpg')}}" alt="">
+                                                    </div>
+        
+                                                    <div class="comment-body media-body background_color">
+                                                        <style>
+                                                           .comment-body.media-body.background_color {
+    background: aliceblue;
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 2rem;
+}
+                                                        </style>
+                                                        <div class="comment-content" id="div-comment-396">
+                                                            <p>{{$reply->message}}.</p>
+                                                        </div>
+        
+                                                        <div class="comment-meta" id="div-comment-meta-396">
+                                                            <div class="author vcard">
+                                                                <cite class="fn media-heading">{{$reply->username}}</cite>
+                                                            </div>
+        
+                                                            <div class="date">
+                                                                <a class="comment-date" href="#">{{$reply->created_at}}</a>
+                                                            </div>
+
+                                                            <div class="reply">
+                                                                <button class="btn-reply text-uppercase" id="reply-btn" onclick="showReplyForm('{{$data->id}}','{{$data->username}}')">Reply</button>
+                                                               
+                                                            </div>
+        
+                                                           
+                                                        </div>
+        
+                                                    </div><!-- /.comment-body -->
+                                                </div>
+                                                @endforeach
+                                                   
+                                             
+                                                
+                                                <!-- Custom Added comment reply  -->
+                                                 <!-- Custom Added comment reply End -->
+
+                                              <!-- Another Comment Reply Form Start -->
+                                              @guest
+                                              <a href="{{route('login')}}" class="button">login to comment</a>
+                                              @else
+                                              <div class="comment-respond" id="reply-form-{{$data->id}}" style="display: none;">
+                                                  <h3 class="comment-reply-title" id="reply-title">Leave a Reply <small><a style="display:none;" href="#" id="cancel-comment-reply-link" rel="nofollow">Cancel reply</a></small></h3>
+                                                  <form method="POST" action="{{route('commentReply.store',$data->id)}}">
+                                                      @csrf
+                                                      <p class="comment-notes"><span id="email-notes">Any offenseive comments will be deleted.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea required="required" maxlength="65525" rows="8" cols="45" name="message" id="reply-form-{{$data->id}}-text"></textarea></p>
+                                                      
+                                                          <button type="submit" value="Post Comment" class="submit">Comment</button>
+                                                  </form>
+                                              </div><!-- #respond -->
+          
+                                          @endguest
+                                              <!-- Another Comment Reply Form End -->
+
+
                                             </div>
 
                                           <!-- /.media -->
                                         </div>
                                         
-                                    </li><!-- #comment-## -->
-                                        @endforeach
+                                    </li>
+                                  @endforeach                                    
+                                </ol><!-- Single Comment End -->
 
-                                    
-                                </ol><!-- .comment-list -->
+
                                 <h3 class="comment-reply-title" id="reply-title">Social this post in social media <small></small></h3>
                                 <div class="footer-social-icons">
                                     <style>
@@ -726,8 +788,9 @@
                                 @endguest
 
 
-                          
-                         
+
+                                
+
                         </main><!-- #main -->
                     </div><!-- #primary -->
 
@@ -757,10 +820,10 @@
                                 @if (count($relatedposts)>0)
                                 @foreach($relatedposts as $recentpost)
                                 <li>
-                                    <a class="post-thumbnail" href="{{route('allpost' , [$recentpost->id,$recentpost->category])}}"><img width="150" height="150" src="{{url($recentpost->image)}}" class="wp-post-image" alt="1"/></a>
+                                    <a class="post-thumbnail" href="blog-single.html"><img width="150" height="150" src="{{url($recentpost->image)}}" class="wp-post-image" alt="1"/></a>
                                     <div class="post-content">
-                                        <a class ="post-name" href="{{route('allpost' , [$recentpost->id,$recentpost->category])}}">{{$recentpost->title}}</a>
-                                        <span class="post-date">{{$recentpost->created_at->format('d M, Y | h:ia')}}</span>
+                                        <a class ="post-name" href="blog-single.html">{{$recentpost->title}}</a>
+                                        <span class="post-date">{{$recentpost->created_at}}</span>
                                     </div>
                                 </li>
                                 @endforeach
@@ -772,234 +835,10 @@
                     </div>
                 </div><!-- .container -->
             </div><!-- #content -->
-
-            <section class="brands-carousel">
-                <h2 class="sr-only">Brands Carousel</h2>
-                <div class="container">
-                    <div id="owl-brands" class="owl-brands owl-carousel unicase-owl-carousel owl-outer-nav">
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Acer</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                     <img src="assets/images/blank.gif" data-echo="assets/images/brands/1.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Apple</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                     <img src="assets/images/blank.gif" data-echo="assets/images/brands/2.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Asus</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                     <img src="assets/images/blank.gif" data-echo="assets/images/brands/3.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Dell</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/4.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Gionee</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/5.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>HP</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/6.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>HTC</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/3.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>IBM</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/5.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Lenova</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/2.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>LG</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/1.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Micromax</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/6.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                        <div class="item">
-
-                            <a href="#">
-
-                                <figure>
-                                    <figcaption class="text-overlay">
-                                        <div class="info">
-                                            <h4>Microsoft</h4>
-                                        </div><!-- /.info -->
-                                    </figcaption>
-
-                                    <img src="assets/images/blank.gif" data-echo="assets/images/brands/4.png" class="img-responsive" alt="">
-
-                                </figure>
-                            </a>
-                        </div><!-- /.item -->
-
-
-                    </div><!-- /.owl-carousel -->
-
-                </div>
-            </section>
-
+            
             <footer id="colophon" class="site-footer">
+              
+
                 <div class="footer-newsletter">
                     <div class="container">
                         <div class="row">
@@ -1132,7 +971,7 @@
                                             <span class="call-us-number">(800) 8001-8588, (0600) 874 548</span>
                                         </div>
                                     </div>
-                                </div><!-- /.footer-call-us -->
+                                </div>
 
 
                                 <div class="footer-address">
@@ -1191,123 +1030,74 @@
         </div>
         <!-- For demo purposes – can be removed on production : End -->
 
-        <script type="text/javascript" src="assets/js/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/js/tether.min.js"></script>
-        <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="assets/js/bootstrap-hover-dropdown.min.js"></script>
-        <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
-        <script type="text/javascript" src="assets/js/echo.min.js"></script>
-        <script type="text/javascript" src="assets/js/wow.min.js"></script>
-        <script type="text/javascript" src="assets/js/jquery.easing.min.js"></script>
-        <script type="text/javascript" src="assets/js/jquery.waypoints.min.js"></script>
-        <script type="text/javascript" src="assets/js/electro.js"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/jquery.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/tether.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/bootstrap.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/bootstrap-hover-dropdown.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/owl.carousel.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/echo.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/wow.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/jquery.easing.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/jquery.waypoints.min.js')}}"></script>
+        <script type="text/javascript" src="{{asset('assetAnother/assets/js/electro.js')}}"></script>
 
-        <!-- For demo purposes – can be removed on production -->
 
-        <script src="switchstylesheet/switchstylesheet.js"></script>
-
-           <script>
-           (function($) {
-               $(document).ready(function(){
-                   $(".changecolor").switchstylesheet( { seperator:"color"} );
-                   $('.show-theme-options').click(function(){
-                       $(this).parent().toggleClass('open');
-                       return false;
-                   });
-
-                   $('#home-pages').on( 'change', function() {
-                       $.ajax({
-                           url : $('#home-pages option:selected').val(),
-                           success:function(res) {
-                               location.href = $('#home-pages option:selected').val();
-                           }
-                       });
-                   });
-
-                    $('#demo-pages').on( 'change', function() {
-            			$.ajax({
-            				url : $('#demo-pages option:selected').val(),
-            				success:function(res) {
-            					location.href = $('#demo-pages option:selected').val();
-            				}
-            			});
-            		});
-
-                    $('#header-style').on( 'change', function() {
-            			$.ajax({
-            				url : $('#header-style option:selected').val(),
-            				success:function(res) {
-            					location.href = $('#header-style option:selected').val();
-            				}
-            			});
-            		});
-
-                    $('#shop-style').on( 'change', function() {
-            			$.ajax({
-            				url : $('#shop-style option:selected').val(),
-            				success:function(res) {
-            					location.href = $('#shop-style option:selected').val();
-            				}
-            			});
-            		});
-
-                    $('#product-category-col').on( 'change', function() {
-            			$.ajax({
-            				url : $('#product-category-col option:selected').val(),
-            				success:function(res) {
-            					location.href = $('#product-category-col option:selected').val();
-            				}
-            			});
-            		});
-
-                    $('#single-products').on( 'change', function() {
-            			$.ajax({
-            				url : $('#single-products option:selected').val(),
-            				success:function(res) {
-            					location.href = $('#single-products option:selected').val();
-            				}
-            			});
-            		});
-
-                    $('.style-toggle').on( 'click', function() {
-            			$(this).parent('.config').toggleClass( 'open' );
-            		});
-               });
-        })(jQuery);
-        </script>
-        <script>
-            var options = {
-                filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-                filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-            };
         
-            CKEDITOR.replace('my-editor', options);
-            CKEDITOR.replace('my-editor2', options);
-            CKEDITOR.replace('my-editor3', options);
-        </script>
-        
-        <script>
-        const facebookBtn = document.getElementById('facebook-btn');
-        const twitterBtn  = document.getElementById('twitter-btn');
-        
-        const linkedinBtn = document.getElementById('linkedin-btn');
-        const googlePlusBtn = document.getElementById('googlePlus-btn');
-        const gmailBtn = document.getElementById('gmail-btn');
-        
-        
-        let postUrl = encodeURI(document.location.href);
-        let postTitle = encodeURI('{{$blogs->title}}');
-        
-        facebookBtn.setAttribute("href",`https://www.facebook.com/sharer.php?u=${postUrl}&title=${postTitle}]`);
-        twitterBtn.setAttribute("href",`https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
-        linkedinBtn.setAttribute("href",`https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`);
-        googlePlusBtn.setAttribute("href",`https://plus.google.com/share?url=${postUrl}`);
-        gmailBtn.setAttribute("href",`https://mail.google.com/mail/?view=cm&su=${postTitle}&body=${postUrl}`);
-        
-        </script>
+        <script src="{{asset('anotherassets/libs/bootstrap-filestyle2/bootstrap-filestyle.min.js')}}"></script>
+<script src="//cdn.ckeditor.com/4.6.2/full-all/ckeditor.js"></script>
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
 
+    CKEDITOR.replace('my-editor', options);
+    CKEDITOR.replace('my-editor2', options);
+    CKEDITOR.replace('my-editor3', options);
+</script>
+
+<script>
+const facebookBtn = document.getElementById('facebook-btn');
+const twitterBtn  = document.getElementById('twitter-btn');
+const linkedinBtn = document.getElementById('linkedin-btn');
+const googlePlusBtn = document.getElementById('googlePlus-btn');
+const gmailBtn = document.getElementById('gmail-btn');
+
+
+let postUrl = encodeURI(document.location.href);
+let postTitle = encodeURI('{{$blogs->title}}');
+
+facebookBtn.setAttribute("href",`https://www.facebook.com/sharer.php?u=${postUrl}&title=${postTitle}]`);
+twitterBtn.setAttribute("href",`https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
+linkedinBtn.setAttribute("href",`https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`);
+googlePlusBtn.setAttribute("href",`https://plus.google.com/share?url=${postUrl}`);
+gmailBtn.setAttribute("href",`https://mail.google.com/mail/?view=cm&su=${postTitle}&body=${postUrl}`);
+
+
+
+
+</script>
+
+
+
+<script>
+    function showReplyForm(commentId,username){
+    var x = document.getElementById(`reply-form-${commentId}`);
+    var input = document.getElementById(`reply-form-${commentId}-text`);
+
+    if(x.style.display === "none") 
+    {
+        x.style.display = "block";
+        input.innerText = `@${username}` ;
+    }
+    else
+    {
+        x.style.display = "none";
+    }
+}
+</script>
 
 
     </body>

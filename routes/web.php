@@ -117,7 +117,9 @@ Route::prefix('admin')->group(function(){
     // Blog Comment Part 
     Route::get('/comments/list', 'App\Http\Controllers\CommentDeletePagesController@list')->name('admin.comment.list');
     Route::delete('/comments/destroy/{id}', 'App\Http\Controllers\CommentDeletePagesController@destroy')->name('admin.comment.destroy');
-
+    
+    Route::get('/commentsReply/list', 'App\Http\Controllers\CommentReplyDeletePagesController@list')->name('admin.commentreply.list');
+    Route::delete('/commentsReply/destroy/{id}', 'App\Http\Controllers\CommentReplyDeletePagesController@destroy')->name('admin.commentreply.destroy');
     // These are slider routes
     Route::get('/sliders/create', 'App\Http\Controllers\SliderPagesController@create')->name('admin.sliders.create');
     Route::put('/sliders/create', 'App\Http\Controllers\SliderPagesController@store')->name('admin.sliders.store');
@@ -146,7 +148,7 @@ Route::prefix('admin')->group(function(){
 
 Route::post('/comment/{blogs}','App\Http\Controllers\CommentController@store')->name('comment.store');
 
-
+Route::post('/comment-reply/{comment}','App\Http\Controllers\CommentReplyPagesController@store')->name('commentReply.store');
 
 // This is about Route Url Start
 Route::get('/about', 'App\Http\Controllers\PagesController@about')->name('about');
