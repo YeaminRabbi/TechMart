@@ -85,18 +85,12 @@ Route::prefix('admin')->group(function(){
     Route::get('/features/removefeatured/{id}', 'App\Http\Controllers\FeaturePagesController@removefeatured')->name('admin.features.removefeatured');
     
     
-    // These are onslae routes
+    // These are onsale routes
     Route::get('/onsales/create', 'App\Http\Controllers\OnsalePagesController@create')->name('admin.onsales.create');
-    Route::put('/onsales/create', 'App\Http\Controllers\OnsalePagesController@store')->name('admin.onsales.store');
     Route::get('/onsales/list', 'App\Http\Controllers\OnsalePagesController@list')->name('admin.onsales.list');
-    Route::get('/onsales/edit/{id}', 'App\Http\Controllers\OnsalePagesController@edit')->name('admin.onsales.edit');
-    Route::post('/onsales/update', 'App\Http\Controllers\OnsalePagesController@update')->name('admin.onsales.update');
-    Route::delete('/onsales/destroy/{id}', 'App\Http\Controllers\OnsalePagesController@destroy')->name('admin.onsales.destroy');
-    Route::get('/onsales/attribute/edit/{id}', 'App\Http\Controllers\OnsalePagesController@attributeedit_onlsale')->name('admin.onsales.attribute.edit');
-    Route::post('attribute_update_onlsale', 'App\Http\Controllers\OnsalePagesController@attributeupdate_onlsale')->name('attribute_update_onlsale');
-    Route::post('attribute_add_onlsale', 'App\Http\Controllers\OnsalePagesController@attribute_add_onlsale')->name('attribute_add_onlsale');
-    Route::get('/attribute_delete_onlsale/{id}', 'App\Http\Controllers\OnsalePagesController@attributedelete_onlsale')->name('attribute_delete');
-
+    Route::post('/onsales/inserting', 'App\Http\Controllers\OnsalePagesController@inserting')->name('admin.onsales.inserting');
+    Route::get('/onsales/removeOnsale/{id}', 'App\Http\Controllers\OnsalePagesController@removeOnsale')->name('admin.onsales.removeOnsale');
+    
 
     // These are blog routes
     Route::get('/blogs/create', 'App\Http\Controllers\BlogPagesController@create')->name('admin.blogs.create');
