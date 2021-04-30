@@ -32,7 +32,23 @@ class PagesController extends Controller
 
         
         
+        public function productSearch(Request $req)
+        {
+            return $req->all();
+        }
 
+        public function autocomplete(Request $request)
+        {
+            $datas= Product::select('product_title')->where('product_title', 'LIKE', "%{$request->terms}%")->get();
+            $data_arr =array();
+
+            foreach ($datas as $d)
+                {
+                    $data_arr[] = $d->product_title;
+                }
+            
+            return response()->json($data_arr);
+        }
 
 
 

@@ -279,7 +279,7 @@
                             </li>
 
 
-                            <li>
+                            {{--  <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-layout"></i>
                                     <span style="font-size: 20px;"> Tag </span>
@@ -291,7 +291,7 @@
                                     <li><a href="{{route('admin.blogtags.create')}}">Create</a></li>
                                     <li><a href="{{route('admin.blogtags.list')}}">List</a></li>
                                 </ul>
-                            </li>
+                            </li>  --}}
 
 
 
@@ -313,19 +313,7 @@
                             </li>
 
 
-                            <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-layout"></i>
-                                    <span style="font-size: 20px;"> Offers </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    
-                                   
-                                    <li><a href="{{route('admin.specialOffers.create')}}">Create</a></li>
-                                    <li><a href="{{route('admin.specialOffers.list')}}">List</a></li>
-                                </ul>
-                            </li>
+                            
 
                             <li>
                                 <a href="javascript: void(0);">
@@ -345,7 +333,7 @@
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-layout"></i>
-                                    <span style="font-size: 20px;"> Comment Reply </span>
+                                    <span style="font-size: 20px;"> Reply(s) </span>
                                     <span class="menu-arrow"></span>
                                 </a>
                                 <ul class="nav-second-level" aria-expanded="false">

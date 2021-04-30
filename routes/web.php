@@ -16,6 +16,11 @@ use App\Http\Controllers\LoginController;
 Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
 // This is main Home page Route Url End
 
+
+//product search using autocomplete
+Route::post('/product/search', 'App\Http\Controllers\PagesController@productSearch')->name('product.search');
+Route::get('/product/autocomplete', 'App\Http\Controllers\PagesController@autocomplete')->name('autocomplete');
+
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', 'App\Http\Controllers\HomeController@dashboard')->name('admin.dashboard');
 
@@ -123,15 +128,7 @@ Route::prefix('admin')->group(function(){
     Route::delete('/sliders/destroy/{id}', 'App\Http\Controllers\SliderPagesController@destroy')->name('admin.sliders.destroy');
 
 
-
-    Route::get('/specialOffers/create', 'App\Http\Controllers\SpecialOfferPagesController@create')->name('admin.specialOffers.create');
-    Route::put('/specialOffers/create', 'App\Http\Controllers\SpecialOfferPagesController@store')->name('admin.specialOffers.store');
-    Route::get('/specialOffers/list', 'App\Http\Controllers\SpecialOfferPagesController@list')->name('admin.specialOffers.list');
-    Route::get('/specialOffers/edit/{id}', 'App\Http\Controllers\SpecialOfferPagesController@edit')->name('admin.specialOffers.edit');
-    Route::post('/specialOffers/update/{id}', 'App\Http\Controllers\SpecialOfferPagesController@update')->name('admin.specialOffers.update');
-    Route::delete('/specialOffers/destroy/{id}', 'App\Http\Controllers\SpecialOfferPagesController@destroy')->name('admin.specialOffers.destroy');
-
-
+  
 
     
     

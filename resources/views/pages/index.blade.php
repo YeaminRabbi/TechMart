@@ -10,6 +10,7 @@
         <!-- Required Meta Tags Always Come First -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="../../favicon.png">
@@ -30,6 +31,7 @@
 
         <!-- CSS Electro Template -->
         <link rel="stylesheet" href="../assets/css/theme.css">
+
     </head>
 
     <body>
@@ -420,12 +422,12 @@
                                                                     <ul class="u-header-collapse__nav-list">
                                                                         <li><span class="u-header-sidebar__sub-menu-title">Watches</span></li>
                                                                         <li><a class="u-header-collapse__submenu-nav-link" href="#">All Watches</a></li>
-                                                                        <li><a class="u-header-collapse__submenu-nav-link" href="#">Men's Watches</a></li>
-                                                                        <li><a class="u-header-collapse__submenu-nav-link" href="#">Women's Watches</a></li>
+                                                                        <li><a class="u-header-collapse__submenu-nav-link" href="#">Mens Watches</a></li>
+                                                                        <li><a class="u-header-collapse__submenu-nav-link" href="#">Womens Watches</a></li>
                                                                         <li><a class="u-header-collapse__submenu-nav-link" href="#">Premium Watches</a></li>
                                                                         <li><a class="u-header-collapse__submenu-nav-link" href="#">Deals on Watches</a></li>
                                                                         <li><span class="u-header-sidebar__sub-menu-title">Eyewear</span></li>
-                                                                        <li><a class="u-header-collapse__submenu-nav-link" href="#">Men's Sunglasses</a></li>
+                                                                        <li><a class="u-header-collapse__submenu-nav-link" href="#">Mens Sunglasses</a></li>
                                                                     </ul>
                                                                 </div>
                                                             </li>
@@ -509,16 +511,18 @@
                                 <!-- ========== END HEADER SIDEBAR ========== -->
                             </div>
                             <!-- End Logo-offcanvas-menu -->
+
                             <!-- Search Bar -->
                             <div class="col d-none d-xl-block">
-                                <form class="js-focus-state">
+                                <form action="{{ route('product.search') }}" method="POST">
+                                    @csrf
                                     <label class="sr-only" for="searchproduct">Search</label>
                                     <div class="input-group">
-                                        <input type="text" name="search" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary" name="search" id="search" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
+                                        <input type="text" name="search" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary typeahead"  placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" autocomplete="off" required>
 
                                         <div class="input-group-append">
 
-                                            <button class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="button" id="searchProduct1">
+                                            <button class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="submit" id="searchProduct1">
                                                 <span class="ec ec-search font-size-24"></span>
                                             </button>
                                         </div>
@@ -914,7 +918,7 @@
                                                                         <div class="col mb-3 mb-sm-0">
                                                                             <span class="u-header__sub-menu-title">Eyewear</span>
                                                                             <ul class="u-header__sub-menu-nav-group">
-                                                                                <li><a class="nav-link u-header__sub-menu-nav-link" href="#">Men's Sunglasses</a></li>
+                                                                                <li><a class="nav-link u-header__sub-menu-nav-link" href="#">Mens Sunglasses</a></li>
                                                                             </ul>
                                                                         </div>
                                                                     </div>
@@ -8686,6 +8690,27 @@
         </a>
         <!-- End Go to Top -->
 
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
+        
+
+        <script type="text/javascript">
+            var path="{{ route('autocomplete') }}";
+
+            $('input.typeahead').typeahead({
+                source:function(terms,process){
+                    return $.get(path,{terms:terms},function(data){
+                        return process(data);
+                    });
+                }
+            });
+        </script>
+        
+        
+        
         <!-- JS Global Compulsory -->
         <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
         <script src="../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
@@ -8824,6 +8849,7 @@
             });
         </script>
 
+        
     </body>
 
 <!-- Mirrored from transvelo.github.io/electro-html/2.0/html/home/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Sep 2020 17:42:59 GMT -->
