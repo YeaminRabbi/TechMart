@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('product_title');
             $table->string('slug');
-            $table->string('unit_price');
+            $table->integer('unit_price');
             $table->text('description');
             $table->text('specification');
             $table->text('summary');

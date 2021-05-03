@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helper;
 use App\Product;
 use App\Feature;
+use App\Category;
 use App\Onsale;
+use App\Brand;
 use App\Specialoffer;
 use App\Slider;
 use App\Blog;
@@ -29,13 +32,161 @@ class PagesController extends Controller
             ]);
         }
 
-
-        
-        
         public function productSearch(Request $req)
         {
             return $req->all();
         }
+        
+        
+        public function shop(Request $request)
+        {
+
+            // return $request->all();
+            $products = Product::orderBy('id','ASC')->get();
+            $allproducts = Product::query();
+
+            // if(!empty($_GET['category']))
+            // {
+            //     $categorynames = explode(',',$_GET['category']);
+            //     $cat_ids= Category::select('id')->whereIn('categoryname',$categorynames)->pluck('id')->toArray();
+            //     // return $cat_ids;
+            //     $allproducts = $allproducts->whereIn('cat_ids',$cat_ids)->take(10); //forCategoryFilter
+            //     $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+            //     $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
+            //     return view('pages.shop',compact('products','brands','categories','allproducts'));
+            // }
+
+            if(!empty($_GET['brand']))
+            {
+                $brandnames = explode(',',$_GET['brand']);
+                $brand_ids= Brand::select('id')->whereIn('brandname',$brandnames)->pluck('id')->toArray();
+                $allproducts = $allproducts->whereIn('brand_id',$brand_ids)->paginate(10);
+                // return $allproducts;
+                $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+                $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
+                return view('pages.shop',compact('products','brands','categories','allproducts'));
+              
+            }
+
+           
+            elseif(!empty($_GET['sortBy']))
+            {
+                if($_GET['sortBy'] =='priceAsc')
+                {
+                    $allproducts = $allproducts->orderBy('unit_price','ASC')->paginate(12);
+                    
+                   
+
+                }
+                elseif($_GET['sortBy'] =='priceDesc')
+                {
+                    $allproducts = $allproducts->orderBy('unit_price','DESC')->paginate(12);
+                    
+
+                }
+               
+                elseif($_GET['sortBy'] =='titleAsc')
+                {
+                    $allproducts = $allproducts->orderBy('product_title','ASC')->paginate(12);
+
+                }
+
+                elseif($_GET['sortBy'] =='titleDesc')
+                {
+                    $allproducts = $allproducts->orderBy('product_title','DESC')->paginate(12);
+
+                }
+
+                $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+                $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
+                return view('pages.shop',compact('products','brands','categories','allproducts'));
+                
+            }
+            
+            elseif(!empty($_GET['price']))
+            {
+                $price = explode(';',$_GET['price']);
+
+                //  dd($price);
+                $price[0] = floor($price[0]);
+                $price[1] = ceil($price[1]);
+                $allproducts=$allproducts->whereBetween('unit_price',$price)->paginate(12);
+                $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+                $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
+                return view('pages.shop',compact('products','brands','categories','allproducts'));
+            }
+            else
+            {
+                $allproducts = Product::orderBy('id','ASC')->get();
+                $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+                $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
+                return view('pages.shop',compact('products','brands','categories','allproducts'));
+            }
+            
+
+           
+        }
+
+
+        public function shop_filter(Request $request)
+        {
+
+           
+         $data = $request->all();
+         //Category Filter
+         $catUrl = '';
+         if(!empty($data['category']))
+         {
+           foreach($data['category'] as $category)
+           {
+               if(empty($catUrl))
+               {
+                   $catUrl .='&category='.$category;
+               }
+               else{
+                   $catUrl .=','.$category;
+               }
+           } 
+           
+          
+         }
+           
+
+            //sort filter
+            $sortUrl="";
+            if(!empty($data['sortBy']))
+            {
+                $sortUrl.='&sortBy='.$data['sortBy'];
+            }
+
+            //price filter
+            $price_range_url="";
+            if(!empty($data['price_range']))
+            {
+                $price_range_url .= '&price='.$data['price_range'];
+            }
+
+            //brand filter
+            $brandUrl="";
+            if(!empty($data['brand']))
+            {
+                foreach($data['brand'] as $brand)
+                {
+                    if(empty($brandUrl))
+                    {
+                        $brandUrl .='&brand='.$brand;
+                    }
+                    else{
+                        $brandUrl .=','.$brand;
+                    }
+                } 
+            }
+           
+            return \redirect()->route('shop',$catUrl.$sortUrl.$price_range_url.$brandUrl);
+
+           
+        }
+
 
         public function autocomplete(Request $request)
         {
@@ -51,6 +202,25 @@ class PagesController extends Controller
         }
 
 
+        // public function shopSort(Request $request)
+        // {
+           
+        //         $shop_asc = Product::orderBy('unit_price','ASC')->get();  
+          
+        //         // dd($shop_asc);
+
+        //         $shop_desc = Product::orderBy('unit_price','DESC')->get();  
+
+        //         // dd($shop_desc);
+
+        //         $shop_newest = Product::orderBy('created_at','ASC')->get();  
+           
+        // }
+
+
+        
+       
+
 
 
         public function about(){
@@ -61,9 +231,6 @@ class PagesController extends Controller
             return view('pages.cart');
         }
 
-        public function shop(){
-            return view('pages.shop');
-        }
 
         public function singleProduct(){
             return view('pages.singleProduct');

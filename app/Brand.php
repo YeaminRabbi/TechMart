@@ -12,6 +12,9 @@ class Brand extends Model{
 
     function Attribute(){
         return $this->hasMany(Attribute::class, 'brand_id');
+    }
+    public function products(){
+        return $this->hasMany('App\product');
     }  
 }
 

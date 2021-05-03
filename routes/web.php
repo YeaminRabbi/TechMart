@@ -21,6 +21,12 @@ Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
 Route::post('/product/search', 'App\Http\Controllers\PagesController@productSearch')->name('product.search');
 Route::get('/product/autocomplete', 'App\Http\Controllers\PagesController@autocomplete')->name('autocomplete');
 
+Route::get('/view_as_sort', 'App\Http\Controllers\PagesController@shopSort')->name('shop.sort');
+
+
+
+
+
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', 'App\Http\Controllers\HomeController@dashboard')->name('admin.dashboard');
 
@@ -157,9 +163,13 @@ Route::get('/cart', 'App\Http\Controllers\PagesController@cart')->name('cart');
 // This is about Route Url End
 
 
-// This is about Route Url Start
+// This is Shop Route Url Start
 Route::get('/shop', 'App\Http\Controllers\PagesController@shop')->name('shop');
-// This is about Route Url End
+// This is Shop Route Url End
+
+// This is Shop Route Url Start
+Route::post('/shop-filter', 'App\Http\Controllers\PagesController@shop_filter')->name('shop_filter');
+// This is Shop Route Url End
 
 // This is Single Product Route Url Start
 Route::get('/singleProduct', 'App\Http\Controllers\PagesController@singleProduct')->name('singleProduct');

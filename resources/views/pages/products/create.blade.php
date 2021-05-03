@@ -58,7 +58,7 @@
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label" for="simpleinput">Enter your Product Unit Price</label>
                                                         <div class="col-md-10">
-                                                            <input type="text" name="unit_price" id="simpleinput" class="form-control" placeholder="Write a Sub Category name which you want to add in your store" autocomplete="off">
+                                                            <input type="number" name="unit_price" id="simpleinput" class="form-control" placeholder="Write a Sub Category name which you want to add in your store" autocomplete="off">
                                                         </div>
                                                     </div>
 
