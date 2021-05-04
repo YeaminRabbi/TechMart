@@ -188,34 +188,52 @@ class PagesController extends Controller
         }
 
 
-        public function autocomplete(Request $request)
-        {
-            $datas= Product::select('product_title')->where('product_title', 'LIKE', "%{$request->terms}%")->get();
-            $data_arr =array();
+        // public function autocomplete(Request $request)
+        // {
+        //     $datas= Product::select('product_title')->where('product_title', 'LIKE', "%{$request->terms}%")->get();
+        //     $data_arr =array();
 
-            foreach ($datas as $d)
-                {
-                    $data_arr[] = $d->product_title;
-                }
+        //     foreach ($datas as $d)
+        //         {
+        //             $data_arr[] = $d->product_title;
+        //         }
             
-            return response()->json($data_arr);
+        //     return response()->json($data_arr);
+        // }
+
+        public function autosearch(Request $request){
+                // dd($request->all());
+                $query = $request->get('term','');
+                $allproducts = Product::where('product_title','LIKE','%'.$query.'%')->get();
+                
+
+                $data = array();
+                foreach($allproducts as $product)
+                {
+                    $data[] = array('value'=>$product->product_title,'id'=>$product->id);
+                }
+                if(count($data))
+                {
+                    return $data;
+                }
+                else{
+                   
+                    return ['value'=>" No Result Found ",'id'=>''];
+                }
         }
 
+        public function search(Request $request)
+        {
 
-        // public function shopSort(Request $request)
-        // {
-           
-        //         $shop_asc = Product::orderBy('unit_price','ASC')->get();  
-          
-        //         // dd($shop_asc);
+            $query = $request->input('query');
+            $allproducts = Product::where('product_title','LIKE','%'.$query.'%')->orderBy('id','ASC')->paginate(12);
+            // return $allproducts;
+            $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+            $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
+            return view('pages.shop',compact('brands','categories','allproducts'));
 
-        //         $shop_desc = Product::orderBy('unit_price','DESC')->get();  
+        }
 
-        //         // dd($shop_desc);
-
-        //         $shop_newest = Product::orderBy('created_at','ASC')->get();  
-           
-        // }
 
 
         

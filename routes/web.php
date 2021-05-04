@@ -142,6 +142,16 @@ Route::prefix('admin')->group(function(){
 });
 
 
+//Search product & Autosearch product
+
+Route::get('autosearch','App\Http\Controllers\PagesController@autosearch')->name('autosearch');
+
+Route::get('search','App\Http\Controllers\PagesController@search')->name('search');
+
+
+
+
+
 
 Route::post('/comment/{blogs}','App\Http\Controllers\CommentController@store')->name('comment.store');
 

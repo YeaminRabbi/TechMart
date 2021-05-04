@@ -18,6 +18,8 @@ class CreateSlidersTable extends Migration
             $table->string('sliderTitle');
             $table->string('sliderDetails');
             $table->string('productPrice');
+            $table->string('TitleEmphasise'); // eta pore add korsi image
+            $table->string('image');          // eta pore add korsi image
             $table->timestamps();
             $table->softDeletes();
         });

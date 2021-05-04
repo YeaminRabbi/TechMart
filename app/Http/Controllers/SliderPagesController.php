@@ -57,8 +57,8 @@ class SliderPagesController extends Controller
        
 
         $image  = $request->file('image');
-        Storage::putFile('public/frontend/',$image);
-        $sliders->image ="storage/frontend/".$image->hashName();
+        Storage::putFile('public/img/',$image);
+        $sliders->image ="storage/img/".$image->hashName();
 
         $sliders->save();
         
@@ -108,8 +108,8 @@ class SliderPagesController extends Controller
         
         if($request->file('image')){
             $image  = $request->file('image');
-            Storage::putFile('public/frontend/',$image);
-            $posts->image ="storage/frontend/".$image->hashName();
+            Storage::putFile('public/img/',$image);
+            $sliders->image ="storage/img/".$image->hashName();
         }
         $sliders->save();
         
