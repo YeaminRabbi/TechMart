@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<!-- Mirrored from transvelo.github.io/electro-html/2.0/html/shop/single-product-extended.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Oct 2020 15:09:22 GMT -->
+<!-- Mirrored from transvelo.github.io/electro-html/2.0/html/shop/single-product-extended.html by HTTrack Website Copier/3.x [XR&CO2014], Tue, 06 Oct 2020 15:09:22 GMT -->
 <!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
         <!-- Title -->
@@ -1022,7 +1022,7 @@
                                                                             <div class="col mb-3 mb-sm-0">
                                                                                 <span class="u-header__sub-menu-title">Eyewear</span>
                                                                                 <ul class="u-header__sub-menu-nav-group">
-                                                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="#">Men's Sunglasses</a></li>
+                                                                                    <li><a class="nav-link u-header__sub-menu-nav-link" href="#">Mens Sunglasses</a></li>
                                                                                 </ul>
                                                                             </div>
                                                                         </div>
@@ -1177,10 +1177,10 @@
                     <div class="my-md-3">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-3 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="https://transvelo.github.io/electro-html/2.0/html/home/index.html">Home</a></li>
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="shop.html">Accessories</a></li>
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="shop.html">Headphones</a></li>
-                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">Ultra Wireless S50 Headphones S50 with Bluetooth</li>
+                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{{ route('homepage') }}">Home</a></li>
+                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="{{ route('shop') }}">Shop</a></li>
+                                
+                                <li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1 active" aria-current="page">{{ $product->product_title }}</li>
                             </ol>
                         </nav>
                     </div>
@@ -1201,7 +1201,7 @@
                                 data-arrow-right-classes="fas fa-arrow-right u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right mr-lg-2 mr-xl-4"
                                 data-nav-for="#sliderSyncingThumb">
                                 <div class="js-slide">
-                                    <img class="img-fluid" src="../assets/img/720X660/img1.jpg" alt="Image Description">
+                                    <img class="img-fluid" src="{{ url($product->image) }}" alt="Image Description">
                                 </div>
                                 <div class="js-slide">
                                     <img class="img-fluid" src="../assets/img/720X660/img2.jpg" alt="Image Description">
@@ -1241,8 +1241,8 @@
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4 mb-md-6 mb-lg-0">
                             <div class="mb-2">
-                                <a href="#" class="font-size-12 text-gray-5 mb-2 d-inline-block">Headphones</a>
-                                <h2 class="font-size-25 text-lh-1dot2">Ultra Wireless S50 Headphones S50 with Bluetooth</h2>
+                                <a href="#" class="font-size-12 text-gray-5 mb-2 d-inline-block">Mobile</a>
+                                <h2 class="font-size-25 text-lh-1dot2">{{ $product->product_title }}</h2>
                                 <div class="mb-2">
                                     <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
                                         <div class="text-warning mr-2">
@@ -1255,7 +1255,6 @@
                                         <span class="text-secondary font-size-13">(3 customer reviews)</span>
                                     </a>
                                 </div>
-                                <a href="#" class="d-inline-block max-width-150 ml-n2 mb-2"><img class="img-fluid" src="../assets/img/200X60/img1.png" alt="Image Description"></a>
                                 <div class="mb-2">
                                     <ul class="font-size-14 pl-3 ml-1 text-gray-110">
                                         <li>4.5 inch HD Touch Screen (1280 x 720)</li>
@@ -1265,7 +1264,7 @@
                                     </ul>
                                 </div>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                                <p><strong>SKU</strong>: FW511948218</p>
+                                <p><strong>SKU</strong>: {{ $product->slug }}</p>
                             </div>
                         </div>
                         <div class="mx-md-auto mx-lg-0 col-md-6 col-lg-4 col-xl-3">

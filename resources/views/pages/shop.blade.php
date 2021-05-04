@@ -1876,10 +1876,10 @@
                                         <div class="product-item__outer h-100">
                                             <div class="product-item__inner px-xl-4 p-3">
                                                 <div class="product-item__body pb-xl-2">
-                                                    <div class="mb-2"><a href="product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Speakers</a></div>
-                                                    <h5 class="mb-1 product-item__title"><a href="single-product-fullwidth.html" class="text-blue font-weight-bold">{{$allproduct->product_title}}</a></h5>
+                                                    <div class="mb-2"><a href="{{ route('SingleProduct', $allproduct->id) }}" class="font-size-12 text-gray-5">Mobile</a></div>
+                                                    <h5 class="mb-1 product-item__title"><a href="{{ route('SingleProduct', $allproduct->id) }}">{{$allproduct->product_title}}</a></h5>
                                                     <div class="mb-2">
-                                                        <a href="single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="../../assets/img/212X200/img1.jpg" alt="Image Description"></a>
+                                                        <a href="{{ route('SingleProduct', $allproduct->id) }}" class="d-block text-center"><img class="img-fluid" src="../../assets/img/212X200/img1.jpg" alt="Image Description"></a>
                                                     </div>
                                                     <div class="flex-center-between mb-1">
                                                         <div class="prodcut-price">
@@ -1887,7 +1887,7 @@
                                                         </div>
                                                      
                                                         <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                                            <a href="CART.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>

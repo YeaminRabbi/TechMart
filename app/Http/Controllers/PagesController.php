@@ -188,39 +188,39 @@ class PagesController extends Controller
         }
 
 
-        // public function autocomplete(Request $request)
-        // {
-        //     $datas= Product::select('product_title')->where('product_title', 'LIKE', "%{$request->terms}%")->get();
-        //     $data_arr =array();
+        public function autocomplete(Request $request)
+        {
+            $datas= Product::select('product_title')->where('product_title', 'LIKE', "%{$request->terms}%")->get();
+            $data_arr =array();
 
-        //     foreach ($datas as $d)
-        //         {
-        //             $data_arr[] = $d->product_title;
-        //         }
+            foreach ($datas as $d)
+                {
+                    $data_arr[] = $d->product_title;
+                }
             
-        //     return response()->json($data_arr);
-        // }
+            return response()->json($data_arr);
+        }
 
-        public function autosearch(Request $request){
-                // dd($request->all());
-                $query = $request->get('term','');
-                $allproducts = Product::where('product_title','LIKE','%'.$query.'%')->get();
+        // public function autosearch(Request $request){
+        //         // dd($request->all());
+        //         $query = $request->get('term','');
+        //         $allproducts = Product::where('product_title','LIKE','%'.$query.'%')->get();
                 
 
-                $data = array();
-                foreach($allproducts as $product)
-                {
-                    $data[] = array('value'=>$product->product_title,'id'=>$product->id);
-                }
-                if(count($data))
-                {
-                    return $data;
-                }
-                else{
+        //         $data = array();
+        //         foreach($allproducts as $product)
+        //         {
+        //             $data[] = array('value'=>$product->product_title,'id'=>$product->id);
+        //         }
+        //         if(count($data))
+        //         {
+        //             return $data;
+        //         }
+        //         else{
                    
-                    return ['value'=>" No Result Found ",'id'=>''];
-                }
-        }
+        //             return ['value'=>" No Result Found ",'id'=>''];
+        //         }
+        // }
 
         public function search(Request $request)
         {
@@ -233,6 +233,7 @@ class PagesController extends Controller
             return view('pages.shop',compact('brands','categories','allproducts'));
 
         }
+
 
 
 

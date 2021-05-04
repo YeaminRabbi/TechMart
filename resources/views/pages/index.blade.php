@@ -500,18 +500,9 @@
                                 <form action="{{route('search')}}" method="GET">
                                     @csrf
                                     <label class="sr-only" for="searchproduct">Search</label>
-                                    <style>
-                                        #search_text
-                                        {
-                                            color: black;
-                                            background-color: aliceblue;
-                                            font-size: 24px;
-
-
-                                        }
-                                    </style>
+                                   
                                     <div class="input-group">
-                                        <input id="search_text" type="text" name="query" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary"  placeholder="Search for Products" aria-label="Search for Products" autocomplete="off" required>
+                                        <input id="search_text" type="text" name="query" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary typeahead"  placeholder="Search for Products" aria-label="Search for Products" autocomplete="off" required>
                                       
                                         <div class="input-group-append">
 
@@ -8903,7 +8894,7 @@
       
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-       <script>
+       {{-- <script>
            $(document).ready(function(){
                var path = "{{route('autosearch')}}"
                $('#search_text').autocomplete({
@@ -8929,7 +8920,7 @@
 
                });
            });
-       </script>
+       </script> --}}
 
 
 

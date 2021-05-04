@@ -23,6 +23,7 @@ Route::get('/product/autocomplete', 'App\Http\Controllers\PagesController@autoco
 
 Route::get('/view_as_sort', 'App\Http\Controllers\PagesController@shopSort')->name('shop.sort');
 
+Route::get('/SingleProduct/{id}', 'App\Http\Controllers\SingleProductPagesController@SingleProduct')->name('SingleProduct');
 
 
 
