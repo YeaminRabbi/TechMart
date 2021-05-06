@@ -27,23 +27,29 @@ class SingleProductPagesController extends Controller
         $ram_arr = array();
         $quantity_arr = array();
 
-        foreach ($attributes as $data)
-            {
-                $color_arr[] = $data->Color->colorname;
-                $size_arr[] = $data->Size->sizename;
-                $ram_arr[] = $data->ram;
-                $quantity_arr[] = $data->quantity;
+        $custom_size= array();
 
+        foreach ($attributes as $key=>$data)
+            {
+                $color_arr[$key][0] = $data->Color->id;
+                $color_arr[$key][1] = $data->Color->colorname;    
+
+                $ram_arr[] = $data->ram;                    
+                
+                $size_arr[$key][0]=  $data->Size->id;
+                $size_arr[$key][1]=  $data->Size->sizename;
             }
+
+            
+           
 
         return view('pages.singleProduct',[
             'product'=>$product,
             'gallery'=>$gallery,
             'color_arr'=> $color_arr,
             'size_arr'=>$size_arr,
-            'ram_arr'=>$ram_arr,
-            'quantity_arr'=>$quantity_arr  
-          
+            'ram_arr'=>$ram_arr
+            
           
             ]);
 

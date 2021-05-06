@@ -1277,12 +1277,19 @@
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Color</h6>
                                         <!-- Select -->
-                                        <select class="js-select selectpicker dropdown-select btn-block col-12 px-0"
-                                            data-style="btn-sm bg-white font-weight-normal py-2 border" name="color">
+                                        <select class="form-control" name="color">
                                             
-                                            @foreach ($color_arr as $data)
+                                            {{--  @foreach ($color_arr as $data)
                                             <option value="{{ $data }}">{{ $data }}</option>
-                                            @endforeach
+                                            @endforeach  --}}
+
+                                            @foreach ($color_arr as $key=>$data)
+                                            <option value="{{ $data[0] }}">{{ $data[1] }}</option>
+                                          @endforeach
+                                        </select>
+
+                                       
+
                                         </select>
                                         <!-- End Select -->
                                     </div>
@@ -1290,12 +1297,16 @@
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Rom Size</h6>
                                         <!-- Select -->
-                                        <select class="js-select selectpicker dropdown-select btn-block col-12 px-0"
-                                            data-style="btn-sm bg-white font-weight-normal py-2 border" name="size">
+                                        <select class="form-control" name="size">
                                             
-                                            @foreach ($size_arr as $data)
-                                            <option value="{{ $data }}">{{ $data }}</option>
+                                            {{--  @foreach ($size_arr as $data)
+                                             <option value="{{ $data[0] }}">{{ $data[1] }}</option>
+                                            @endforeach  --}}
+
+                                            @foreach ($size_arr as $key=>$data)
+                                              <option value="{{ $data[0] }}">{{ $data[1] }}</option>
                                             @endforeach
+                                           
                                         </select>
                                         <!-- End Select -->
                                     </div>
@@ -1303,8 +1314,7 @@
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Ram Size</h6>
                                         <!-- Select -->
-                                        <select class="js-select selectpicker dropdown-select btn-block col-12 px-0"
-                                            data-style="btn-sm bg-white font-weight-normal py-2 border" name="size">
+                                        <select class="form-control" name="ram">
                                             
                                             @foreach ($ram_arr as $data)
                                             <option value="{{ $data }}">{{ $data }}</option>
@@ -2850,7 +2860,20 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
         
-
+        {{--  <script>
+            $('.color_id').change(function(){
+                let colorid = $(this).val();
+                let productid = $(this).attr('data-product');
+                $.ajax({
+                    type:"GET",
+                    url:"{{ url('product/get/size') }}/"+colorid+'/'+productid,
+                    success:function(res){
+                        $('.sizeadd').html(res)
+                    }
+                });
+            });
+        </script>    
+          --}}
         <script type="text/javascript">
             var path="{{ route('autocomplete') }}";
 
