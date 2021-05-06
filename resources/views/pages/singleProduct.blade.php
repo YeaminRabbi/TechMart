@@ -1120,25 +1120,22 @@
                             <!-- Search bar -->
                             <div class="col align-self-center">
                                 <!-- Search-Form -->
-                                <form class="js-focus-state">
-                                    <label class="sr-only" for="searchProduct">Search</label>
+                                <form action="{{route('search')}}" method="GET">
+                                    @csrf
+                                    <label class="sr-only" for="searchproduct">Search</label>
+                                   
                                     <div class="input-group">
-                                        <input type="email" class="form-control py-2 pl-5 font-size-15 border-0 height-40 rounded-left-pill" name="email" id="searchProduct" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
+                                        <input id="search_text" type="text" name="query" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary typeahead"  placeholder="Search for Products" aria-label="Search for Products" autocomplete="off" required>
+                                      
                                         <div class="input-group-append">
-                                            <!-- Select -->
-                                            <select class="js-select selectpicker dropdown-select custom-search-categories-select"
-                                                data-style="btn height-40 text-gray-60 font-weight-normal border-0 rounded-0 bg-white px-5 py-2">
-                                                <option value="one" selected>All Categories</option>
-                                                <option value="two">Two</option>
-                                                <option value="three">Three</option>
-                                                <option value="four">Four</option>
-                                            </select>
-                                            <!-- End Select -->
-                                            <button class="btn btn-dark height-40 py-2 px-3 rounded-right-pill" type="button" id="searchProduct1">
-                                                <span class="ec ec-search font-size-24"></span>
+
+                                            <button  class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="submit" id="searchProduct1">
+                                                <span class="ec ec-search font-size-24" ></span>
                                             </button>
                                         </div>
                                     </div>
+                                 
+                                    
                                 </form>
                                 <!-- End Search-Form -->
                             </div>
@@ -1203,18 +1200,12 @@
                                 <div class="js-slide">
                                     <img class="img-fluid" src="{{ url($product->image) }}" alt="Image Description">
                                 </div>
-                                <div class="js-slide">
-                                    <img class="img-fluid" src="../assets/img/720X660/img2.jpg" alt="Image Description">
-                                </div>
-                                <div class="js-slide">
-                                    <img class="img-fluid" src="../assets/img/720X660/img3.jpg" alt="Image Description">
-                                </div>
-                                <div class="js-slide">
-                                    <img class="img-fluid" src="../assets/img/720X660/img4.jpg" alt="Image Description">
-                                </div>
-                                <div class="js-slide">
-                                    <img class="img-fluid" src="../assets/img/720X660/img5.jpg" alt="Image Description">
-                                </div>
+                                @foreach ($gallery  as $item)
+                                    <div class="js-slide" style="cursor: pointer;">
+                                        <img class="img-fluid" src="{{  url($item->images) }}" alt="Image Description">
+                                    </div>
+                                @endforeach
+                               
                             </div>
 
                             <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
@@ -1222,21 +1213,15 @@
                                 data-slides-show="5"
                                 data-is-thumbs="true"
                                 data-nav-for="#sliderSyncingNav">
-                                <div class="js-slide" style="cursor: pointer;">
-                                    <img class="img-fluid" src="../assets/img/720X660/img1.jpg" alt="Image Description">
+                                <div class="js-slide">
+                                    <img class="img-fluid" src="{{ url($product->image) }}" alt="Image Description" style="cursor:pointer">
                                 </div>
-                                <div class="js-slide" style="cursor: pointer;">
-                                    <img class="img-fluid" src="../assets/img/720X660/img2.jpg" alt="Image Description">
-                                </div>
-                                <div class="js-slide" style="cursor: pointer;">
-                                    <img class="img-fluid" src="../assets/img/720X660/img3.jpg" alt="Image Description">
-                                </div>
-                                <div class="js-slide" style="cursor: pointer;">
-                                    <img class="img-fluid" src="../assets/img/720X660/img4.jpg" alt="Image Description">
-                                </div>
-                                <div class="js-slide" style="cursor: pointer;">
-                                    <img class="img-fluid" src="../assets/img/720X660/img5.jpg" alt="Image Description">
-                                </div>
+                                @foreach ($gallery  as $item)
+                                    <div class="js-slide" style="cursor: pointer;">
+                                        <img class="img-fluid" src="{{ url($item->images) }}" alt="Image Description">
+                                    </div>
+                                @endforeach
+                                
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-4 col-xl-4 mb-md-6 mb-lg-0">
@@ -1256,14 +1241,9 @@
                                     </a>
                                 </div>
                                 <div class="mb-2">
-                                    <ul class="font-size-14 pl-3 ml-1 text-gray-110">
-                                        <li>4.5 inch HD Touch Screen (1280 x 720)</li>
-                                        <li>Android 4.4 KitKat OS</li>
-                                        <li>1.4 GHz Quad Core™ Processor</li>
-                                        <li>20 MP Electro and 28 megapixel CMOS rear camera</li>
-                                    </ul>
+                                  
+                                    {!! $product->summary !!}
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
                                 <p><strong>SKU</strong>: {{ $product->slug }}</p>
                             </div>
                         </div>
@@ -1272,7 +1252,7 @@
                                 <div class="card p-5 border-width-2 border-color-1 borders-radius-17">
                                     <div class="text-gray-9 font-size-14 pb-2 border-color-1 border-bottom mb-3">Availability: <span class="text-green font-weight-bold">26 in stock</span></div>
                                     <div class="mb-3">
-                                        <div class="font-size-36">$685.00</div>
+                                        <div class="font-size-36">BDT. {{ $product->unit_price }}</div>
                                     </div>
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Quantity</h6>
@@ -1298,11 +1278,37 @@
                                         <h6 class="font-size-14">Color</h6>
                                         <!-- Select -->
                                         <select class="js-select selectpicker dropdown-select btn-block col-12 px-0"
-                                            data-style="btn-sm bg-white font-weight-normal py-2 border">
-                                            <option value="one" selected>White with Gold</option>
-                                            <option value="two">Red</option>
-                                            <option value="three">Green</option>
-                                            <option value="four">Blue</option>
+                                            data-style="btn-sm bg-white font-weight-normal py-2 border" name="color">
+                                            
+                                            @foreach ($color_arr as $data)
+                                            <option value="{{ $data }}">{{ $data }}</option>
+                                            @endforeach
+                                        </select>
+                                        <!-- End Select -->
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h6 class="font-size-14">Rom Size</h6>
+                                        <!-- Select -->
+                                        <select class="js-select selectpicker dropdown-select btn-block col-12 px-0"
+                                            data-style="btn-sm bg-white font-weight-normal py-2 border" name="size">
+                                            
+                                            @foreach ($size_arr as $data)
+                                            <option value="{{ $data }}">{{ $data }}</option>
+                                            @endforeach
+                                        </select>
+                                        <!-- End Select -->
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <h6 class="font-size-14">Ram Size</h6>
+                                        <!-- Select -->
+                                        <select class="js-select selectpicker dropdown-select btn-block col-12 px-0"
+                                            data-style="btn-sm bg-white font-weight-normal py-2 border" name="size">
+                                            
+                                            @foreach ($ram_arr as $data)
+                                            <option value="{{ $data }}">{{ $data }}</option>
+                                            @endforeach
                                         </select>
                                         <!-- End Select -->
                                     </div>
@@ -1326,7 +1332,7 @@
             <div class="bg-gray-7 pt-6 pb-3 mb-6">
                 <div class="container">
                     <div class="js-scroll-nav">
-                        <div class="bg-white pt-4 pb-6 px-xl-11 px-md-5 px-4 mb-6">
+                        {{--  <div class="bg-white pt-4 pb-6 px-xl-11 px-md-5 px-4 mb-6">
                             <div id="Accessories" class="mx-md-2">
                                 <div class="position-relative mb-6">
                                     <ul class="nav nav-classic nav-tab nav-tab-lg justify-content-xl-center flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-lg-down-bottom-0 pb-1 pb-xl-0 mb-n1 mb-xl-0">
@@ -1451,18 +1457,18 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>  --}}
                         <div class="bg-white pt-4 pb-6 px-xl-11 px-md-5 px-4 mb-6 overflow-hidden">
                             <div id="Description" class="mx-md-2">
                                 <div class="position-relative mb-6">
                                     <ul class="nav nav-classic nav-tab nav-tab-lg justify-content-xl-center mb-6 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-lg-down-bottom-0 pb-1 pb-xl-0 mb-n1 mb-xl-0">
-                                        <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                                        {{--  <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                                             <a class="nav-link" href="#Accessories">
                                                 <div class="d-md-flex justify-content-md-center align-items-md-center">
                                                     Accessories
                                                 </div>
                                             </a>
-                                        </li>
+                                        </li>  --}}
                                         <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                                             <a class="nav-link active" href="#Description">
                                                 <div class="d-md-flex justify-content-md-center align-items-md-center">
@@ -1487,7 +1493,7 @@
                                     </ul>
                                 </div>
                                 <div class="mx-md-4 pt-1">
-                                    <h3 class="font-size-24 mb-3">Perfectly Done</h3>
+                                    {{--  <h3 class="font-size-24 mb-3">Perfectly Done</h3>
                                     <p>Praesent ornare, ex a interdum consectetur, lectus diam sodales elit, vitae egestas est enim ornare nisl. Nullam in lectus nec sem semper viverra. In lobortis egestas massa. Nam nec massa nisi. Suspendisse potenti. Quisque suscipit vulputate dui quis volutpat. Ut id elit facilisis, feugiat est in, tempus lacus. Ut ultrices dictum metus, a ultricies ex vulputate ac. Ut id cursus tellus, non tempor quam. Morbi porta diam nisi, id finibus nunc tincidunt eu.</p>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -1521,7 +1527,9 @@
                                         <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Category:</strong> <a href="#" class="text-blue">Headphones</a></li>
                                         <li class="nav-item text-gray-111 mx-3 flex-shrink-0 flex-xl-shrink-1">/</li>
                                         <li class="nav-item text-gray-111 flex-shrink-0 flex-xl-shrink-1"><strong>Tags:</strong> <a href="#" class="text-blue">Fast</a>, <a href="#" class="text-blue">Gaming</a>, <a href="#" class="text-blue">Strong</a></li>
-                                    </ul>
+                                    </ul>  --}}
+
+                                    {!! $product->description !!}
                                 </div>
                             </div>
                         </div>
@@ -1529,13 +1537,13 @@
                             <div id="Specification" class="mx-md-2">
                                 <div class="position-relative mb-6">
                                     <ul class="nav nav-classic nav-tab nav-tab-lg justify-content-xl-center mb-6 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-lg-down-bottom-0 pb-1 pb-xl-0 mb-n1 mb-xl-0">
-                                        <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                                        {{--  <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                                             <a class="nav-link" href="#Accessories">
                                                 <div class="d-md-flex justify-content-md-center align-items-md-center">
                                                     Accessories
                                                 </div>
                                             </a>
-                                        </li>
+                                        </li>  --}}
                                         <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                                             <a class="nav-link" href="#Description">
                                                 <div class="d-md-flex justify-content-md-center align-items-md-center">
@@ -1560,7 +1568,7 @@
                                     </ul>
                                 </div>
                                 <div class="mx-md-5 pt-1">
-                                    <div class="table-responsive mb-4">
+                                    {{--  <div class="table-responsive mb-4">
                                         <table class="table table-hover">
                                             <tbody>
                                                 <tr>
@@ -1664,7 +1672,9 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div>  --}}
+
+                                    {!! $product->specification !!}
                                 </div>
                             </div>
                         </div>
@@ -1672,13 +1682,13 @@
                             <div id="Reviews" class="mx-md-2">
                                 <div class="position-relative mb-6">
                                     <ul class="nav nav-classic nav-tab nav-tab-lg justify-content-xl-center mb-6 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-lg-down-bottom-0 pb-1 pb-xl-0 mb-n1 mb-xl-0">
-                                        <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
+                                        {{--  <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                                             <a class="nav-link" href="#Accessories">
                                                 <div class="d-md-flex justify-content-md-center align-items-md-center">
                                                     Accessories
                                                 </div>
                                             </a>
-                                        </li>
+                                        </li>  --}}
                                         <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                                             <a class="nav-link" href="#Description">
                                                 <div class="d-md-flex justify-content-md-center align-items-md-center">
@@ -2832,6 +2842,26 @@
             <span class="fas fa-arrow-up u-go-to__inner"></span>
         </a>
         <!-- End Go to Top -->
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
+        
+
+        <script type="text/javascript">
+            var path="{{ route('autocomplete') }}";
+
+            $('input.typeahead').typeahead({
+                source:function(terms,process){
+                    return $.get(path,{terms:terms},function(data){
+                        return process(data);
+                    });
+                }
+            });
+        </script>
 
         <!-- JS Global Compulsory -->
         <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>

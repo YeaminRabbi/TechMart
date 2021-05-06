@@ -490,26 +490,19 @@
                                 <form action="{{route('search')}}" method="GET">
                                     @csrf
                                     <label class="sr-only" for="searchproduct">Search</label>
-                                    <style>
-                                        #search_text
-                                        {
-                                            color: black;
-                                            background-color: aliceblue;
-                                            font-size: 24px;
-
-
-                                        }
-                                    </style>
+                                   
                                     <div class="input-group">
-                                        <input id="search_text" type="text" name="query" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary"  placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" autocomplete="off" required>
-                                        
-                                        <div class="input-group-append" style="hover:bg-gray-300 focus:bg-gray-300">
+                                        <input id="search_text" type="text" name="query" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary typeahead"  placeholder="Search for Products" aria-label="Search for Products" autocomplete="off" required>
+                                      
+                                        <div class="input-group-append">
 
-                                            <button class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="submit" id="searchProduct1">
-                                                <span class="ec ec-search font-size-24"></span>
+                                            <button  class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="submit" id="searchProduct1">
+                                                <span class="ec ec-search font-size-24" ></span>
                                             </button>
                                         </div>
                                     </div>
+                                 
+                                    
                                 </form>
                                 
                             </div>
@@ -3225,6 +3218,23 @@
         </a>
         <!-- End Go to Top -->
 
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
+        
+
+        <script type="text/javascript">
+            var path="{{ route('autocomplete') }}";
+
+            $('input.typeahead').typeahead({
+                source:function(terms,process){
+                    return $.get(path,{terms:terms},function(data){
+                        return process(data);
+                    });
+                }
+            });
+        </script>
         <!-- JS Global Compulsory -->
         <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
         <script src="../../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
