@@ -14,8 +14,14 @@ use App\Http\Controllers\LoginController;
 */
 // This is main Home page Route Url Start
 Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
-// This is main Home page Route Url End
 
+// This is main Home page Route Url End
+Route::get('/singleProduct_getsize','App\Http\Controllers\SingleProductPagesController@singleProduct_getsize')->name('singleProduct_getsize');
+Route::get('/findquantity','App\Http\Controllers\SingleProductPagesController@findquantity')->name('findquantity');
+
+
+
+Route::get('/SingleProduct/{id}', 'App\Http\Controllers\SingleProductPagesController@SingleProduct')->name('SingleProduct');
 
 //product search using autocomplete
 Route::post('/product/search', 'App\Http\Controllers\PagesController@productSearch')->name('product.search');
@@ -23,7 +29,6 @@ Route::get('/product/autocomplete', 'App\Http\Controllers\PagesController@autoco
 
 Route::get('/view_as_sort', 'App\Http\Controllers\PagesController@shopSort')->name('shop.sort');
 
-Route::get('/SingleProduct/{id}', 'App\Http\Controllers\SingleProductPagesController@SingleProduct')->name('SingleProduct');
 
 
 

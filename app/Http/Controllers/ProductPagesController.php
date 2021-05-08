@@ -120,6 +120,11 @@ class ProductPagesController extends Controller
                 $attribute->save();
             }  
         }
+        else 
+        {
+            return redirect()->route('admin.products.create')->with('success','Insert Product image');
+            
+        }
 
         if($req->hasFile('images')){
 

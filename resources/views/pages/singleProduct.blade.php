@@ -1250,7 +1250,7 @@
                         <div class="mx-md-auto mx-lg-0 col-md-6 col-lg-4 col-xl-3">
                             <div class="mb-2">
                                 <div class="card p-5 border-width-2 border-color-1 borders-radius-17">
-                                    <div class="text-gray-9 font-size-14 pb-2 border-color-1 border-bottom mb-3">Availability: <span class="text-green font-weight-bold">26 in stock</span></div>
+                                    <div class="text-gray-9 font-size-14 pb-2 border-color-1 border-bottom mb-3">Availability: <span class="text-green font-weight-bold"><input type="text" class="prod_price"> 26 in stock</span></div>
                                     <div class="mb-3">
                                         <div class="font-size-36">BDT. {{ $product->unit_price }}</div>
                                     </div>
@@ -1277,15 +1277,13 @@
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Color</h6>
                                         <!-- Select -->
-                                        <select class="form-control" name="color">
-                                            
-                                            {{--  @foreach ($color_arr as $data)
-                                            <option value="{{ $data }}">{{ $data }}</option>
-                                            @endforeach  --}}
 
+                                        
+                                        <select class="form-control color_id" id="color_id" name="color">
+                                            <option disabled="true" selected="true">--Select--</option>                                             
                                             @foreach ($color_arr as $key=>$data)
-                                            <option value="{{ $data[0] }}">{{ $data[1] }}</option>
-                                          @endforeach
+                                                <option  value="{{ $data[0] }}">{{ $data[1] }}</option>
+                                            @endforeach
                                         </select>
 
                                        
@@ -1297,12 +1295,8 @@
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Rom Size</h6>
                                         <!-- Select -->
-                                        <select class="form-control" name="size">
-                                            
-                                            {{--  @foreach ($size_arr as $data)
-                                             <option value="{{ $data[0] }}">{{ $data[1] }}</option>
-                                            @endforeach  --}}
-
+                                        <select class="form-control size_id" name="size" id="size_id">
+                                            <option disabled="true" selected="true">--Select--</option>
                                             @foreach ($size_arr as $key=>$data)
                                               <option value="{{ $data[0] }}">{{ $data[1] }}</option>
                                             @endforeach
@@ -1314,8 +1308,8 @@
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Ram Size</h6>
                                         <!-- Select -->
-                                        <select class="form-control" name="ram">
-                                            
+                                        <select class="form-control" name="ram" id="ram_id">
+                                            <option disabled="true" selected="true">--Select--</option>
                                             @foreach ($ram_arr as $data)
                                             <option value="{{ $data }}">{{ $data }}</option>
                                             @endforeach
@@ -2853,14 +2847,10 @@
         </a>
         <!-- End Go to Top -->
 
-
-
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
+        /// javascript for dropdown dependancy using AJAX for product quantity
+        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         
-        {{--  <script>
+        <script>
             $('.color_id').change(function(){
                 let colorid = $(this).val();
                 let productid = $(this).attr('data-product');
@@ -2872,8 +2862,16 @@
                     }
                 });
             });
-        </script>    
-          --}}
+        </script>     --}}
+        
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
+        
+       
+
         <script type="text/javascript">
             var path="{{ route('autocomplete') }}";
 
@@ -3031,6 +3029,8 @@
                 $.HSCore.components.HSSelectPicker.init('.js-select');
             });
         </script>
+ 
+
     </body>
 
 <!-- Mirrored from transvelo.github.io/electro-html/2.0/html/shop/single-product-extended.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 06 Oct 2020 15:09:22 GMT -->

@@ -1832,7 +1832,7 @@
                                 <form method="post" action="{{route('shop_filter')}}" >
                                     @csrf
                                     <!-- Select -->
-                                    <select class="js-select selectpicker dropdown-select max-width-120"
+                                    <select class="form-control"
                                     data-style="btn-sm bg-white font-weight-normal py-2 border text-gray-20 bg-lg-down-transparent border-lg-down-0" name="sortBy" onchange="this.form.submit(); " >
                                         <option selected value="titleAsc" >Default sorting</option>
                                         <option value="priceAsc"  @if(!empty($_GET['sortBy']) && $_GET['sortBy']=='priceAsc') selected @endif >Price - Lower to Higher</option>
