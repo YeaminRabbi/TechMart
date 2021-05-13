@@ -15,18 +15,19 @@ use App\Blog;
 use DB;
 use App\CommentReply;
 use App\User;
+use App\About;
+use App\TermsConditions;
+use App\faq;
 class PagesController extends Controller
 {
-    //
-   
-        // Here we show politics 
+    // Here we show politics 
         public function index(){
-           
+            
 
             return view('pages.index',[
                 'products' =>  Product::latest()->limit(2)->get(),
-                'features' =>  Feature::latest()->limit(2)->get(),
-                'onsales' =>   Onsale::latest()->limit(3)->get(),
+                'features' =>  Product::where('featured_product',1)->get(),
+                'onsales' =>   Product::where('onsale_product',1)->get(),
                 'specialoffers' =>   Specialoffer::all(),
                 'sliders' => Slider::all(),
             ]);
@@ -44,7 +45,7 @@ class PagesController extends Controller
             // return $request->all();
             $products = Product::orderBy('id','ASC')->get();
             $allproducts = Product::query();
-
+            
             // if(!empty($_GET['category']))
             // {
             //     $categorynames = explode(',',$_GET['category']);
@@ -55,51 +56,55 @@ class PagesController extends Controller
             //     $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
             //     return view('pages.shop',compact('products','brands','categories','allproducts'));
             // }
+        
+
 
             if(!empty($_GET['brand']))
             {
                 $brandnames = explode(',',$_GET['brand']);
                 $brand_ids= Brand::select('id')->whereIn('brandname',$brandnames)->pluck('id')->toArray();
-                $allproducts = $allproducts->whereIn('brand_id',$brand_ids)->paginate(10);
+                $allproducts = $allproducts->whereIn('brand_id',$brand_ids)->get();
                 // return $allproducts;
                 $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+                $latestProducts =  Product::latest()->limit(8)->get();
                 $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
-                return view('pages.shop',compact('products','brands','categories','allproducts'));
-              
+                return view('pages.shop',compact('products','brands','categories','allproducts','latestProducts'));
+            
             }
 
-           
+        
             elseif(!empty($_GET['sortBy']))
             {
                 if($_GET['sortBy'] =='priceAsc')
                 {
-                    $allproducts = $allproducts->orderBy('unit_price','ASC')->paginate(12);
+                    $allproducts = $allproducts->orderBy('unit_price','ASC')->get();
                     
-                   
+                
 
                 }
                 elseif($_GET['sortBy'] =='priceDesc')
                 {
-                    $allproducts = $allproducts->orderBy('unit_price','DESC')->paginate(12);
+                    $allproducts = $allproducts->orderBy('unit_price','DESC')->get();
                     
 
                 }
-               
+            
                 elseif($_GET['sortBy'] =='titleAsc')
                 {
-                    $allproducts = $allproducts->orderBy('product_title','ASC')->paginate(12);
+                    $allproducts = $allproducts->orderBy('product_title','ASC')->get();
 
                 }
 
                 elseif($_GET['sortBy'] =='titleDesc')
                 {
-                    $allproducts = $allproducts->orderBy('product_title','DESC')->paginate(12);
+                    $allproducts = $allproducts->orderBy('product_title','DESC')->get();
 
                 }
 
                 $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
                 $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
-                return view('pages.shop',compact('products','brands','categories','allproducts'));
+                $latestProducts =  Product::latest()->limit(8)->get();
+                return view('pages.shop',compact('products','brands','categories','allproducts','latestProducts'));
                 
             }
             
@@ -112,45 +117,47 @@ class PagesController extends Controller
                 $price[1] = ceil($price[1]);
                 $allproducts=$allproducts->whereBetween('unit_price',$price)->paginate(12);
                 $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+                $latestProducts =  Product::latest()->limit(8)->get();
                 $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
-                return view('pages.shop',compact('products','brands','categories','allproducts'));
+                return view('pages.shop',compact('products','brands','categories','allproducts','latestProducts'));
             }
             else
             {
                 $allproducts = Product::orderBy('id','ASC')->get();
                 $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
+                $latestProducts =  Product::latest()->limit(8)->get();
                 $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
-                return view('pages.shop',compact('products','brands','categories','allproducts'));
+                return view('pages.shop',compact('products','brands','categories','allproducts','latestProducts'));
             }
             
 
-           
+        
         }
 
 
         public function shop_filter(Request $request)
         {
 
-           
-         $data = $request->all();
-         //Category Filter
-         $catUrl = '';
-         if(!empty($data['category']))
-         {
-           foreach($data['category'] as $category)
-           {
-               if(empty($catUrl))
-               {
-                   $catUrl .='&category='.$category;
-               }
-               else{
-                   $catUrl .=','.$category;
-               }
-           } 
-           
-          
-         }
-           
+        
+            $data = $request->all();
+            //Category Filter
+            $catUrl = '';
+            if(!empty($data['category']))
+            {
+            foreach($data['category'] as $category)
+            {
+                if(empty($catUrl))
+                {
+                    $catUrl .='&category='.$category;
+                }
+                else{
+                    $catUrl .=','.$category;
+                }
+            } 
+            
+        
+        }
+        
 
             //sort filter
             $sortUrl="";
@@ -181,10 +188,10 @@ class PagesController extends Controller
                     }
                 } 
             }
-           
+        
             return \redirect()->route('shop',$catUrl.$sortUrl.$price_range_url.$brandUrl);
 
-           
+        
         }
 
 
@@ -200,50 +207,22 @@ class PagesController extends Controller
             
             return response()->json($data_arr);
         }
-
-        // public function autosearch(Request $request){
-        //         // dd($request->all());
-        //         $query = $request->get('term','');
-        //         $allproducts = Product::where('product_title','LIKE','%'.$query.'%')->get();
-                
-
-        //         $data = array();
-        //         foreach($allproducts as $product)
-        //         {
-        //             $data[] = array('value'=>$product->product_title,'id'=>$product->id);
-        //         }
-        //         if(count($data))
-        //         {
-        //             return $data;
-        //         }
-        //         else{
-                   
-        //             return ['value'=>" No Result Found ",'id'=>''];
-        //         }
-        // }
-
         public function search(Request $request)
         {
 
             $query = $request->input('query');
             $allproducts = Product::where('product_title','LIKE','%'.$query.'%')->orderBy('id','ASC')->paginate(12);
-            // return $allproducts;
+            $latestProducts =  Product::latest()->limit(8)->get();
             $brands = Brand::orderBy('brandname','ASC')->with('products')->get();
             $categories = Category::orderBy('categoryname','ASC')->with('products')->get();
-            return view('pages.shop',compact('brands','categories','allproducts'));
+            return view('pages.shop',compact('brands','categories','allproducts','latestProducts'));
 
         }
-
-
-
-
-        
-       
-
-
+    
 
         public function about(){
-            return view('pages.about');
+            $abouts = About::all();
+            return view('pages.about',compact('abouts'));
         }
 
         public function cart(){
@@ -260,11 +239,16 @@ class PagesController extends Controller
         }
 
         public function faq(){
-            return view('pages.faq');
+            $faqs = faq::all();
+            return view('pages.faq',compact('faqs'));
         }
 
         public function terms(){
-            return view('pages.terms');
+            
+            return view('pages.terms',[
+
+                'terms' => TermsConditions::all()
+            ]);
         }
 
         

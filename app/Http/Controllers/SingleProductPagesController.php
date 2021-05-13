@@ -58,14 +58,19 @@ class SingleProductPagesController extends Controller
 
 
     
-    // public function findquantity(Request $request){
-	
-	// 	//it will get price if its id match with product id
-	// 	$p=Attribute::select('quantity')->where('size_id',$request->id)->first();
-		
-    // 	return response()->json($p);
+    public function findquantity($color_id,$product_id){
+        
 
-    // }
+        // return $color_id."----".$product_id;
+
+		//it will get price if its id match with product id
+		 $p=Attribute::select('quantity')->where('color_id', $color_id)->where('product_id', $product_id)->first();
+
+      
+         $output = '<input name="product_quantity" class="product_quantity" type="text" value="'.$p->quantity.'">';
+    	return response()->json($output);
+       
+    }
 
 
 }

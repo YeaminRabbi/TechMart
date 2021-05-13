@@ -101,12 +101,6 @@
                             <li class="menu-title" style="font-size: 26px;">Navigation</li>
 
                           
-                           
-
-                            
-
-                           
-
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-file-plus"></i>
@@ -122,21 +116,6 @@
                                     
                                 </ul>
                             </li>
-
-                            {{-- <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-plus-square"></i>
-                                    <span> Extra Pages </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    <li><a href="extras-about.html">About Us</a></li>
-                                    <li><a href="extras-contact.html">Contact</a></li>
-                                    
-                                    <li><a href="extras-maintenance.html">Maintenance</a></li>
-                                   
-                                </ul>
-                            </li> --}}
 
                           
 
@@ -279,23 +258,6 @@
                             </li>
 
 
-                            {{--  <li>
-                                <a href="javascript: void(0);">
-                                    <i class="fe-layout"></i>
-                                    <span style="font-size: 20px;"> Tag </span>
-                                    <span class="menu-arrow"></span>
-                                </a>
-                                <ul class="nav-second-level" aria-expanded="false">
-                                    
-                                   
-                                    <li><a href="{{route('admin.blogtags.create')}}">Create</a></li>
-                                    <li><a href="{{route('admin.blogtags.list')}}">List</a></li>
-                                </ul>
-                            </li>  --}}
-
-
-
-
 
 
                             <li>
@@ -345,37 +307,51 @@
                             </li>
                             
 
-                            
-
-
-
-
-                          {{-- @if (Route::has('login'))
-                            <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                                @auth
-                                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="text-sm text-gray-700 underline">logout</a>
-                                    <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
-                                    @csrf
-                                   </form>
-                                @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
-            
-                                    @if (Route::has('register'))
-                                    <img class="icon-colored" src="assets/images/icons/privacy.svg" title="privacy.svg"/>
-                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
-                                    @endif
-                                @endauth
-                            </div>
-                        @endif --}}
-                
-                   
 
                        
-
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fe-layout"></i>
+                                <span style="font-size: 20px;"> About Us </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                
+                               
+                                <li><a href="{{route('admin.abouts.create')}}">Create</a></li>
+                                <li><a href="{{route('admin.abouts.list')}}">List</a></li>
+                            </ul>
+                        </li>
                   
                 
-                   
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fe-layout"></i>
+                                <span style="font-size: 20px;"> Terms </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                
+                               
+                                <li><a href="{{route('admin.terms.create')}}">Create</a></li>
+                                <li><a href="{{route('admin.terms.list')}}">List</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fe-layout"></i>
+                                <span style="font-size: 20px;"> FAQ </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                
+                               
+                                <li><a href="{{route('admin.faqs.create')}}">Create</a></li>
+                                <li><a href="{{route('admin.faqs.list')}}">List</a></li>
+                            </ul>
+                        </li>
 
                          
                         </ul>

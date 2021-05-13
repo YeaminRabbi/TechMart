@@ -7,7 +7,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Electro &#8211; Electronics Ecommerce Theme</title>
+        <title>Blog | Techmart </title>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css" media="all" />
         <link rel="stylesheet" type="text/css" href="../assets/css/font-awesome.min.css" media="all" />
@@ -35,6 +35,22 @@
 
         <link rel="shortcut icon" href="../assets/images/fav-icon.png">
     </head>
+   
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/6038b7ee1c1c2a130d62a97a/1eveosveu';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
 
     <body class="right-sidebar blog-grid">
         <div id="page" class="hfeed site">
@@ -649,17 +665,33 @@
                             
                           
                             
-                            {{$blogs->links()}} 
-                            {{-- <nav class="navigation pagination">
+                            {{-- {{$blogs->links()}}  --}}
+                          
+                            <nav class="navigation pagination">
+                                <style>
+                                    li.siam.current {
+    background-color: #fed700;
+    border-radius: 1.143em;
+    .pagination ul.page-numbers > li a:hover {
+    background-color: none;
+}
+
+}
+                                </style>
                                 <h2 class="screen-reader-text">Posts navigation</h2>
                                 <div class="nav-links">
+                                      @if ($blogs->lastPage() >1)
                                     <ul class='page-numbers'>
-                                        <li><span class='page-numbers current'>1</span></li>
-                                        <li><a class='page-numbers' href='#'>2</a></li>
-                                        <li><a class="next page-numbers" href="#">Next&nbsp;<span class="meta-nav">&rarr;</span></a></li>
+                                        <li class="{{$blogs->currentPage() == 1 ? 'disabled' : ''}}"><a class="next page-numbers" href="{{$blogs->url(1)}}">Previous&nbsp;<span class="meta-nav">&rarr;</span></a>
+                                        @for($i=1; $i<=$blogs->lastPage();$i++)
+                                        <li class="siam {{$blogs->currentPage() == $i ? 'current' : ''}}">
+                                          <a class='page-numbers' href='{{$blogs->url($i)}}'>{{$i}}</a></li>
+                                        @endfor
+                                        <li class="{{$blogs->currentPage() == $blogs->lastPage() ? 'disabled' : '' }}"><a class="disabled" href="{{$blogs->url($blogs->currentPage() +1 )}}">Next&nbsp;<span class="meta-nav">&rarr;</span></a></li>
                                     </ul>
+                                    @endif
                                 </div>
-                            </nav> --}}
+                            </nav>
                             
                         </main><!-- #main -->
                     </div><!-- #primary -->

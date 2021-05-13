@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<!-- Mirrored from transvelo.github.io/electro-html/2.0/html/home/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 15 Sep 2020 17:43:45 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
 <head>
         <!-- Title -->
         <title>About Page</title>

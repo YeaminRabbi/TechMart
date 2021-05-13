@@ -1250,7 +1250,7 @@
                         <div class="mx-md-auto mx-lg-0 col-md-6 col-lg-4 col-xl-3">
                             <div class="mb-2">
                                 <div class="card p-5 border-width-2 border-color-1 borders-radius-17">
-                                    <div class="text-gray-9 font-size-14 pb-2 border-color-1 border-bottom mb-3">Availability: <span class="text-green font-weight-bold"><input type="text" class="prod_price"> 26 in stock</span></div>
+                                    <div class="text-gray-9 font-size-14 pb-2 border-color-1 border-bottom mb-3">Availability: <span class="text-green font-weight-bold"><input type="text" name="product_quantity" class="product_quantity"> 26 in stock</span></div>
                                     <div class="mb-3">
                                         <div class="font-size-36">BDT. {{ $product->unit_price }}</div>
                                     </div>
@@ -1279,7 +1279,7 @@
                                         <!-- Select -->
 
                                         
-                                        <select class="form-control color_id" id="color_id" name="color">
+                                        <select class="form-control color_id" id="color_id" name="color" data-product="{{ $product->id }}">
                                             <option disabled="true" selected="true">--Select--</option>                                             
                                             @foreach ($color_arr as $key=>$data)
                                                 <option  value="{{ $data[0] }}">{{ $data[1] }}</option>
@@ -2848,21 +2848,21 @@
         <!-- End Go to Top -->
 
         /// javascript for dropdown dependancy using AJAX for product quantity
-        {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        
+        {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $('.color_id').change(function(){
                 let colorid = $(this).val();
                 let productid = $(this).attr('data-product');
                 $.ajax({
                     type:"GET",
-                    url:"{{ url('product/get/size') }}/"+colorid+'/'+productid,
+                    url:"{{ url('findquantity') }}/"+colorid+'/'+productid,
                     success:function(res){
-                        $('.sizeadd').html(res)
+                        $('.product_quantity').html(res)
                     }
                 });
             });
-        </script>     --}}
+        </script>   
         
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
