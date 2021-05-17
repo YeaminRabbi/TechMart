@@ -17,5 +17,6 @@ class Color extends Model{
     // function Cart(){
     //     return $this->hasMany(Cart::class, 'size_id');
     // }
+    
 }
 

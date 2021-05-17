@@ -1274,7 +1274,62 @@
                                         </div>
                                         <!-- End Quantity -->
                                     </div>
+
+                                    --------------------
+
                                     <div class="mb-3">
+                                        <h6 class="font-size-14">Rom Size</h6>
+                                       
+                                        @foreach ($size_arr as $key=>$data)
+                                            
+                                            <ul>
+                                                <li>
+                                                    <input class="size_id" id="size_id" data-product="{{ $product->id }}" type="radio" name="size_id" value="{{  $data[0] }}"> {{ $data[1] }}
+                                                </li>
+
+                                            </ul>
+                                            {{--  <option value="{{ $data[0] }}">{{ $data[1] }}</option>  --}}
+                                        @endforeach
+                                        
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <h6 class="font-size-14">Ram</h6>
+                                       
+                                        <ul style="s">
+                                            <li class="ramadd">
+                                                
+                                            </li>
+
+                                        </ul>
+                                        
+                                    </div>
+
+
+                                    <div class="mb-3">
+                                        <h6 class="font-size-14">Color</h6>
+                                       
+                                        <ul style="s">
+                                            @foreach ($color_arr as $key=>$data)
+
+                                            <li class="coloradd">
+                                                <input class="color_id" id="color_id" data-product="{{ $product->id }}" type="radio" name="color_id" value="{{  $data[0] }}"> {{ $data[1] }}
+                                               
+                                            </li>
+                                              
+                                            @endforeach
+                                            
+
+                                        </ul>
+                                        
+                                    </div>
+                                    
+                                    ---------------------
+
+
+
+                                    {{--  <div class="mb-3">
                                         <h6 class="font-size-14">Color</h6>
                                         <!-- Select -->
 
@@ -1308,14 +1363,14 @@
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Ram Size</h6>
                                         <!-- Select -->
-                                        <select class="form-control" name="ram" id="ram_id">
+                                        <select class="form-control ram_id" name="ram" id="ram_id">
                                             <option disabled="true" selected="true">--Select--</option>
                                             @foreach ($ram_arr as $data)
                                             <option value="{{ $data }}">{{ $data }}</option>
                                             @endforeach
                                         </select>
                                         <!-- End Select -->
-                                    </div>
+                                    </div>  --}}
                                     <div class="mb-2 pb-0dot5">
                                         <a href="#" class="btn btn-block btn-primary-dark"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
                                     </div>
@@ -2847,23 +2902,39 @@
         </a>
         <!-- End Go to Top -->
 
-        /// javascript for dropdown dependancy using AJAX for product quantity
-        {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  --}}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-            $('.color_id').change(function(){
-                let colorid = $(this).val();
-                let productid = $(this).attr('data-product');
-                $.ajax({
-                    type:"GET",
-                    url:"{{ url('findquantity') }}/"+colorid+'/'+productid,
-                    success:function(res){
-                        $('.product_quantity').html(res)
-                    }
-                });
+       /// javascript for dropdown dependancy using AJAX for product quantity
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <script>
+           $('.size_id').change(function(){
+               let size_id = $(this).val();
+               let product_id = $(this).attr('data-product');
+               $.ajax({
+                   type:"GET",
+                   url:"{{ url('product/get/ram') }}/"+size_id+'/'+product_id,
+                   success:function(res){
+                       $('.ramadd').html(res)
+                   }
+               });
+           });
+       </script> 
+       
+       {{--  <script>
+        $('#ram_id').change(function(){
+            let ram_id = $(this).val();
+            let attribute_id = $(this).attr('data-attribute');
+            $.ajax({
+                type:"GET",
+                url:"{{ url('product/get/color') }}/"+attribute_id,
+                success:function(res){
+                    $('.coloradd').html(res)
+                }
             });
-        </script>   
+        });
+     </script>   --}}
+
+      
         
+          
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -3029,7 +3100,9 @@
                 $.HSCore.components.HSSelectPicker.init('.js-select');
             });
         </script>
- 
+        
+         
+       
 
     </body>
 

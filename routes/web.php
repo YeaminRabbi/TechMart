@@ -15,9 +15,10 @@ use App\Http\Controllers\LoginController;
 // This is main Home page Route Url Start
 Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
 
-// This is main Home page Route Url End
-Route::get('/singleProduct_getsize','App\Http\Controllers\SingleProductPagesController@singleProduct_getsize')->name('singleProduct_getsize');
-Route::get('/findquantity/{color_id}/{product_id}','App\Http\Controllers\SingleProductPagesController@findquantity')->name('findquantity');
+//Single product dynamic dropdowns
+Route::get('product/get/ram/{size_id}/{product_id}', 'App\Http\Controllers\SingleProductPagesController@findRam')->name('findRam');
+Route::get('product/get/color/{attribute_id}', 'App\Http\Controllers\SingleProductPagesController@findColor')->name('findColor');
+
 
 // These are About Us routes
 Route::get('/abouts/create', 'App\Http\Controllers\AboutusPagesController@create')->name('admin.abouts.create');

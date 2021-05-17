@@ -55,22 +55,28 @@ class SingleProductPagesController extends Controller
 
     }
 
+     public function findRam($size_id, $product_id)
+        {
+            $output = ' ';
+            $ram = Attribute::where('size_id', $size_id)->where('product_id', $product_id)->get();
+            foreach($ram as $data)
+            {
+                $output = $output." ".'<input name="ram_id" id="ram_id" data-attribute="'.$data->id.'" type="radio" value="'.$data->ram.'">'.    $data->ram.'';
+            }
+            return $output;
+        }
 
+        // public function findColor($attribute_id)
+        // {
+        //     $output2 = ' ';
+        //     $color = Attribute::where('id', $attribute_id)->get();
+        //     foreach($color as $data)
+        //     {
+        //         $output2 = $output2." ".'<input name="color_id" type="radio" value="'.$data->color_id.'">'.    $data->color_id.'';
+        //     }
+        //     return $output2;
 
-    
-    public function findquantity($color_id,$product_id){
-        
-
-        // return $color_id."----".$product_id;
-
-		//it will get price if its id match with product id
-		 $p=Attribute::select('quantity')->where('color_id', $color_id)->where('product_id', $product_id)->first();
-
-      
-         $output = '<input name="product_quantity" class="product_quantity" type="text" value="'.$p->quantity.'">';
-    	return response()->json($output);
-       
-    }
+        // }
 
 
 }

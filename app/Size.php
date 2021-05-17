@@ -14,8 +14,11 @@ class Size extends Model{
         return $this->hasMany(Attribute::class, 'size_id');
     }
 
-    // function Cart(){
-    //     return $this->hasMany(Cart::class, 'size_id');
-    // }
+    
+    function Cart(){
+        return $this->hasMany(Cart::class, 'size_id');
+    }
+
+   
 }
 
