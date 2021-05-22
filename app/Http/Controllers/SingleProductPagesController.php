@@ -48,35 +48,29 @@ class SingleProductPagesController extends Controller
             'gallery'=>$gallery,
             'color_arr'=> $color_arr,
             'size_arr'=>$size_arr,
-            'ram_arr'=>$ram_arr
+            'ram_arr'=>$ram_arr,
+            'attributes'=>$attributes
             
           
             ]);
 
     }
 
-     public function findRam($size_id, $product_id)
+     public function findRam($attribute_id, $product_id)
         {
-            $output = ' ';
-            $ram = Attribute::where('size_id', $size_id)->where('product_id', $product_id)->get();
-            foreach($ram as $data)
+            $output = 'BDT. ';
+
+           
+
+            $product_price = Attribute::where('id', $attribute_id)->get();
+            foreach($product_price as $data)
             {
-                $output = $output." ".'<input name="ram_id" id="ram_id" data-attribute="'.$data->id.'" type="radio" value="'.$data->ram.'">'.    $data->ram.'';
+                $output = $output." ".'<input name="price" id="price" data-attribute="'.$data->id.'" type="text" value="'.$data->variant_price.'" style="border:none;font-size:30px;">';
             }
             return $output;
         }
 
-        // public function findColor($attribute_id)
-        // {
-        //     $output2 = ' ';
-        //     $color = Attribute::where('id', $attribute_id)->get();
-        //     foreach($color as $data)
-        //     {
-        //         $output2 = $output2." ".'<input name="color_id" type="radio" value="'.$data->color_id.'">'.    $data->color_id.'';
-        //     }
-        //     return $output2;
-
-        // }
+  
 
 
 }

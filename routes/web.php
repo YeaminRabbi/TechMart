@@ -16,8 +16,7 @@ use App\Http\Controllers\LoginController;
 Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
 
 //Single product dynamic dropdowns
-Route::get('product/get/ram/{size_id}/{product_id}', 'App\Http\Controllers\SingleProductPagesController@findRam')->name('findRam');
-Route::get('product/get/color/{attribute_id}', 'App\Http\Controllers\SingleProductPagesController@findColor')->name('findColor');
+Route::get('product/get/price/{att_id}/{product_id}', 'App\Http\Controllers\SingleProductPagesController@findRam')->name('findRam');
 
 
 // These are About Us routes

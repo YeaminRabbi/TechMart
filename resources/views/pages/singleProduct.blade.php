@@ -1250,9 +1250,9 @@
                         <div class="mx-md-auto mx-lg-0 col-md-6 col-lg-4 col-xl-3">
                             <div class="mb-2">
                                 <div class="card p-5 border-width-2 border-color-1 borders-radius-17">
-                                    <div class="text-gray-9 font-size-14 pb-2 border-color-1 border-bottom mb-3">Availability: <span class="text-green font-weight-bold"><input type="text" name="product_quantity" class="product_quantity"> 26 in stock</span></div>
-                                    <div class="mb-3">
-                                        <div class="font-size-36">BDT. {{ $product->unit_price }}</div>
+                                   
+                                    <div class="mb-3 addprice" >
+                                        {{-- <div class="font-size-36">BDT. {{ $product->unit_price }}</div> --}}
                                     </div>
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Quantity</h6>
@@ -1275,102 +1275,31 @@
                                         <!-- End Quantity -->
                                     </div>
 
-                                    --------------------
 
                                     <div class="mb-3">
-                                        <h6 class="font-size-14">Rom Size</h6>
-                                       
-                                        @foreach ($size_arr as $key=>$data)
+                                        <h6 class="font-size-14">Attributes </h6>
+                                        <p>ROM | RAM | COLOR</p>
+                                        @foreach ($attributes as $key=>$data)
                                             
-                                            <ul>
-                                                <li>
-                                                    <input class="size_id" id="size_id" data-product="{{ $product->id }}" type="radio" name="size_id" value="{{  $data[0] }}"> {{ $data[1] }}
-                                                </li>
+                                        <div>
+                                           
+                                            
+                                           <input class="att_id" id="att_id" data-product="{{ $product->id }}" type="radio" name="att_id" value="{{  $data->id }}">  {{ $data->size->sizename }} | {{ $data->ram }} | {{ $data->color->colorname }} 
 
-                                            </ul>
-                                            {{--  <option value="{{ $data[0] }}">{{ $data[1] }}</option>  --}}
+
+                                        </div>
+
+                                         
+                                       
+                                        <br>
+                                           
+                                           
                                         @endforeach
                                         
                                     </div>
 
+                           
 
-                                    <div class="mb-3">
-                                        <h6 class="font-size-14">Ram</h6>
-                                       
-                                        <ul style="s">
-                                            <li class="ramadd">
-                                                
-                                            </li>
-
-                                        </ul>
-                                        
-                                    </div>
-
-
-                                    <div class="mb-3">
-                                        <h6 class="font-size-14">Color</h6>
-                                       
-                                        <ul style="s">
-                                            @foreach ($color_arr as $key=>$data)
-
-                                            <li class="coloradd">
-                                                <input class="color_id" id="color_id" data-product="{{ $product->id }}" type="radio" name="color_id" value="{{  $data[0] }}"> {{ $data[1] }}
-                                               
-                                            </li>
-                                              
-                                            @endforeach
-                                            
-
-                                        </ul>
-                                        
-                                    </div>
-                                    
-                                    ---------------------
-
-
-
-                                    {{--  <div class="mb-3">
-                                        <h6 class="font-size-14">Color</h6>
-                                        <!-- Select -->
-
-                                        
-                                        <select class="form-control color_id" id="color_id" name="color" data-product="{{ $product->id }}">
-                                            <option disabled="true" selected="true">--Select--</option>                                             
-                                            @foreach ($color_arr as $key=>$data)
-                                                <option  value="{{ $data[0] }}">{{ $data[1] }}</option>
-                                            @endforeach
-                                        </select>
-
-                                       
-
-                                        </select>
-                                        <!-- End Select -->
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <h6 class="font-size-14">Rom Size</h6>
-                                        <!-- Select -->
-                                        <select class="form-control size_id" name="size" id="size_id">
-                                            <option disabled="true" selected="true">--Select--</option>
-                                            @foreach ($size_arr as $key=>$data)
-                                              <option value="{{ $data[0] }}">{{ $data[1] }}</option>
-                                            @endforeach
-                                           
-                                        </select>
-                                        <!-- End Select -->
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <h6 class="font-size-14">Ram Size</h6>
-                                        <!-- Select -->
-                                        <select class="form-control ram_id" name="ram" id="ram_id">
-                                            <option disabled="true" selected="true">--Select--</option>
-                                            @foreach ($ram_arr as $data)
-                                            <option value="{{ $data }}">{{ $data }}</option>
-                                            @endforeach
-                                        </select>
-                                        <!-- End Select -->
-                                    </div>  --}}
                                     <div class="mb-2 pb-0dot5">
                                         <a href="#" class="btn btn-block btn-primary-dark"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
                                     </div>
@@ -1391,143 +1320,12 @@
             <div class="bg-gray-7 pt-6 pb-3 mb-6">
                 <div class="container">
                     <div class="js-scroll-nav">
-                        {{--  <div class="bg-white pt-4 pb-6 px-xl-11 px-md-5 px-4 mb-6">
-                            <div id="Accessories" class="mx-md-2">
-                                <div class="position-relative mb-6">
-                                    <ul class="nav nav-classic nav-tab nav-tab-lg justify-content-xl-center flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-lg-down-bottom-0 pb-1 pb-xl-0 mb-n1 mb-xl-0">
-                                        <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
-                                            <a class="nav-link active" href="#Accessories">
-                                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                                    Accessories
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
-                                            <a class="nav-link" href="#Description">
-                                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                                    Description
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
-                                            <a class="nav-link" href="#Specification">
-                                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                                    Specification
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
-                                            <a class="nav-link" href="#Reviews">
-                                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                                    Reviews
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="mx-md-2 pt-1">
-                                    <div class="row no-gutters">
-                                        <div class="col mb-6 mb-md-0">
-                                            <ul class="row list-unstyled products-group no-gutters border-bottom border-md-bottom-0">
-                                                <li class="col-4 col-md-4 col-xl-2gdot5 product-item remove-divider-sm-down border-0">
-                                                    <div class="product-item__outer h-100">
-                                                        <div class="remove-prodcut-hover product-item__inner px-xl-4 p-3">
-                                                            <div class="product-item__body pb-xl-2">
-                                                                <div class="mb-2 d-none d-md-block"><a href="product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Speakers</a></div>
-                                                                <h5 class="mb-1 product-item__title d-none d-md-block"><a href="#" class="text-blue font-weight-bold">Wireless Audio System Multiroom 360 degree Full base audio</a></h5>
-                                                                <div class="mb-2">
-                                                                    <a href="single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="../assets/img/212X200/img1.jpg" alt="Image Description"></a>
-                                                                </div>
-                                                                <div class="flex-center-between mb-1 d-none d-md-block">
-                                                                    <div class="prodcut-price">
-                                                                        <div class="text-gray-100">$685,00</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="col-4 col-md-4 col-xl-2gdot5 product-item remove-divider-sm-down">
-                                                    <div class="product-item__outer h-100">
-                                                        <div class="remove-prodcut-hover add-accessories product-item__inner px-xl-4 p-3">
-                                                            <div class="product-item__body pb-xl-2">
-                                                                <div class="mb-2 d-none d-md-block"><a href="product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Speakers</a></div>
-                                                                <h5 class="mb-1 product-item__title d-none d-md-block"><a href="#" class="text-blue font-weight-bold">Tablet White EliteBook Revolve 810 G2</a></h5>
-                                                                <div class="mb-2">
-                                                                    <a href="single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="../assets/img/212X200/img2.jpg" alt="Image Description"></a>
-                                                                </div>
-                                                                <div class="flex-center-between mb-1 d-none d-md-block">
-                                                                    <div class="prodcut-price d-flex align-items-center position-relative">
-                                                                        <ins class="font-size-20 text-red text-decoration-none">$1999,00</ins>
-                                                                        <del class="font-size-12 tex-gray-6 position-absolute bottom-100">$2 299,00</del>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="col-4 col-md-4 col-xl-2gdot5 product-item remove-divider-sm-down remove-divider">
-                                                    <div class="product-item__outer h-100">
-                                                        <div class="remove-prodcut-hover add-accessories product-item__inner px-xl-4 p-3">
-                                                            <div class="product-item__body pb-xl-2">
-                                                                <div class="mb-2 d-none d-md-block"><a href="product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Speakers</a></div>
-                                                                <h5 class="mb-1 product-item__title d-none d-md-block"><a href="#" class="text-blue font-weight-bold">Purple Solo 2 Wireless</a></h5>
-                                                                <div class="mb-2">
-                                                                    <a href="single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="../assets/img/212X200/img3.jpg" alt="Image Description"></a>
-                                                                </div>
-                                                                <div class="flex-center-between mb-1 d-none d-md-block">
-                                                                    <div class="prodcut-price">
-                                                                        <div class="text-gray-100">$685,00</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                            <div class="form-check pl-4 pl-md-0 ml-md-4 mb-2 pb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                                                <input class="form-check-input" type="checkbox" value="" id="inlineCheckbox1" checked disabled>
-                                                <label class="form-check-label mb-1" for="inlineCheckbox1">
-                                                    <strong>This product: </strong> Ultra Wireless S50 Headphones S50 with Bluetooth - <span class="text-red font-size-16">$35.00</span>
-                                                </label>
-                                            </div>
-                                            <div class="form-check pl-4 pl-md-0 ml-md-4 mb-2 pb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option1" checked>
-                                                <label class="form-check-label mb-1 text-blue" for="inlineCheckbox2">
-                                                    <span class="text-decoration-on cursor-pointer-on">Universal Headphones Case in Black</span> - <span class="text-red font-size-16">$159.00</span>
-                                                </label>
-                                            </div>
-                                            <div class="form-check pl-4 pl-md-0 ml-md-4 mb-2 pb-2 pb-md-0 mb-md-0 border-bottom border-md-bottom-0">
-                                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option2" checked>
-                                                <label class="form-check-label mb-1 text-blue" for="inlineCheckbox3">
-                                                    <span class="text-decoration-on cursor-pointer-on">Headphones USB Wires</span> - <span class="text-red font-size-16">$50.00</span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-auto">
-                                            <div class="mr-xl-15">
-                                                <div class="mb-3">
-                                                    <div class="text-red font-size-26 text-lh-1dot2">$244.00</div>
-                                                    <div class="text-gray-6">for 3 item(s)</div>
-                                                </div>
-                                                <a href="#" class="btn btn-sm btn-block btn-primary-dark btn-wide transition-3d-hover">Add all to cart</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  --}}
+                        
                         <div class="bg-white pt-4 pb-6 px-xl-11 px-md-5 px-4 mb-6 overflow-hidden">
                             <div id="Description" class="mx-md-2">
                                 <div class="position-relative mb-6">
                                     <ul class="nav nav-classic nav-tab nav-tab-lg justify-content-xl-center mb-6 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble border-lg-down-bottom-0 pb-1 pb-xl-0 mb-n1 mb-xl-0">
-                                        {{--  <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
-                                            <a class="nav-link" href="#Accessories">
-                                                <div class="d-md-flex justify-content-md-center align-items-md-center">
-                                                    Accessories
-                                                </div>
-                                            </a>
-                                        </li>  --}}
+                                       
                                         <li class="nav-item flex-shrink-0 flex-xl-shrink-1 z-index-2">
                                             <a class="nav-link active" href="#Description">
                                                 <div class="d-md-flex justify-content-md-center align-items-md-center">
@@ -2905,33 +2703,20 @@
        /// javascript for dropdown dependancy using AJAX for product quantity
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
        <script>
-           $('.size_id').change(function(){
-               let size_id = $(this).val();
+           $('.att_id').change(function(){
+               let att_id = $(this).val();
                let product_id = $(this).attr('data-product');
                $.ajax({
                    type:"GET",
-                   url:"{{ url('product/get/ram') }}/"+size_id+'/'+product_id,
+                   url:"{{ url('product/get/price') }}/"+att_id+'/'+product_id,
                    success:function(res){
-                       $('.ramadd').html(res)
+                       $('.addprice').html(res)
                    }
                });
            });
        </script> 
        
-       {{--  <script>
-        $('#ram_id').change(function(){
-            let ram_id = $(this).val();
-            let attribute_id = $(this).attr('data-attribute');
-            $.ajax({
-                type:"GET",
-                url:"{{ url('product/get/color') }}/"+attribute_id,
-                success:function(res){
-                    $('.coloradd').html(res)
-                }
-            });
-        });
-     </script>   --}}
-
+     
       
         
           
