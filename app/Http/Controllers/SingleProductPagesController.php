@@ -107,7 +107,8 @@ class SingleProductPagesController extends Controller
             $cart->price = $price;
             $cart->save();
 
-            return  Auth::id(); 
+          
+            return back(); 
         }
 
 }

@@ -20,6 +20,10 @@ Route::get('product/get/price/{att_id}/{product_id}', 'App\Http\Controllers\Sing
 Route::post('add-to-cart', 'App\Http\Controllers\SingleProductPagesController@addToCart')->name('add-to-cart')->middleware(['auth']);
 
 
+//Cart routes
+Route::get('/cart', 'App\Http\Controllers\CartPagesController@ShowCart')->name('cart')->middleware(['auth']);
+
+
 // These are About Us routes
 Route::get('/abouts/create', 'App\Http\Controllers\AboutusPagesController@create')->name('admin.abouts.create');
 Route::put('/abouts/create', 'App\Http\Controllers\AboutusPagesController@store')->name('admin.abouts.store');
@@ -199,10 +203,6 @@ Route::get('/about', 'App\Http\Controllers\PagesController@about')->name('about'
 Route::get('/user', 'App\Http\Controllers\PagesController@user')->name('user');
 // This is about Route Url End
 
-
-// This is about Route Url Start
-Route::get('/cart', 'App\Http\Controllers\PagesController@cart')->name('cart');
-// This is about Route Url End
 
 
 // This is Shop Route Url Start

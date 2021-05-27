@@ -36,10 +36,10 @@ class Product extends Model{
          return $this->hasMany(Attribute::class, 'product_id');
       }
 
-    //   function cart()
-    //   {
-    //      return $this->hasMany(Cart::class, 'product_id');
-    //   }
+      function cart()
+      {
+         return $this->hasMany(Cart::class, 'product_id');
+      }
     
 
 
