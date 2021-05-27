@@ -13,6 +13,8 @@ use App\SubCategory;
 use App\Gallary;
 use App\Attribute;
 use DB;
+use App\Cart;
+use Auth;
 class SingleProductPagesController extends Controller
 {
     
@@ -71,6 +73,41 @@ class SingleProductPagesController extends Controller
         }
 
   
+        function addToCart(Request $request)
+        {
+            
+            $this->validate($request,[
 
+                'price' => 'required|string',
+                'att_id' => 'required|string',
+                'quantity'=>'required|string',              
+    
+            ]);
+
+            
+            $att_id = $request->att_id;
+
+            $attribute = Attribute::where('id',$att_id)->first();
+            $color = Color::where('id', $attribute->color_id)->first();
+            $rom = Size::where('id', $attribute->size_id)->first();
+
+            $ram =  $attribute->ram;
+            $size = $rom->sizename;
+            $product_id = $attribute->product_id;
+            $calorname = $color->colorname;
+            $price = $attribute->variant_price;
+
+            $cart= new Cart; 
+            $cart->user_id = Auth::id();
+            $cart->product_id = $product_id;
+            $cart->color = $calorname;
+            $cart->size = $size;
+            $cart->ram = $ram;
+            $cart->quantity = $request->quantity;
+            $cart->price = $price;
+            $cart->save();
+
+            return  Auth::id(); 
+        }
 
 }

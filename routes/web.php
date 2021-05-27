@@ -17,6 +17,7 @@ Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
 
 //Single product dynamic dropdowns
 Route::get('product/get/price/{att_id}/{product_id}', 'App\Http\Controllers\SingleProductPagesController@findRam')->name('findRam');
+Route::post('add-to-cart', 'App\Http\Controllers\SingleProductPagesController@addToCart')->name('add-to-cart')->middleware(['auth']);
 
 
 // These are About Us routes
@@ -46,7 +47,7 @@ Route::delete('/faqs/destroy/{id}', 'App\Http\Controllers\FAQPagesController@des
 
 
 //Single Product Routes
-Route::get('/SingleProduct/{id}', 'App\Http\Controllers\SingleProductPagesController@SingleProduct')->name('SingleProduct');
+Route::get('/SingleProduct/{id}', 'App\Http\Controllers\SingleProductPagesController@SingleProduct')->name('SingleProduct')->middleware(['auth']);
 
 //product search using autocomplete
 Route::post('/product/search', 'App\Http\Controllers\PagesController@productSearch')->name('product.search');
@@ -349,6 +350,8 @@ Route::get('home',function(){
     // dd(\Illuminate\Support\Facades\Auth::user());
 
     return redirect('/');
+
+
 })->middleware(['auth','verified']);
 
 

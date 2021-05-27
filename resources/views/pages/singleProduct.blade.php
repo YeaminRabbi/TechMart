@@ -1250,17 +1250,20 @@
                         <div class="mx-md-auto mx-lg-0 col-md-6 col-lg-4 col-xl-3">
                             <div class="mb-2">
                                 <div class="card p-5 border-width-2 border-color-1 borders-radius-17">
-                                   
+                                <form action="{{ route('add-to-cart') }}" method="POST">
+                                       @csrf
+
                                     <div class="mb-3 addprice" >
-                                        {{-- <div class="font-size-36">BDT. {{ $product->unit_price }}</div> --}}
+                                        {{-- Adding price here using AJAX --}}
                                     </div>
+                                    
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Quantity</h6>
                                         <!-- Quantity -->
                                         <div class="border rounded-pill py-1 w-md-60 height-35 px-3 border-color-1">
                                             <div class="js-quantity row align-items-center">
                                                 <div class="col">
-                                                    <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" value="1">
+                                                    <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="number" min="1" max="5" value="1" name="quantity">
                                                 </div>
                                                 <div class="col-auto pr-1">
                                                     <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
@@ -1301,11 +1304,11 @@
                            
 
                                     <div class="mb-2 pb-0dot5">
-                                        <a href="#" class="btn btn-block btn-primary-dark"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</a>
+                                        <button class="btn btn-block btn-primary-dark" type="submit" style="cursor: pointer;"><i class="ec ec-add-to-cart mr-2 font-size-20"></i> Add to Cart</button>
                                     </div>
-                                    <div class="mb-3">
-                                        <a href="#" class="btn btn-block btn-dark">Buy Now</a>
-                                    </div>
+                                   
+
+                                </form>
                                     <div class="flex-content-center flex-wrap">
                                         <a href="#" class="text-gray-6 font-size-13 mr-2"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                                         <a href="#" class="text-gray-6 font-size-13 ml-2"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
