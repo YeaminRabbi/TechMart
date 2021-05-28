@@ -63,12 +63,6 @@
                                                     </div>
 
 
-                                                    {{-- <textarea name="editor1"></textarea>
-                                                    <script>
-                                                            CKEDITOR.replace( 'editor1' );
-                                                    </script> --}}
-
-
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label">Select Category</label>
                                                         <div class="col-md-10">
@@ -84,9 +78,6 @@
                                                         </div>
                                                     </div>
                                                   
-
-
-                                                   
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label">Select brand Name</label>
                                                         <div class="col-md-10">
@@ -102,11 +93,6 @@
                                                         </div>
                                                     </div>
 
-                                                  
-
-
-
-
                                                     <div class="form-group row">
                                                         <label class="col-md-2 col-form-label">Select Sub Category</label>
                                                         <div class="col-md-10">
@@ -121,14 +107,10 @@
                                                            
                                                         </div>
                                                     </div>
-                                                  
-
-
-
 
                                                     <div id="items">
                                                         <div class="row mg-t-20 attri">
-                                                            <label for="color_id" class="col-sm-2 form-control-label">{{ __('Color')}}:</label>
+                                                            <label for="color_id" class="col-sm-1 form-control-label">{{ __('Color')}}:</label>
                                                             <div class="col-sm-1 mg-t-10 mg-sm-t-0">
                                                                 <select name="color_id[]" id="color_id" class="form-control selectpicker">
                                                                   @foreach ($colors as $color)
@@ -136,7 +118,7 @@
                                                                   @endforeach
                                                                 </select>
                                                             </div>
-                                                            <label for="size_id" class="col-sm-2 form-control-label">{{ __('Size')}}:</label>
+                                                            <label for="size_id" class="col-sm-1 form-control-label">{{ __('Size')}}:</label>
                                                             <div class="col-sm-1 mg-t-10 mg-sm-t-0">
                                                                 <select name="size_id[]" id="size_id" class="form-control selectpicker">
                                                                   @foreach ($sizes as $size)
@@ -144,8 +126,9 @@
                                                                   @endforeach
                                                                 </select>
                                                             </div>
+
                                                             
-                                                            <label for="ram" class="col-sm-2 form-control-label">{{ __('Ram')}}:</label>
+                                                            <label for="ram" class="col-sm-1 form-control-label">{{ __('Ram')}}:</label>
                                                             <div class="col-sm-1 mg-t-10 mg-sm-t-0">
                                                                 <select name="ram[]" id="ram" class="form-control selectpicker">
                                                                     <option value="4GB">4GB</option>
@@ -164,6 +147,11 @@
                                                             <label for="quantity" class="col-sm-2 form-control-label">{{ __('Quantity')}}:</label>
                                                             <div class="col-sm-1 mg-t-10 mg-sm-t-0">
                                                               <input type="text" name="quantity[]" class="form-control" placeholder="30">
+                                                            </div>
+
+                                                            <label for="quantity" class="col-sm-2 form-control-label">Variant Price:</label>
+                                                            <div class="col-sm-1 mg-t-10 mg-sm-t-0" style="">
+                                                                <input type="text" name="variant_price[]" class="form-control" placeholder="">
                                                             </div>
                                                             {{-- ADD Button --}}
                                                             
@@ -273,7 +261,7 @@
              $(".delete").fadeIn("1500");
              $("#items").append(
                  '<div class="row mg-t-20 attri">'+
-                     '<label for="color_id" class="col-sm-2 form-control-label">{{ __('Color')}}:</label>'+
+                     '<label for="color_id" class="col-sm-1 form-control-label">{{ __('Color')}}:</label>'+
                      '<div class="col-sm-1 mg-t-10 mg-sm-t-0">'+
                          '<select name="color_id[]" id="color_id" class="form-control ">'+
                              '@foreach ($colors as $color)'+
@@ -281,7 +269,7 @@
                              '@endforeach'+
                          '</select>'+
                      '</div>'+
-                     '<label for="size_id" class="col-sm-2 form-control-label">{{ __('Size')}}:</label>'+
+                     '<label for="size_id" class="col-sm-1 form-control-label">{{ __('Size')}}:</label>'+
                      '<div class="col-sm-1 mg-t-10 mg-sm-t-0">'+
                          '<select name="size_id[]" id="size_id" class="form-control">'+
                              '@foreach ($sizes as $size)'+
@@ -289,7 +277,7 @@
                              '@endforeach'+
                          '</select>'+
                      '</div>'+
-                     '<label for="ram" class="col-sm-2 form-control-label">{{ __('Ram')}}:</label>'+
+                     '<label for="ram" class="col-sm-1 form-control-label">{{ __('Ram')}}:</label>'+
                      '<div class="col-sm-1 mg-t-10 mg-sm-t-0">'+
                          '<select name="ram[]" id="ram" class="form-control">'+
                             '<option value="4GB">4GB</option>'+
@@ -302,9 +290,13 @@
                          '</select>'+
                      '</div>'+
 
-                     '<label for="quantity" class="col-sm-2 form-control-label">{{ __('Quantity')}}:</label>'+
+                     '<label for="quantity" class="col-sm-1 form-control-label">{{ __('Quantity')}}:</label>'+
                          '<div class="col-sm-1 mg-t-10 mg-sm-t-0">'+
                              '<input type="text" name="quantity[]" class="form-control" placeholder="30">'+
+                         '</div>'+
+                    '<label class="col-sm-1 form-control-label">Variant Price:</label>'+
+                         '<div class="col-sm-1 mg-t-10 mg-sm-t-0">'+
+                             '<input type="text" name="variant_price[]" class="form-control" placeholder="">'+
                          '</div>'+
                  '</div>'
              );

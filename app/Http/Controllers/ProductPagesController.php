@@ -109,6 +109,7 @@ class ProductPagesController extends Controller
                 $attribute->color_id = $value;
 
                 $attribute->ram = $req->ram[$key];
+                $attribute->variant_price = $req->variant_price[$key];
 
                 if(!empty($req->quantity[$key])){
                     $attribute->quantity = $req->quantity[$key];
@@ -289,6 +290,8 @@ class ProductPagesController extends Controller
         $attribute->color_id = $req->color_id;
         $attribute->quantity = $req->quantity;
         $attribute->ram = $req->ram;
+        $attribute->variant_price = $req->variant_price;
+
         $attribute->save();
 
         return back();
@@ -303,6 +306,8 @@ class ProductPagesController extends Controller
             $attribute->size_id = $req->size_id[$key];
             $attribute->color_id = $value;
             $attribute->ram = $req->ram[$key];
+            $attribute->variant_price = $req->variant_price[$key];
+
             if(!empty($req->quantity[$key])){
                 $attribute->quantity = $req->quantity[$key];
             }

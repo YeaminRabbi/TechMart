@@ -75,6 +75,8 @@
                         @foreach (App\Attribute::where('product_id', $product->id)->get() as $test)
                             <span class="btn btn-pink btn-rounded width-md waves-effect waves-pink" style="margin: 5px;" >Color: {{ $test->color->colorname }}</span> |
                             <span class="btn btn-warning btn-rounded width-md waves-effect waves-warning" style="margin: 5px;" >Size: {{ $test->size->sizename }}</span> | 
+                            <span class="btn btn-primary btn-rounded width-md waves-effect waves-primary" style="margin: 5px;" >Ram: {{ $test->ram }}</span> | 
+
                             <span class="btn btn-success btn-rounded width-md waves-effect waves-success"style="margin: 5px;" >Quantity: {{ $test->quantity }}</span>
                             <br>
                         @endforeach
