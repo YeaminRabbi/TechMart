@@ -22,6 +22,9 @@ Route::post('add-to-cart', 'App\Http\Controllers\SingleProductPagesController@ad
 
 //Cart routes
 Route::get('/cart', 'App\Http\Controllers\CartPagesController@ShowCart')->name('cart')->middleware(['auth']);
+Route::get('/SingleItemCartDelete/{id}', 'App\Http\Controllers\CartPagesController@SingleItemCartDelete')->name('SingleItemCartDelete');
+Route::post('/quantity/update', 'App\Http\Controllers\CartPagesController@QuantityUpdate')->name('QuantityUpdate');
+Route::post('/cartUpdate', 'App\Http\Controllers\CartPagesController@CartUpdate')->name('cartUpdate');
 
 
 // These are About Us routes

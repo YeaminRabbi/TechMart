@@ -9,7 +9,8 @@
         <!-- Required Meta Tags Always Come First -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+       
+        
         <!-- Favicon -->
         <link rel="shortcut icon" href="../../favicon.png">
 
@@ -1120,25 +1121,22 @@
                             <!-- Search bar -->
                             <div class="col align-self-center">
                                 <!-- Search-Form -->
-                                <form class="js-focus-state">
-                                    <label class="sr-only" for="searchProduct">Search</label>
+                                <form action="{{route('search')}}" method="GET">
+                                    @csrf
+                                    <label class="sr-only" for="searchproduct">Search</label>
+                                   
                                     <div class="input-group">
-                                        <input type="email" class="form-control py-2 pl-5 font-size-15 border-0 height-40 rounded-left-pill" name="email" id="searchProduct" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
+                                        <input id="search_text" type="text" name="query" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary typeahead"  placeholder="Search for Products" aria-label="Search for Products" autocomplete="off" required>
+                                      
                                         <div class="input-group-append">
-                                            <!-- Select -->
-                                            <select class="js-select selectpicker dropdown-select custom-search-categories-select"
-                                                data-style="btn height-40 text-gray-60 font-weight-normal border-0 rounded-0 bg-white px-5 py-2">
-                                                <option value="one" selected>All Categories</option>
-                                                <option value="two">Two</option>
-                                                <option value="three">Three</option>
-                                                <option value="four">Four</option>
-                                            </select>
-                                            <!-- End Select -->
-                                            <button class="btn btn-dark height-40 py-2 px-3 rounded-right-pill" type="button" id="searchProduct1">
-                                                <span class="ec ec-search font-size-24"></span>
+
+                                            <button  class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="submit" id="searchProduct1">
+                                                <span class="ec ec-search font-size-24" ></span>
                                             </button>
                                         </div>
                                     </div>
+                                 
+                                    
                                 </form>
                                 <!-- End Search-Form -->
                             </div>
@@ -1192,7 +1190,9 @@
                     <h1 class="text-center">Cart</h1>
                 </div>
                 <div class="mb-10 cart-table">
-                    <form class="mb-4" action="#" method="post">
+                 
+                    <form action="{{ route('cartUpdate') }}" method="POST">
+                        @csrf
                         <table class="table" cellspacing="0">
                             <thead>
                                 <tr>
@@ -1209,10 +1209,10 @@
                             </thead>
                             <tbody>
                                 
-                                @foreach ($cart as $key=> $data)
+                             @foreach($carts as $key=> $data)
                                     <tr class="">
                                         <td class="text-center">
-                                            <a href="#" class="text-gray-32 font-size-26">×</a>
+                                            <a href="{{ route('SingleItemCartDelete', $data->id) }}" class="text-gray-32 font-size-26">×</a>
                                         </td>
                                         <td class="d-none d-md-table-cell">
                                             <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{ $data->product->image }}" alt="Image Description"></a>
@@ -1230,23 +1230,23 @@
                                         <td data-title="Color">
                                             <span class="">{{ $data->color }}</span>
                                         </td>
-                                        <td data-title="Price">
-                                            <span class="">BDT. {{ $data->price }}</span>
-                                        </td>
+                                        <td class="Price unit_price{{ $data->id }}" data-unit{{ $data->id }}="{{ $data->price }}">{{ $data->price }}</td>
+                                        <input  type="hidden" name="cart_id[]" value="{{ $data->id }}">
     
                                         <td data-title="Quantity">
                                             <span class="sr-only">Quantity</span>
                                             <!-- Quantity -->
                                             <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
-                                                <div class="js-quantity row align-items-center">
+                                                <div class="js-quantity row align-items-center quantity cart-plus-minus">
+                                                   
                                                     <div class="col">
-                                                        <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none" type="text" min="1" max="5" value="{{ $data->quantity }}">
+                                                        <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none qty_quantity{{ $data->id }}" name="quantity[]" type="text" value="{{ $data->quantity }}">
                                                     </div>
                                                     <div class="col-auto pr-1">
-                                                        <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                        <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0 qtyminus{{ $data->id }}" href="javascript:;">
                                                             <small class="fas fa-minus btn-icon__inner"></small>
                                                         </a>
-                                                        <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0" href="javascript:;">
+                                                        <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0 qtyplus{{ $data->id }}" href="javascript:;">
                                                             <small class="fas fa-plus btn-icon__inner"></small>
                                                         </a>
                                                     </div>
@@ -1255,10 +1255,7 @@
                                             <!-- End Quantity -->
                                         </td>
     
-                                        <td data-title="Total">
-                                            <span class="">BDT. {{ $data->quantity * $data->price }}</span>
-                                        </td>
-                                    </tr>
+                                        <td class="total count_total total_unit{{ $data->id }}">{{ $data->quantity * $data->price }}</tr>
 
                                     <?php
 
@@ -1270,6 +1267,14 @@
                                     <td colspan="6" class="border-top space-top-2 justify-content-center">
                                         <div class="pt-md-3">
                                             <div class="d-block d-md-flex flex-center-between">
+                                                <div class="d-md-flex">
+                                                    <button type="submit" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update cart</button>
+
+                                                
+                                                    <a href="checkout.html" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed to checkout</a>
+                                                </div>
+
+                                    </form>
                                                 <div class="mb-3 mb-md-0 w-xl-40">
                                                     <!-- Apply coupon Form -->
                                                     <form class="js-focus-state">
@@ -1283,10 +1288,7 @@
                                                     </form>
                                                     <!-- End Apply coupon Form -->
                                                 </div>
-                                                <div class="d-md-flex">
-                                                    <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update cart</button>
-                                                    <a href="checkout.html" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed to checkout</a>
-                                                </div>
+                                                
                                             </div>
                                         </div>
                                     </td>
@@ -1316,7 +1318,7 @@
                                     </tr>
                                     <tr class="order-total">
                                         <th>Total</th>
-                                        <td data-title="Total"><strong><span class="amount">BDT. {{ $grand_total+100 }}</span></strong></td>
+                                        <td data-title="Total"><strong><span class="amount up_total">BDT. {{ $grand_total+100 }}</span></strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -2510,6 +2512,99 @@
         </a>
         <!-- End Go to Top -->
 
+
+      
+
+
+
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function(){
+                @foreach($carts as $cart)
+                    $('.qtyminus{{ $cart->id }}').click(function(){
+                        let qty_quantity = $('.qty_quantity{{ $cart->id }}').val()
+                        let unit_price = $('.unit_price{{ $cart->id }}').attr('data-unit{{ $cart->id }}')
+                        $('.total_unit{{ $cart->id }}').html(qty_quantity * unit_price)
+                        let minus_sub_total = (qty_quantity * unit_price)
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "{{ url('/quantity/update') }}",
+                            method: "post",
+                            data: {
+                                id: "{{ $cart->id }}",
+                                qty_quantity: qty_quantity,
+                            },
+                            success: function(result){
+                                console.log(result)
+                            }
+                        })
+                        let c_total = document.querySelectorAll('.count_total')
+                        let arr = Array.from(c_total)
+                        let sum = 0
+                        arr.map(item=>{
+                            sum += parseInt(item.innerHTML)
+                            $('.up_total').html(sum)
+                            console.log(sum)
+                        })
+                        
+                    })
+            
+                    $('.qtyplus{{ $cart->id }}').click(function(){
+                        let qty_quantity = $('.qty_quantity{{ $cart->id }}').val()
+                        let unit_price = $('.unit_price{{ $cart->id }}').attr('data-unit{{ $cart->id }}')
+                        $('.total_unit{{ $cart->id }}').html(qty_quantity * unit_price)
+                        let plus_sub_total = (qty_quantity * unit_price)
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            url: "{{ url('/quantity/update') }}",
+                            method: "post",
+                            data: {
+                                id: "{{ $cart->id }}",
+                                qty_quantity: qty_quantity,
+                            },
+                            success: function(result){
+                                console.log(result)
+                            }
+                        })
+                        let c_total = document.querySelectorAll('.count_total')
+                        let arr = Array.from(c_total)
+                        let sum = 0
+                        arr.map(item=>{
+                            sum += parseInt(item.innerHTML)
+                            $('.up_total').html(sum)
+                            console.log(sum)
+                        })
+                    })
+                @endforeach
+            })
+        </script>
+    
+
+        <script type="text/javascript">
+            var path="{{ route('autocomplete') }}";
+
+            $('input.typeahead').typeahead({
+                source:function(terms,process){
+                    return $.get(path,{terms:terms},function(data){
+                        return process(data);
+                    });
+                }
+            });
+        </script>
+        
         <!-- JS Global Compulsory -->
         <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
         <script src="../../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>

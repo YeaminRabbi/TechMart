@@ -17,8 +17,55 @@ class CartPagesController extends Controller
         $user_id = Auth::id();
 
         return view('pages.cart',[
-            'cart' => Cart::where('user_id', $user_id)->get(),
+            'carts' => Cart::where('user_id', $user_id)->get(),
             'grand_total' => 0
         ]);
     }
+
+
+
+    function SingleItemCartDelete($id)
+    {
+        $cartItem = Cart::find($id);
+        $cartItem->delete();
+        return back();
+    }
+
+
+
+    public function CartUpdate(Request $req)
+    {
+
+        $allCartItemsID =$req->cart_id;
+
+        
+      
+        foreach($allCartItemsID as $key=> $data)
+        {
+            $cart=Cart::findOrFail($data);
+
+            $cart->quantity = $req->quantity[$key];
+            $cart->save();
+        }
+
+        return back();
+    }
+
+
+
+
+    function QuantityUpdate(Request $request){
+        $id = $request->id;
+        $qty = $request->qty_quantity;
+        
+        $cart = Cart::where('id',$id);
+        $cart->quantity = $qty;
+
+
+        $total = $qty*$cart->price;
+
+        $cart->save();
+        return response()->json($total);
+    }
+
 }
