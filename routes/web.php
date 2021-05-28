@@ -19,12 +19,18 @@ Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
 Route::get('product/get/price/{att_id}/{product_id}', 'App\Http\Controllers\SingleProductPagesController@findRam')->name('findRam');
 Route::post('add-to-cart', 'App\Http\Controllers\SingleProductPagesController@addToCart')->name('add-to-cart')->middleware(['auth']);
 
+//OrderProcess routes
+Route::post('/OrderPlacement', 'App\Http\Controllers\OrderProcessPagesController@OrderPlacement')->name('OrderPlacement');
+
 
 //Cart routes
 Route::get('/cart', 'App\Http\Controllers\CartPagesController@ShowCart')->name('cart')->middleware(['auth']);
 Route::get('/SingleItemCartDelete/{id}', 'App\Http\Controllers\CartPagesController@SingleItemCartDelete')->name('SingleItemCartDelete');
 Route::post('/quantity/update', 'App\Http\Controllers\CartPagesController@QuantityUpdate')->name('QuantityUpdate');
 Route::post('/cartUpdate', 'App\Http\Controllers\CartPagesController@CartUpdate')->name('cartUpdate');
+
+//Checkout Routes
+Route::get('/checkout', 'App\Http\Controllers\OrderProcessPagesController@checkout')->name('Checkout')->middleware(['auth']);
 
 
 // These are About Us routes
