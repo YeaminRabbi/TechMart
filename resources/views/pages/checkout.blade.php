@@ -1118,28 +1118,27 @@
                             <!-- End Vertical Menu -->
                             <!-- Search bar -->
                             <div class="col align-self-center">
-                                <!-- Search-Form -->
-                                <form class="js-focus-state">
-                                    <label class="sr-only" for="searchProduct">Search</label>
-                                    <div class="input-group">
-                                        <input type="email" class="form-control py-2 pl-5 font-size-15 border-0 height-40 rounded-left-pill" name="email" id="searchProduct" placeholder="Search for Products" aria-label="Search for Products" aria-describedby="searchProduct1" required>
-                                        <div class="input-group-append">
-                                            <!-- Select -->
-                                            <select class="js-select selectpicker dropdown-select custom-search-categories-select"
-                                                data-style="btn height-40 text-gray-60 font-weight-normal border-0 rounded-0 bg-white px-5 py-2">
-                                                <option value="one" selected>All Categories</option>
-                                                <option value="two">Two</option>
-                                                <option value="three">Three</option>
-                                                <option value="four">Four</option>
-                                            </select>
-                                            <!-- End Select -->
-                                            <button class="btn btn-dark height-40 py-2 px-3 rounded-right-pill" type="button" id="searchProduct1">
-                                                <span class="ec ec-search font-size-24"></span>
-                                            </button>
+                                <!-- Search bar -->
+                                <div class="col align-self-center">
+                                    <!-- Search-Form -->
+                                    <form action="{{route('search')}}" method="GET">
+                                        @csrf
+                                        <label class="sr-only" for="searchproduct">Search</label>
+                                       
+                                        <div class="input-group">
+                                            <input id="search_text" type="text" name="query" class="form-control py-2 pl-5 font-size-15 border-right-0 height-40 border-width-2 rounded-left-pill border-primary typeahead"  placeholder="Search for Products" aria-label="Search for Products" autocomplete="off" required>
+                                          
+                                            <div class="input-group-append">
+    
+                                                <button  class="btn btn-primary height-40 py-2 px-3 rounded-right-pill" type="submit" id="searchProduct1">
+                                                    <span class="ec ec-search font-size-24" ></span>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
-                                <!-- End Search-Form -->
+                                     
+                                        
+                                    </form>
+                                    <!-- End Search-Form -->
                             </div>
                             <!-- End Search bar -->
                             <!-- Header Icons -->
@@ -1293,6 +1292,8 @@
                                         </div>
                                        
                                         <button type="submit" class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3">Place order</button>
+
+                                        <a class="btn btn-primary-dark-w btn-block btn-pill font-size-20 mb-3 py-3" href="{{ route('shop') }}">Continue Shopping</a>
                                     </div>
 
                                 
@@ -2612,6 +2613,25 @@
         </a>
         <!-- End Go to Top -->
 
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
+        
+       
+
+        <script type="text/javascript">
+            var path="{{ route('autocomplete') }}";
+
+            $('input.typeahead').typeahead({
+                source:function(terms,process){
+                    return $.get(path,{terms:terms},function(data){
+                        return process(data);
+                    });
+                }
+            });
+        </script>
         <!-- JS Global Compulsory -->
         <script src="../../assets/vendor/jquery/dist/jquery.min.js"></script>
         <script src="../../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>

@@ -8,6 +8,8 @@ use App\Product;
 use App\Attribute;
 use App\Cart;
 use App\Shipping;
+use App\Order;
+
 use Auth;
 
 class OrderProcessPagesController extends Controller
@@ -51,12 +53,50 @@ class OrderProcessPagesController extends Controller
             $shipping->country = $req->country;
             $shipping->order_note = $req->order_note;
             $shipping->payment_status = 0;
-
-
-            
-
             $shipping->save();
 
+            //putting all the Cart Items in the order table with Shipment ID and User Id and clearing the cart
+            $user_id = Auth::id();
+            $cartItems = Cart::where('user_id', $user_id)->get();
+
+            foreach($cartItems as $key=>$data)
+            {
+                $order = new Order;
+                $order->shipping_id = $shipping->id;
+                $order->product_name = $data->product->product_title;
+                $order->price = $data->price;
+                $order->quantity = $data->quantity;
+                $order->size = $data->size;
+                $order->ram = $data->ram;
+                $order->color = $data->color;
+
+                $order->save(); 
+                
+                
+                //deducting from the products-attribute quantity
+                $attribute = Attribute::findOrFail($data->attribute_id);
+
+                $cart_quantity = $data->quantity;
+                $attribute_quantity = $attribute->quantity;
+
+                $updated_quantity = $attribute_quantity - $cart_quantity;
+
+                $attribute->quantity=$updated_quantity;
+                $attribute->save();
+
+                //deleteing from cart
+                $cart_item = Cart::findOrFail($data->id);
+                $cart_item->delete();
+
+
+
+
+            }
+
+
+           
+
+            
             return back();
         }
         

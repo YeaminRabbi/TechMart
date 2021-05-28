@@ -20,7 +20,7 @@ Route::get('product/get/price/{att_id}/{product_id}', 'App\Http\Controllers\Sing
 Route::post('add-to-cart', 'App\Http\Controllers\SingleProductPagesController@addToCart')->name('add-to-cart')->middleware(['auth']);
 
 //OrderProcess routes
-Route::post('/OrderPlacement', 'App\Http\Controllers\OrderProcessPagesController@OrderPlacement')->name('OrderPlacement');
+Route::post('/OrderPlacement', 'App\Http\Controllers\OrderProcessPagesController@OrderPlacement')->name('OrderPlacement')->middleware(['auth']);
 
 
 //Cart routes

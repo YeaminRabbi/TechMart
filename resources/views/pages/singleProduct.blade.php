@@ -1283,14 +1283,19 @@
                                         <h6 class="font-size-14">Attributes </h6>
                                         <p>ROM | RAM | COLOR</p>
                                         @foreach ($attributes as $key=>$data)
-                                            
-                                        <div>
-                                           
-                                            
-                                           <input class="att_id" id="att_id" data-product="{{ $product->id }}" type="radio" name="att_id" value="{{  $data->id }}">  {{ $data->size->sizename }} | {{ $data->ram }} | {{ $data->color->colorname }} 
+                                            <?php
 
+                                                if($data->quantity >= 5)
+                                                {
+                                            ?>
+                                                <div>
+                                                    <input class="att_id" id="att_id" data-product="{{ $product->id }}" type="radio" name="att_id" value="{{  $data->id }}">  {{ $data->size->sizename }} | {{ $data->ram }} | {{ $data->color->colorname }} 
+                                                </div>
+                                            <?php
+                                                }
 
-                                        </div>
+                                            ?>
+                                        
 
                                          
                                        

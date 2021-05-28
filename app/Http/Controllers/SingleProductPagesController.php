@@ -105,8 +105,9 @@ class SingleProductPagesController extends Controller
             $cart->ram = $ram;
             $cart->quantity = $request->quantity;
             $cart->price = $price;
+            $cart->attribute_id = $att_id;
             $cart->save();
-
+                
           
             return back(); 
         }

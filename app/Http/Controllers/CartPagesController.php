@@ -57,7 +57,7 @@ class CartPagesController extends Controller
     function QuantityUpdate(Request $request){
         $id = $request->id;
         $qty = $request->qty_quantity;
-        
+       
         $cart = Cart::where('id',$id);
         $cart->quantity = $qty;
 
