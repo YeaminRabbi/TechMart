@@ -1606,26 +1606,26 @@
                                                 <div class="product-item__outer h-100">
                                                     <div class="product-item__inner px-xl-4 p-3">
                                                         <div class="product-item__body pb-xl-2">
-                                                            <div class="mb-2"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Mobile</a></div>
-                                                            <h5 class="mb-1 product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{$feature->product_title}}</a></h5>
+                                                            <div class="mb-2"><a href="" class="font-size-12 text-gray-5">Mobile</a></div>
+                                                            <h5 class="mb-1 product-item__title"><a href="{{ route('SingleProduct' , $feature->id) }}" class="text-blue font-weight-bold">{{$feature->product_title}}</a></h5>
                                                             <div class="mb-2">
-                                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="{{url($feature->image)}}" alt="Image Description"></a>
+                                                                <a href="{{ route('SingleProduct' , $feature->id) }}" class="d-block text-center"><img class="img-fluid" src="{{url($feature->image)}}" alt="Image Description"></a>
                                                             </div>
                                                             <div class="flex-center-between mb-1">
                                                                 <div class="prodcut-price">
-                                                                    <div class="text-gray-100">{{$feature->unit_price}}</div>
+                                                                    <div class="text-gray-100">BDT. {{$feature->unit_price}}</div>
                                                                 </div>
                                                                 <div class="d-none d-xl-block prodcut-add-cart">
-                                                                    <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                                                    <a href="{{ route('SingleProduct' , $feature->id) }}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="product-item__footer">
+                                                        {{--  <div class="product-item__footer">
                                                             <div class="border-top pt-2 flex-center-between flex-wrap">
                                                                 <a href="https://transvelo.github.io/electro-html/2.0/html/shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                                                                 <a href="https://transvelo.github.io/electro-html/2.0/html/shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Add to Wishlist</a>
                                                             </div>
-                                                        </div>
+                                                        </div>  --}}
                                                     </div>
                                                 </div>
                                             </li>
@@ -1647,26 +1647,26 @@
                                                 <div class="product-item__outer h-100">
                                                     <div class="product-item__inner px-xl-4 p-3">
                                                         <div class="product-item__body pb-xl-2">
-                                                            <div class="mb-2"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/product-categories-7-column-full-width.html" class="font-size-12 text-gray-5">Mobile</a></div>
-                                                            <h5 class="mb-1 product-item__title"><a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="text-blue font-weight-bold">{{$onsale->product_title}}</a></h5>
+                                                            <div class="mb-2"><a href="{{ route('SingleProduct_onsale' , $onsale->id) }}" class="font-size-12 text-gray-5">Mobile</a></div>
+                                                            <h5 class="mb-1 product-item__title"><a href="{{ route('SingleProduct_onsale' , $onsale->id) }}" class="text-blue font-weight-bold">{{$onsale->product_title}}</a></h5>
                                                             <div class="mb-2">
-                                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="d-block text-center"><img class="img-fluid" src="{{url($onsale->image)}}" alt="Image Description"></a>
+                                                                <a href="{{ route('SingleProduct_onsale' , $onsale->id) }}" class="d-block text-center"><img class="img-fluid" src="{{url($onsale->image)}}" alt="Image Description"></a>
                                                             </div>
                                                             <div class="flex-center-between mb-1">
                                                                 <div class="prodcut-price">
-                                                                    <div class="text-gray-100">{{$onsale->onsale_price}}</div>
+                                                                    <div class="text-gray-100">BDT. {{$onsale->unit_price}}</div>
                                                                 </div>
                                                                 <div class="d-none d-xl-block prodcut-add-cart">
-                                                                    <a href="https://transvelo.github.io/electro-html/2.0/html/shop/single-product-fullwidth.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                                                    <a href="{{ route('SingleProduct_onsale' , $onsale->id) }}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="product-item__footer">
+                                                        {{--  <div class="product-item__footer">
                                                             <div class="border-top pt-2 flex-center-between flex-wrap">
                                                                 <a href="https://transvelo.github.io/electro-html/2.0/html/shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                                                                 <a href="https://transvelo.github.io/electro-html/2.0/html/shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Add to Wishlist</a>
                                                             </div>
-                                                        </div>
+                                                        </div>  --}}
                                                     </div>
                                                 </div>
                                             </li>

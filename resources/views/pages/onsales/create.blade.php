@@ -38,7 +38,7 @@
                     <th style="text-align: center;">Brand</th>
                     <th style="text-align: center;">Model</th>
                     <th style="text-align: center;">Price</th>
-                    <th style="text-align: center;">Onsale Price</th>
+                    <th style="text-align: center;">Onsale Price Percentage</th>
                                       
                     <th style="text-align: center;">Action</th>
                     
@@ -70,7 +70,7 @@
                     <td>
                         <input class="form-control" type="hidden" name="product_id" value="{{ $data->id }}">
                         
-                        <input class="form-control" type="number" name="onsale_price"  placeholder="Price" required>
+                        <input class="form-control" type="number" name="onsale_price"  placeholder="Percentage | %" required>
                     </td>
                     <td>
                         <div class="row">

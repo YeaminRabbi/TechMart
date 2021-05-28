@@ -38,7 +38,7 @@
                     <th style="text-align: center;">Brand</th>
                     <th style="text-align: center;">Model</th>
                     <th style="text-align: center;">Price</th>
-                    <th style="text-align: center;">Onsale Price</th>
+                    <th style="text-align: center;">Onsale Price Percentage</th>
                                       
                     <th style="text-align: center;">Action</th>
                     
@@ -61,7 +61,7 @@
                     <td>{{ $data->brand->brandname }}</td>
                     <td>{{ $data->subcategory->subcategoryname }}</td>
                     <td>{{ $data->unit_price }}</td>
-                    <td>{{ $data->onsale_price }}</td>
+                    <td>{{ $data->onsale_price }}%</td>
                    
 
                    

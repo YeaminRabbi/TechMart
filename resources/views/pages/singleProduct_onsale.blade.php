@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
     
-<!-- Mirrored from transvelo.github.io/electro-html/2.0/html/shop/single-product-extended.html by HTTrack Website Copier/3.x [XR&CO2014], Tue, 06 Oct 2020 15:09:22 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
 <head>
         <!-- Title -->
         <title>Single Product </title>
@@ -1250,12 +1248,20 @@
                         <div class="mx-md-auto mx-lg-0 col-md-6 col-lg-4 col-xl-3">
                             <div class="mb-2">
                                 <div class="card p-5 border-width-2 border-color-1 borders-radius-17">
-                                <form action="{{ route('add-to-cart') }}" method="POST">
+                                <form action="{{ route('add-to-cart-onsale') }}" method="POST">
                                        @csrf
+                                    <input type="hidden" name="onsale_rate" value="{{ $product->onsale_price }}">
+                                    <div class="mb-3" >
+
+                                        This Product has onsale discount of {{ $product->onsale_price }}% 
+                                    </div>
 
                                     <div class="mb-3 addprice" >
+
                                         {{-- Adding price here using AJAX --}}
                                     </div>
+
+                                    
                                     
                                     <div class="mb-3">
                                         <h6 class="font-size-14">Quantity</h6>
@@ -1749,88 +1755,83 @@
                                             <!-- End Form -->
                                         </div>
                                     </div>
-
-
                                     <!-- Review -->
-
                                     @foreach ($reviews as $key=> $data)
-                                        <div class="border-bottom border-color-1 pb-4 mb-4">
-                                            <!-- Review Rating -->
-                                            <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
-                                                <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
+                                    <div class="border-bottom border-color-1 pb-4 mb-4">
+                                        <!-- Review Rating -->
+                                        <div class="d-flex justify-content-between align-items-center text-secondary font-size-1 mb-2">
+                                            <div class="text-warning text-ls-n2 font-size-16" style="width: 80px;">
 
-                                                    <?php
+                                                <?php
 
-                                                        if($data->rating == 1)
-                                                        {
-                                                    ?>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star text-muted"></small>
-                                                    <small class="fas fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <?php
-                                                        }
-                                                        elseif($data->rating == 2)
-                                                        {
-                                                    ?>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
+                                                    if($data->rating == 1)
+                                                    {
+                                                ?>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star text-muted"></small>
+                                                <small class="fas fa-star text-muted"></small>
+                                                <small class="far fa-star text-muted"></small>
+                                                <small class="far fa-star text-muted"></small>
+                                                <?php
+                                                    }
+                                                    elseif($data->rating == 2)
+                                                    {
+                                                ?>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star text-muted"></small>
+                                                <small class="far fa-star text-muted"></small>
+                                                <small class="far fa-star text-muted"></small>
 
-                                                    <?php
-                                                        }
+                                                <?php
+                                                    }
 
-                                                        elseif($data->rating == 3){
-                                                    ?>
+                                                    elseif($data->rating == 3){
+                                                ?>
 
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <?php 
-                                                        }
-                                                        elseif($data->rating == 4)
-                                                        {
-                                                    ?>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="far fa-star"></small>
-                                                    <small class="far fa-star text-muted"></small>
-                                                    <?php 
-                                                        }
-                                                        else{
-                                                    ?>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="fas fa-star"></small>
-                                                    <small class="far fa-star"></small>
-                                                    <small class="far fa-star"></small>
-                                                    <?php
-                                                        }
-                                                    ?>
-                                                   
-                                                </div>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star"></small>
+                                                <small class="far fa-star text-muted"></small>
+                                                <small class="far fa-star text-muted"></small>
+                                                <?php 
+                                                    }
+                                                    elseif($data->rating == 4)
+                                                    {
+                                                ?>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star"></small>
+                                                <small class="far fa-star"></small>
+                                                <small class="far fa-star text-muted"></small>
+                                                <?php 
+                                                    }
+                                                    else{
+                                                ?>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star"></small>
+                                                <small class="fas fa-star"></small>
+                                                <small class="far fa-star"></small>
+                                                <small class="far fa-star"></small>
+                                                <?php
+                                                    }
+                                                ?>
+                                               
                                             </div>
-                                            <!-- End Review Rating -->
-
-                                            <p class="text-gray-90">{{ $data->message }}</p>
-
-                                            <!-- Reviewer -->
-                                            <div class="mb-2">
-                                                <strong>{{ $data->name }}</strong>
-                                                <span class="font-size-13 text-gray-23">{{ $data->created_at->format('d M,y') }}</span>
-                                            </div>
-                                            <!-- End Reviewer -->
                                         </div>
-                                    @endforeach
-                                    
+                                        <!-- End Review Rating -->
+
+                                        <p class="text-gray-90">{{ $data->message }}</p>
+
+                                        <!-- Reviewer -->
+                                        <div class="mb-2">
+                                            <strong>{{ $data->name }}</strong>
+                                            <span class="font-size-13 text-gray-23">{{ $data->created_at->format('d M,y') }}</span>
+                                        </div>
+                                        <!-- End Reviewer -->
+                                    </div>
+                                @endforeach
                                     <!-- End Review -->
-                                    
                                 </div>
                             </div>
                         </div>

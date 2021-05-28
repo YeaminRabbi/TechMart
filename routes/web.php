@@ -18,6 +18,11 @@ Route::get('/', 'App\Http\Controllers\PagesController@index')->name('homepage');
 //Single product dynamic dropdowns
 Route::get('product/get/price/{att_id}/{product_id}', 'App\Http\Controllers\SingleProductPagesController@findRam')->name('findRam');
 Route::post('add-to-cart', 'App\Http\Controllers\SingleProductPagesController@addToCart')->name('add-to-cart')->middleware(['auth']);
+Route::post('add-to-cart-onsale', 'App\Http\Controllers\SingleProductPagesController@addToCartOnSale')->name('add-to-cart-onsale')->middleware(['auth']);
+
+//Product Review Routes
+Route::post('/review', 'App\Http\Controllers\SingleProductPagesController@review')->name('Review')->middleware(['auth']);
+
 
 //OrderProcess routes
 Route::post('/OrderPlacement', 'App\Http\Controllers\OrderProcessPagesController@OrderPlacement')->name('OrderPlacement')->middleware(['auth']);
@@ -61,6 +66,9 @@ Route::delete('/faqs/destroy/{id}', 'App\Http\Controllers\FAQPagesController@des
 
 //Single Product Routes
 Route::get('/SingleProduct/{id}', 'App\Http\Controllers\SingleProductPagesController@SingleProduct')->name('SingleProduct')->middleware(['auth']);
+
+//Onsale Single product Routes
+Route::get('/SingleProduct_onsale/{id}', 'App\Http\Controllers\SingleProductPagesController@SingleProduct_onsale')->name('SingleProduct_onsale')->middleware(['auth']);
 
 //product search using autocomplete
 Route::post('/product/search', 'App\Http\Controllers\PagesController@productSearch')->name('product.search');
