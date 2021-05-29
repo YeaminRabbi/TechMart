@@ -1620,12 +1620,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        {{--  <div class="product-item__footer">
+                                                         <div class="product-item__footer">
                                                             <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Add to Wishlist</a>
+                                                                {{-- <a href="https://transvelo.github.io/electro-html/2.0/html/shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a> --}}
+                                                                <a href="{{ route('Wishlist', $feature->id) }}" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Add to Wishlist</a>
                                                             </div>
-                                                        </div>  --}}
+                                                        </div> 
                                                     </div>
                                                 </div>
                                             </li>
@@ -1661,12 +1661,12 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        {{--  <div class="product-item__footer">
+                                                         <div class="product-item__footer">
                                                             <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                                <a href="https://transvelo.github.io/electro-html/2.0/html/shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Add to Wishlist</a>
+                                                                {{-- <a href="https://transvelo.github.io/electro-html/2.0/html/shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a> --}}
+                                                                <a href="{{ route('Wishlist', $onsale->id) }}" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Add to Wishlist</a>
                                                             </div>
-                                                        </div>  --}}
+                                                        </div> 
                                                     </div>
                                                 </div>
                                             </li>

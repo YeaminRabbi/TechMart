@@ -1678,15 +1678,15 @@
                                 <li class="mb-4">
                                     <div class="row">
                                         <div class="col-auto">
-                                            <a href="single-product-fullwidth.html" class="d-block width-75">
+                                            <a href="{{ route('SingleProduct', $latestProduct->id) }}" class="d-block width-75">
                                                 <img class="img-fluid" src="{{url($latestProduct->image)}}" alt="Image Description">
                                             </a>
                                         </div>
                                         <div class="col">
-                                            <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="single-product-fullwidth.html">{{$latestProduct->product_title}}</a></h3>
+                                            <h3 class="text-lh-1dot2 font-size-14 mb-0"><a href="{{ route('SingleProduct', $latestProduct->id) }}">{{$latestProduct->product_title}}</a></h3>
                                            
                                             <div class="font-weight-bold">
-                                                <del class="font-size-11 text-gray-9 d-block">{{$latestProduct->onsale_price}}</del>
+                                                
                                                 <ins class="font-size-15 text-red text-decoration-none d-block">{{$latestProduct->unit_price}}</ins>
                                             </div>
                                         </div>
@@ -1805,14 +1805,14 @@
                                                         </div>
                                                      
                                                         <div class="d-none d-xl-block prodcut-add-cart">
-                                                            <a href="CART.html" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
+                                                            <a href="{{ route('SingleProduct', $allproduct->id) }}" class="btn-add-cart btn-primary transition-3d-hover"><i class="ec ec-add-to-cart"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="product-item__footer">
                                                     <div class="border-top pt-2 flex-center-between flex-wrap">
-                                                        <a href="compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                                        <a href="#" class="add_to_wishlist text-gray-6 font-size-13" id="wishlist_counter" data-quantity="1" data-id="{{$allproduct->id}}" id="add_to_wishlist_{{$allproduct->id}}"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                                        <a href="" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                                        <a href="{{ route('Wishlist', $allproduct->id) }}" class="add_to_wishlist text-gray-6 font-size-13" id="wishlist_counter" data-quantity="1" data-id="{{$allproduct->id}}" id="add_to_wishlist_{{$allproduct->id}}"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2606,14 +2606,17 @@
                                            
 
                                                     @foreach($brands as $brand)
-                                                    <div class="form-group d-flex align-items-center justify-content-between mb-2 pb-1">
-                                                        <div class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" id="{{$brand->brandname}}" @if(!empty($filter_brand) && in_array($brand->brandname,$filter_brand)) checked @endif  name="brand[]" value="{{$brand->brandname}}" onchange="this.form.submit();">
-                                                            <label class="custom-control-label" for="{{$brand->brandname}}">{{$brand->brandname}}
-                                                                <span class="text-gray-25 font-size-12 font-weight-normal"> {{count($brand->products)}}</span>
-                                                            </label>
+                              
+                                                        <div class="form-group d-flex align-items-center justify-content-between mb-2 pb-1">
+                                                                <div class="custom-control custom-checkbox">
+                                                                <input type="checkbox" class="custom-control-input" id="{{$brand->brandname}}" @if(!empty($filter_brand) && in_array($brand->brandname,$filter_brand)) checked @endif  name="brand[]" value="{{$brand->brandname}}" onchange="this.form.submit();">
+                                                                <label class="custom-control-label" for="{{$brand->brandname}}">{{$brand->brandname}}
+                                                                    <span class="text-gray-25 font-size-12 font-weight-normal"> {{count($brand->products)}}</span>
+                                                                </label>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                           
+                                                     
                                                     @endforeach
                                         @endif
                                             <!-- End Checkboxes -->

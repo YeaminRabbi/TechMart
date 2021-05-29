@@ -23,6 +23,10 @@ Route::post('add-to-cart-onsale', 'App\Http\Controllers\SingleProductPagesContro
 //Product Review Routes
 Route::post('/review', 'App\Http\Controllers\SingleProductPagesController@review')->name('Review')->middleware(['auth']);
 
+//Product Wishlist routes
+Route::get('/wishlist/{id}', 'App\Http\Controllers\SingleProductPagesController@wishlist')->name('Wishlist')->middleware(['auth']);
+Route::get('/wishlist', 'App\Http\Controllers\SingleProductPagesController@wishlistshow')->name('ShowWishlist')->middleware(['auth']);
+Route::get('/WishlistItemDelete/{id}', 'App\Http\Controllers\SingleProductPagesController@WishlistItemDelete')->name('WishlistItemDelete')->middleware(['auth']);
 
 //OrderProcess routes
 Route::post('/OrderPlacement', 'App\Http\Controllers\OrderProcessPagesController@OrderPlacement')->name('OrderPlacement')->middleware(['auth']);

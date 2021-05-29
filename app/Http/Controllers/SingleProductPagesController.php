@@ -16,6 +16,8 @@ use DB;
 use App\Cart;
 use Auth;
 use App\Review;
+use App\Wishlist;
+
 class SingleProductPagesController extends Controller
 {
     
@@ -215,6 +217,42 @@ class SingleProductPagesController extends Controller
         $review->rating =  $request->rating;
 
         $review->save();
+
+        return back();
+    }
+
+
+    function wishlist($id)
+    {
+        $wishlist = new Wishlist;
+
+        $wishlist->user_id = Auth::id();
+        $wishlist->product_id = $id;
+
+        $wishlist->save();
+
+        return back();
+    }
+
+
+
+    function wishlistshow()
+    {
+
+        $user_id = Auth::id();
+        $wishlistItems = Wishlist::where('user_id', $user_id)->get();
+        return view('pages.wishlist',
+        [
+           'wishlistItems' => $wishlistItems
+        ]);
+    }   
+
+
+    function WishlistItemDelete($id)
+    {
+        $item = Wishlist::find($id);
+
+        $item->delete();
 
         return back();
     }

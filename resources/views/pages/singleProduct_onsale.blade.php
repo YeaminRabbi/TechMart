@@ -1321,8 +1321,8 @@
 
                                 </form>
                                     <div class="flex-content-center flex-wrap">
-                                        <a href="#" class="text-gray-6 font-size-13 mr-2"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
-                                        <a href="#" class="text-gray-6 font-size-13 ml-2"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
+                                        <a href="{{ route('Wishlist', $product->id) }}" class="text-gray-6 font-size-13 mr-2"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                        {{-- <a href="#" class="text-gray-6 font-size-13 ml-2"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a> --}}
                                     </div>
                                 </div>
                             </div>
