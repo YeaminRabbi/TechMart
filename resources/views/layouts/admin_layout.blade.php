@@ -246,6 +246,24 @@
                             <li>
                                 <a href="javascript: void(0);">
                                     <i class="fe-layout"></i>
+                                    <span style="font-size: 20px;">Orders</span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    
+                                   
+                                    <li><a href="{{route('OrderPending')}}">Pending</a></li>
+                                    <li><a href="{{route('OrderProcessing')}}">Processing</a></li>
+                                    <li><a href="{{route('OrderComplete')}}">Complete</a></li>
+
+                                </ul>
+                            </li>
+                            
+                         
+
+                            <li>
+                                <a href="javascript: void(0);">
+                                    <i class="fe-layout"></i>
                                     <span style="font-size: 20px;"> Blog </span>
                                     <span class="menu-arrow"></span>
                                 </a>
@@ -352,6 +370,9 @@
                                 <li><a href="{{route('admin.faqs.list')}}">List</a></li>
                             </ul>
                         </li>
+
+
+                        
 
                          
                         </ul>

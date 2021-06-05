@@ -86,6 +86,13 @@ Route::get('/view_as_sort', 'App\Http\Controllers\PagesController@shopSort')->na
 
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', 'App\Http\Controllers\HomeController@dashboard')->name('admin.dashboard');
+    //These are order routes 
+    Route::get('/OrderPending', 'App\Http\Controllers\HomeController@ShowPendingList')->name('OrderPending');
+    Route::get('/OrderApproveStatus/{id}', 'App\Http\Controllers\HomeController@OrderApproveStatus')->name('OrderApproveStatus');
+    Route::get('/OrderProcessing', 'App\Http\Controllers\HomeController@OrderProcessingList')->name('OrderProcessing');
+    Route::get('/OrderCompleteStatus/{id}', 'App\Http\Controllers\HomeController@OrderCompleteStatus')->name('OrderCompleteStatus');
+    Route::get('/OrderComplete', 'App\Http\Controllers\HomeController@OrderCompleteList')->name('OrderComplete');
+
 
     // These are brands routes
     Route::get('/brands/create', 'App\Http\Controllers\BrandsPagesController@create')->name('admin.brands.create');

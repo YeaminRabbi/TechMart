@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Order;
+use App\Shipping;
 class HomeController extends Controller
 {
     //
@@ -32,4 +33,61 @@ class HomeController extends Controller
     // {
     //     $this->middleware('auth');
     // }
+
+
+    function ShowPendingList()
+    {
+        $shippings = Shipping::where('status', 0)->get();
+        $orders = Order::all();
+
+        return view('pages.order.pending', [
+            'shippings'=> $shippings,
+            'orders' => $orders
+        ]);
+    }
+
+
+    function OrderApproveStatus($id)
+    {
+        $shipping = Shipping::where('id', $id)->first();
+
+        $shipping->status = 1;
+        $shipping->save();
+
+        return back();
+    }
+
+
+    function OrderProcessingList()
+    {
+        $shippings = Shipping::where('status', 1)->get();
+        $orders = Order::all();
+
+        return view('pages.order.process', [
+            'shippings'=> $shippings,
+            'orders' => $orders
+        ]);
+    }
+
+
+    function OrderCompleteStatus($id)
+    {
+        $shipping = Shipping::where('id', $id)->first();
+
+        $shipping->status = 2;
+        $shipping->save();
+
+        return back();
+    }
+
+    function OrderCompleteList()
+    {
+        $shippings = Shipping::where('status', 1)->get();
+        $orders = Order::all();
+
+        return view('pages.order.complete', [
+            'shippings'=> $shippings,
+            'orders' => $orders
+        ]);
+    }
 }
