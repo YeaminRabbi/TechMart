@@ -75,6 +75,7 @@ class HomeController extends Controller
         $shipping = Shipping::where('id', $id)->first();
 
         $shipping->status = 2;
+        $shipping->payment_status = 1;
         $shipping->save();
 
         return back();
@@ -82,7 +83,7 @@ class HomeController extends Controller
 
     function OrderCompleteList()
     {
-        $shippings = Shipping::where('status', 1)->get();
+        $shippings = Shipping::where('status', 2)->get();
         $orders = Order::all();
 
         return view('pages.order.complete', [
@@ -90,4 +91,13 @@ class HomeController extends Controller
             'orders' => $orders
         ]);
     }
+
+    function OrderProductList($id)
+    {   
+        $products = Order::where('shipping_id', $id)->get();
+        return view('pages.order.productlist', [
+            'products' => $products
+        ]);
+    }
+    
 }

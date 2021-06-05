@@ -56,7 +56,7 @@
                     <td>{{$data->name}}</td>
                     <td>{{$data->email}}</td>
                     <td>{{$data->contact}}</td>
-                    <td>{{$data->address}}</td>
+                    <td >{{$data->address}}</td>
                     <td>{{$data->payment_type}}</td>
                     <td>{{$data->grand_total}}</td>
                     
@@ -70,7 +70,10 @@
                         <div class="row">
                           
                           <div>
-                            <a  href="{{ route('OrderApproveStatus', $data->id) }}" style="color: white;" class="btn btn-primary m-2"> Approve </a>
+                            <a  href="{{ route('OrderProductList', $data->id) }}" style="color: white;" class="btn btn-primary m-2">Products</a>
+                          </div>
+                          <div>
+                            <a  href="{{ route('OrderApproveStatus', $data->id) }}" style="color: white;" class="btn btn-warning m-2">Approve</a>
                           </div>
                          
                         </div>

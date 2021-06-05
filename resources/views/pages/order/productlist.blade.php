@@ -34,13 +34,13 @@
                         
                         <th style="text-align: center;">Order ID</th>
                         <th style="text-align: center;">Name</th>
-                        <th style="text-align: center;">Email</th>
-                        <th style="text-align: center;">Contact</th>
-                        <th style="text-align: center;">Address</th>
-                        <th style="text-align: center;">Payment</th>
-                        <th style="text-align: center;">Grand Total</th>
-                     
-                        <th style="text-align: center;">Status</th>
+                        <th style="text-align: center;">Quantity</th>
+                        <th style="text-align: center;">Size</th>
+                        <th style="text-align: center;">Color</th>
+                        <th style="text-align: center;">Ram</th>
+                        <th style="text-align: center;">Price</th>
+                        <th style="text-align: center;">Total</th>
+                        
                         
                         
                     </tr>
@@ -49,33 +49,18 @@
 
             <tbody>
            
-            @foreach ($shippings as $key => $data)
+            @foreach ($products as $key => $data)
                 <tr>
                     
-                    <td>{{$data->id}}</td>
-                    <td>{{$data->name}}</td>
-                    <td>{{$data->email}}</td>
-                    <td>{{$data->contact}}</td>
-                    <td>{{$data->address}}</td>
-                    <td>{{$data->payment_type}}</td>
-                    <td>{{$data->grand_total}}</td>
-                    
+                    <td>{{$key+1}}</td>
+                    <td>{{$data->product_name}}</td>
+                    <td>{{$data->quantity}}</td>
+                    <td >{{$data->size}}</td>
+                    <td>{{$data->color}}</td>
+                    <td>{{$data->ram}}</td>
+                    <td>{{$data->price}}</td>
+                    <td>{{$data->price * $data->quantity}}</td>
 
-                   
-                
-
-                   
-
-                    <td>
-                        <div>
-                            <a  href="{{ route('OrderProductList', $data->id) }}" style="color: white;" class="btn btn-warning m-2">Products</a>
-                          </div>
-                          <div>
-                            <a style="color: white;" class="btn btn-dark m-2">Completed</a>
-                          </div>
-                        
-                    </td>
-                  
                 </tr>
 
             @endforeach                    
@@ -84,9 +69,15 @@
                 </tbody>
             </table>
         </div>
+        <a href="{{ route('OrderPending') }}" class="btn btn-dark" style="margin-left: 30px;">Back</a>
     </div>
+   
 </div>
+
         </div>
+        
     </div>
+   
 </div>
+
 @endsection

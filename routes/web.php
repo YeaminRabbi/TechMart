@@ -92,7 +92,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/OrderProcessing', 'App\Http\Controllers\HomeController@OrderProcessingList')->name('OrderProcessing');
     Route::get('/OrderCompleteStatus/{id}', 'App\Http\Controllers\HomeController@OrderCompleteStatus')->name('OrderCompleteStatus');
     Route::get('/OrderComplete', 'App\Http\Controllers\HomeController@OrderCompleteList')->name('OrderComplete');
-
+    Route::get('/OrderProductList/{id}', 'App\Http\Controllers\HomeController@OrderProductList')->name('OrderProductList');
 
     // These are brands routes
     Route::get('/brands/create', 'App\Http\Controllers\BrandsPagesController@create')->name('admin.brands.create');
