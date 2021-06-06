@@ -7,8 +7,8 @@ use Carbon\Carbon;
 use App\Product;
 use App\Attribute;
 use App\Cart;
-use App\Shipping;
 use App\Order;
+use App\Shipping;
 
 use Auth;
 
@@ -92,22 +92,34 @@ class OrderProcessPagesController extends Controller
 
 
             }
-
-
-           
-
             
             return back();
         }
         
-
-
-        
-
+    }
 
 
 
 
+    function OrderTracker()
+    {
 
+        $user_id = Auth::id();
+
+        $shippings = Shipping::where('user_id', $user_id)->get();
+        return view('shipments', [
+            'shippings'=> $shippings
+        ]);
+
+    }
+
+
+    function ViewProducts($id)
+    {
+        $products = Order::where('shipping_id', $id)->get();
+
+        return view('shipmentproduct', [
+            'products'=> $products
+        ]);
     }
 }

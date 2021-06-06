@@ -20,6 +20,11 @@ Route::get('product/get/price/{att_id}/{product_id}', 'App\Http\Controllers\Sing
 Route::post('add-to-cart', 'App\Http\Controllers\SingleProductPagesController@addToCart')->name('add-to-cart')->middleware(['auth']);
 Route::post('add-to-cart-onsale', 'App\Http\Controllers\SingleProductPagesController@addToCartOnSale')->name('add-to-cart-onsale')->middleware(['auth']);
 
+//Traking order
+Route::get('OrderTracker', 'App\Http\Controllers\OrderProcessPagesController@OrderTracker')->name('OrderTracker')->middleware(['auth']);
+Route::get('ViewProducts/{id}', 'App\Http\Controllers\OrderProcessPagesController@ViewProducts')->name('ViewProducts')->middleware(['auth']);
+
+
 //Product Review Routes
 Route::post('/review', 'App\Http\Controllers\SingleProductPagesController@review')->name('Review')->middleware(['auth']);
 

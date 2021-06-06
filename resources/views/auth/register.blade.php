@@ -210,7 +210,7 @@
 
                                     </form>
 
-                                    <div class="row">
+                                    {{--  <div class="row">
                                         <div class="col-sm-12">
                                             <div class="text-center">
                                                 <button type="button" class="btn mr-1 btn-facebook waves-effect waves-light">
@@ -224,7 +224,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>  --}}
 
                                     <div class="row mt-4 pt-2">
                                         <div class="col-sm-12 text-center">

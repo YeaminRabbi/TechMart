@@ -468,148 +468,70 @@
 
             <div class="container">
                 <div class="mb-4">
-                    <h1 class="text-center">Cart</h1>
+                    <h1 class="text-center">Order List</h1>
                 </div>
                 <div class="mb-10 cart-table">
                  
-                    <form action="{{ route('cartUpdate') }}" method="POST">
-                        @csrf
+                   
                         <table class="table" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th class="product-remove">&nbsp;</th>
-                                    <th class="product-thumbnail">&nbsp;</th>
-                                    <th class="product-name">Product</th>
-                                    <th class="product-name">Size</th>
-                                    <th class="product-name">Ram</th>
-                                    <th class="product-name">Color</th>
-                                    <th class="product-price">Price</th>
-                                    <th class="product-quantity w-lg-15">Quantity</th>
-                                    <th class="product-subtotal">Total</th>
+                                   
+                                    <th class="text-center">Product Name</th>
+                                    <th class="text-center">Size</th>
+                                    <th class="text-center">Color</th>
+                                    <th class="text-center">Ram</th>
+                                    <th class="text-center">Quantity</th>
+                                    <th class="text-center">Price</th>
+                                    <th class="text-center">Total Price</th>
+
+                                    
+                                    
                                 </tr>
                             </thead>
                             <tbody>
                                 
-                             @foreach($carts as $key=> $data)
+                             @foreach($products as $key=> $data)
                                     <tr class="">
                                         <td class="text-center">
-                                            <a href="{{ route('SingleItemCartDelete', $data->id) }}" class="text-gray-32 font-size-26">×</a>
+                                            {{ $data->product_name }}
+                                         </td>
+                                        <td class="text-center">
+                                           {{ $data->size }}
                                         </td>
-                                        <td class="d-none d-md-table-cell">
-                                            <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="{{ $data->product->image }}" alt="Image Description"></a>
+                                        <td class="text-center">
+                                            {{ $data->color }}
                                         </td>
-    
-                                        <td data-title="Product">
-                                            <a href="{{ route('SingleProduct' , $data->product_id) }}" class="text-gray-90">{{ $data->product->product_title }}</a>
+                                        <td class="text-center">
+                                            {{ $data->ram }}
                                         </td>
-                                        <td data-title="Size">
-                                            <span class="">{{ $data->size }}</span>
-                                        </td>
-                                        <td data-title="Size">
-                                            <span class="">{{ $data->ram }}</span>
-                                        </td>
-                                        <td data-title="Color">
-                                            <span class="">{{ $data->color }}</span>
-                                        </td>
-                                        <td class="Price unit_price{{ $data->id }}" data-unit{{ $data->id }}="{{ $data->price }}">{{ $data->price }}</td>
-                                        <input  type="hidden" name="cart_id[]" value="{{ $data->id }}">
-    
-                                        <td data-title="Quantity">
-                                            <span class="sr-only">Quantity</span>
-                                            <!-- Quantity -->
-                                            <div class="border rounded-pill py-1 width-122 w-xl-80 px-3 border-color-1">
-                                                <div class="js-quantity row align-items-center quantity cart-plus-minus">
-                                                   
-                                                    <div class="col">
-                                                        <input class="js-result form-control h-auto border-0 rounded p-0 shadow-none qty_quantity{{ $data->id }}" name="quantity[]" type="text" value="{{ $data->quantity }}">
-                                                    </div>
-                                                    <div class="col-auto pr-1">
-                                                        <a class="js-minus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0 qtyminus{{ $data->id }}" href="javascript:;">
-                                                            <small class="fas fa-minus btn-icon__inner"></small>
-                                                        </a>
-                                                        <a class="js-plus btn btn-icon btn-xs btn-outline-secondary rounded-circle border-0 qtyplus{{ $data->id }}" href="javascript:;">
-                                                            <small class="fas fa-plus btn-icon__inner"></small>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- End Quantity -->
-                                        </td>
-    
-                                        <td class="total count_total total_unit{{ $data->id }}">{{ $data->quantity * $data->price }}</tr>
 
-                                    <?php
+                                        <td class="text-center">
+                                            {{ $data->quantity }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $data->price }}
+                                        </td>
+                                        <td class="text-center">
+                                            {{ $data->price * $data->quantity }}
+                                        </td>
 
-                                        $grand_total = $grand_total + ($data->quantity * $data->price);
+                                        
+    
 
-                                    ?>
+                                    
                                 @endforeach
-                                <tr>
-                                    <td colspan="6" class="border-top space-top-2 justify-content-center">
-                                        <div class="pt-md-3">
-                                            <div class="d-block d-md-flex flex-center-between">
-                                                <div class="d-md-flex">
-                                                    <button type="submit" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update cart</button>
-
-                                                
-                                                    <a href="{{ route('Checkout') }}" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed to checkout</a>
-                                                </div>
-
-                                    </form>
-                                                <div class="mb-3 mb-md-0 w-xl-40">
-                                                    <!-- Apply coupon Form -->
-                                                    {{--  <form class="js-focus-state">
-                                                        <label class="sr-only" for="subscribeSrEmailExample1">Coupon code</label>
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control" name="text" id="subscribeSrEmailExample1" placeholder="Coupon code" aria-label="Coupon code" aria-describedby="subscribeButtonExample2" required>
-                                                            <div class="input-group-append">
-                                                                <button class="btn btn-block btn-dark px-4" type="button" id="subscribeButtonExample2"><i class="fas fa-tags d-md-none"></i><span class="d-none d-md-inline">Apply coupon</span></button>
-                                                            </div>
-                                                        </div>
-                                                    </form>  --}}
-                                                    <!-- End Apply coupon Form -->
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                
                             </tbody>
                         </table>
-                    </form>
+                
                 </div>
-                <div class="mb-8 cart-total">
-                    <div class="row">
-                        <div class="col-xl-5 col-lg-6 offset-lg-6 offset-xl-7 col-md-8 offset-md-4">
-                            <div class="border-bottom border-color-1 mb-3">
-                                <h3 class="d-inline-block section-title mb-0 pb-2 font-size-26">Cart totals</h3>
-                            </div>
-                            <table class="table mb-3 mb-md-0">
-                                <tbody>
-                                    <tr class="cart-subtotal">
-                                        <th>Subtotal</th>
-                                        <td data-title="Subtotal"><span class="amount">BDT. {{ $grand_total }}</span></td>
-                                    </tr>
-                                    <tr class="shipping">
-                                        <th>Shipping</th>
-                                        <td data-title="Shipping">
-                                            Flat Rate: <span class="amount">BDT 100</span>
-                                            
-                                        </td>
-                                    </tr>
-                                    <tr class="order-total">
-                                        <th>Total</th>
-                                        <td data-title="Total"><strong><span class="amount up_total">BDT. {{ $grand_total+100 }}</span></strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <button type="button" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-md-none">Proceed to checkout</button>
-                        </div>
-                    </div>
-                </div>
+               <a href="{{ route('OrderTracker') }}" class="btn btn-dark" style="margin-left:30px;">Back</a>
             </div>
         </main>
         <!-- ========== END MAIN CONTENT ========== -->
+
+       
 
         <!-- Go to Top -->
         <a class="js-go-to u-go-to" href="#"
@@ -634,74 +556,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js" integrity="sha512-HWlJyU4ut5HkEj0QsK/IxBCY55n5ZpskyjVlAoV9Z7XQwwkqXoYdCIC93/htL3Gu5H3R4an/S0h2NXfbZk3g7w==" crossorigin="anonymous"></script>
         
-        <script type="text/javascript">
-            $(document).ready(function(){
-                @foreach($carts as $cart)
-                    $('.qtyminus{{ $cart->id }}').click(function(){
-                        let qty_quantity = $('.qty_quantity{{ $cart->id }}').val()
-                        let unit_price = $('.unit_price{{ $cart->id }}').attr('data-unit{{ $cart->id }}')
-                        $('.total_unit{{ $cart->id }}').html(qty_quantity * unit_price)
-                        let minus_sub_total = (qty_quantity * unit_price)
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-                        $.ajax({
-                            url: "{{ url('/quantity/update') }}",
-                            method: "post",
-                            data: {
-                                id: "{{ $cart->id }}",
-                                qty_quantity: qty_quantity,
-                            },
-                            success: function(result){
-                                console.log(result)
-                            }
-                        })
-                        let c_total = document.querySelectorAll('.count_total')
-                        let arr = Array.from(c_total)
-                        let sum = 0
-                        arr.map(item=>{
-                            sum += parseInt(item.innerHTML)
-                            $('.up_total').html(sum)
-                            console.log(sum)
-                        })
-                        
-                    })
-            
-                    $('.qtyplus{{ $cart->id }}').click(function(){
-                        let qty_quantity = $('.qty_quantity{{ $cart->id }}').val()
-                        let unit_price = $('.unit_price{{ $cart->id }}').attr('data-unit{{ $cart->id }}')
-                        $('.total_unit{{ $cart->id }}').html(qty_quantity * unit_price)
-                        let plus_sub_total = (qty_quantity * unit_price)
-                        $.ajaxSetup({
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                            }
-                        });
-                        $.ajax({
-                            url: "{{ url('/quantity/update') }}",
-                            method: "post",
-                            data: {
-                                id: "{{ $cart->id }}",
-                                qty_quantity: qty_quantity,
-                            },
-                            success: function(result){
-                                console.log(result)
-                            }
-                        })
-                        let c_total = document.querySelectorAll('.count_total')
-                        let arr = Array.from(c_total)
-                        let sum = 0
-                        arr.map(item=>{
-                            sum += parseInt(item.innerHTML)
-                            $('.up_total').html(sum)
-                            console.log(sum)
-                        })
-                    })
-                @endforeach
-            })
-        </script>
+      
     
 
         <script type="text/javascript">

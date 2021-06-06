@@ -100,11 +100,11 @@
                                             </div>
                                         </div>
 
-                                        <div class="form-group row text-center mt-2">
+                                        {{--  <div class="form-group row text-center mt-2">
                                             <div class="col-12">
                                                 <a  href="{{route('loginWithFacebook')}}" class="btn btn-facebook btn-rounded waves-effect waves-light"> Facebook </a>
                                             </div>
-                                        </div>
+                                        </div>  --}}
 
                                         
                                     </form>

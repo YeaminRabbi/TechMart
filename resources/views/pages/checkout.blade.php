@@ -46,11 +46,7 @@
                             <div class="topbar-right ml-auto">
                                 <ul class="list-inline mb-0">
                                     <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                        <a href="contact-v2.html" class="u-header-topbar__nav-link"><i class="ec ec-map-pointer mr-1"></i> Store Locator</a>
-                                    </li>
-                                   
-                                    <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border">
-                                        <a href="" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Track Your Order</a>
+                                        <a href="{{ route('OrderTracker') }}" class="u-header-topbar__nav-link"><i class="ec ec-transport mr-1"></i> Track Your Order</a>
                                     </li>
                                     <li class="list-inline-item mr-0 u-header-topbar__nav-item u-header-topbar__nav-item-border u-header-topbar__nav-item-no-border u-header-topbar__nav-item-border-single">
                                         <div class="d-flex align-items-center">

@@ -68,7 +68,9 @@
 
                     <td>
                         <div class="row">
-                          
+                            <div>
+                                <a  href="{{ route('OrderProductList', $data->id) }}" style="color: white;" class="btn btn-primary m-2">Products</a>
+                              </div>
                           <div>
                             <a  href="{{ route('OrderCompleteStatus', $data->id) }}" style="color: white;" class="btn btn-warning m-2"> Complete </a>
                           </div>
