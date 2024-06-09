@@ -18,7 +18,7 @@ class CreateAboutsTable extends Migration
             $table->text('wedodescription');
             $table->text('visiondescription');
             $table->text('missiondescription');
-            $table->text('membername')->unique();
+            $table->text('membername');
             $table->text('memberdesignation');
             $table->string('image');
             $table->softDeletes();

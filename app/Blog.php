@@ -1,6 +1,6 @@
 <?php
-use Cviebrock\EloquentTaggable\Taggable;
 namespace App;
+use Cviebrock\EloquentTaggable\Taggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Blog extends Model{
